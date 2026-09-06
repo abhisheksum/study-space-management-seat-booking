@@ -1,0 +1,30 @@
+{
+  "name": "studyhub-backend",
+  "version": "1.0.0",
+  "description": "StudyHub — Study Space Management & Seat Booking Platform API",
+  "main": "server/server.js",
+  "scripts": {
+    "start":     "node server/server.js",
+    "dev":       "nodemon server/server.js",
+    "db:schema": "mysql -u root -p studyhub < server/database/schema.sql",
+    "db:seed":   "mysql -u root -p studyhub < server/database/seed.sql",
+    "db:setup":  "mysql -u root -p < server/database/schema.sql && mysql -u root -p studyhub < server/database/seed.sql",
+    "test":      "node --experimental-vm-modules node_modules/.bin/jest"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cors":    "^2.8.5",
+    "dotenv":  "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2":  "^3.9.7"
+  },
+  "devDependencies": {
+    "nodemon":   "^3.1.0",
+    "supertest": "^7.2.2"
+  },
+  "nodemonConfig": {
+    "watch": ["server/"],
+    "ext":   "js,json",
+    "ignore": ["node_modules/", "server/database/"]
+  }
+}

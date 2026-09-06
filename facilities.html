@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyHub Center Facilities: Dedicated reserved seats, ergonomic mesh chairs, spacious study tables, 300 Mbps Wi-Fi, personal sockets, CCTV, and silent AC.">
+  <title>Center Facilities & Infrastructure | StudyHub Self-Study Center</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Core Modular Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .facility-card-img-placeholder {
+      height: 160px;
+      border-radius: var(--radius-md);
+      background: var(--bg-alt);
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      border: 1px dashed var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .facility-card-img-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .card-hover:hover .facility-card-img-placeholder img {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="site-header" id="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="StudyHub Homepage">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-name">Study<span>Hub</span></div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="facilities.html" class="nav-link active">Facilities</a>
+        <a href="pricing.html" class="nav-link">Memberships</a>
+        <a href="seats.html" class="nav-link">Seats</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-ctas">
+        <a href="pricing.html" class="btn btn-outline btn-sm">Plans</a>
+        <a href="seats.html" class="btn btn-primary btn-sm">Check Seats</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= PAGE HEADER ================= -->
+  <section class="section" style="background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%); padding-block: 4rem 4.5rem; border-bottom: 1px solid var(--border-light);">
+    <div class="container" style="text-align: center; max-width: 820px;">
+      <div class="section-tag">
+        <i class="fa-solid fa-layer-group"></i> World-Class Amenities
+      </div>
+      <h1 style="margin-bottom: 1rem;">
+        Engineered for Maximum Study Endurance
+      </h1>
+      <p style="font-size: 1.15rem; line-height: 1.7; color: var(--text-muted);">
+        Every piece of infrastructure at StudyHub has been thoughtfully chosen to eliminate physical fatigue, maintain mental alertness, and support 8 to 14 hours of continuous preparation.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 12 CORE FACILITIES CARDS ================= -->
+  <section class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+
+        <!-- 1. Dedicated Seats -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-1.jpg" alt="Dedicated reserved study desks" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-1.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-user-check"></i></div>
+            <h3 style="font-size: 1.2rem;">1. Dedicated Seats</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            Your assigned workstation is reserved exclusively for your selected time window. No table sharing during your slot, no morning race to grab an open spot, and no table relocations.
+          </p>
+        </div>
+
+        <!-- 2. Comfortable Chairs -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-2.jpg" alt="Ergonomic mesh study chairs" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-2.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-chair"></i></div>
+            <h3 style="font-size: 1.2rem;">2. Comfortable Chairs</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            High-back ergonomic mesh chairs equipped with adjustable lumbar support, hydraulic height adjustments, and padded armrests to protect your posture during marathon study sessions.
+          </p>
+        </div>
+
+        <!-- 3. Study Tables -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-4.jpg" alt="Spacious private study tables with partitions" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-4.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-table"></i></div>
+            <h3 style="font-size: 1.2rem;">3. Spacious Study Tables</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            Wide anti-scratch laminate desks with acoustic privacy dividers on three sides, providing plenty of room for your 15-inch laptop, heavy textbooks, and open note registers simultaneously.
+          </p>
+        </div>
+
+        <!-- 4. High-Speed WiFi -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-3.jpg" alt="High speed dual Wi-Fi network" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-3.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-wifi"></i></div>
+            <h3 style="font-size: 1.2rem;">4. High-Speed Wi-Fi</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            Enterprise dual 300 Mbps fiber leased lines with automatic link failover. High-density ceiling access points ensure ultra-low latency for mock test portals and 4K online lectures.
+          </p>
+        </div>
+
+        <!-- 5. Charging Points -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-4.jpg" alt="Dedicated electrical sockets at every desk" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-4.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-plug-circle-bolt"></i></div>
+            <h3 style="font-size: 1.2rem;">5. Individual Charging Points</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            Each personal desk includes two universal 3-pin AC power outlets and integrated USB-A / Type-C fast-charge ports with surge protection, keeping your devices charged 100% of the time.
+          </p>
+        </div>
+
+        <!-- 6. CCTV Surveillance -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-5.jpg" alt="24/7 CCTV surveillance monitoring" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-5.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-video"></i></div>
+            <h3 style="font-size: 1.2rem;">6. CCTV Surveillance</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            High-definition cameras monitor all corridors, reading bays, locker lockers, and entry points 24/7. Verified biometric access creates a safe and peaceful learning environment.
+          </p>
+        </div>
+
+        <!-- 7. Power Backup -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-2.jpg" alt="Online UPS and generator power backup" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-2.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-car-battery"></i></div>
+            <h3 style="font-size: 1.2rem;">7. 100% Power Backup</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            Zero-flicker commercial online UPS combined with an automatic acoustic diesel generator guarantees immediate cut-over during city power cuts. Lights, AC, and Wi-Fi never shut off.
+          </p>
+        </div>
+
+        <!-- 8. Drinking Water -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-5.jpg" alt="Multi stage RO drinking water station" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-5.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-bottle-water"></i></div>
+            <h3 style="font-size: 1.2rem;">8. Purified Drinking Water</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            TDS-tested multi-stage RO water purification with touch dispensers for cold, room-temperature, and boiling water. Free herbal tea bags and clean coffee replenishment available.
+          </p>
+        </div>
+
+        <!-- 9. Air Conditioning / Ventilation -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-3.jpg" alt="Centralized quiet air conditioning and fresh air ventilation" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-3.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-wind"></i></div>
+            <h3 style="font-size: 1.2rem;">9. AC & Fresh Air Ventilation</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            Whisper-quiet inverter air conditioning maintains a crisp 22°C ambient temperature. Dual fresh-air ducting and HEPA air purifiers keep CO2 low, preventing fatigue and drowsiness.
+          </p>
+        </div>
+
+        <!-- 10. Clean Washrooms -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-5.jpg" alt="Hygienic and sanitized student washrooms" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-5.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-hand-sparkles"></i></div>
+            <h3 style="font-size: 1.2rem;">10. Clean & Sanitized Washrooms</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            Separate male and female washrooms disinfected every 2 hours by dedicated housekeeping staff. Stocked with automated hand dryers, fragrant soaps, and premium paper supplies.
+          </p>
+        </div>
+
+        <!-- 11. Peaceful Environment -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-1.jpg" alt="Acoustic silent and distraction free environment" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-1.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-volume-xmark"></i></div>
+            <h3 style="font-size: 1.2rem;">11. 100% Peaceful Environment</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            Sound-dampened vinyl flooring, anti-reverberation wall fabrics, and a strictly enforced zero-whispering policy create a serene library atmosphere for deep conceptual work.
+          </p>
+        </div>
+
+        <!-- 12. Extended Study Hours -->
+        <div class="card card-hover">
+          <div class="facility-card-img-placeholder">
+            <img src="images/gallery/gallery-3.jpg" alt="Extended operational hours from early morning to midnight" loading="lazy" onerror="this.onerror=null; this.src='images/gallery-3.jpg';">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 44px; height: 44px; font-size: 1.25rem;"><i class="fa-solid fa-clock"></i></div>
+            <h3 style="font-size: 1.2rem;">12. Extended Study Hours</h3>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+            Open 17 hours a day from 06:00 AM to 11:00 PM, 365 days a year including weekends and national public holidays. Study early in the dawn or deep into the night according to your routine.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Bottom Facilities CTA banner -->
+      <div style="margin-top: 4.5rem; text-align: center; background: var(--bg-surface); padding: 3rem 2rem; border-radius: var(--radius-xl); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+        <div class="section-tag" style="margin-bottom: 0.75rem;">Inspect In Person</div>
+        <h2>Want to Experience These Facilities Firsthand?</h2>
+        <p style="margin: 0.75rem auto 2rem auto; max-width: 620px; font-size: 1.05rem; color: var(--text-muted);">
+          Visit our center today for a complimentary 1-hour walkthrough. Test the chairs, check the Wi-Fi speed, and explore available desk slots.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="seats.html" class="btn btn-primary btn-lg">Check Available Desks</a>
+          <a href="pricing.html" class="btn btn-outline btn-lg">View Monthly Plans</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="brand-name">Study<span>Hub</span></div>
+          </a>
+          <p>
+            StudyHub is a modern self-study sanctuary providing reserved study desks, uninterrupted power, fast Wi-Fi, and a distraction-free environment for students and aspirants.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Explore Center</h4>
+          <div class="footer-links">
+            <a href="about.html">About Concept</a>
+            <a href="facilities.html">Facilities & Specs</a>
+            <a href="pricing.html">Membership Plans</a>
+            <a href="seats.html">Live Seat Availability</a>
+            <a href="gallery.html">Center Gallery</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Shift Options</h4>
+          <div class="footer-links">
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Morning: 06:00 - 12:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Afternoon: 12:00 - 18:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Evening: 18:00 - 00:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Full Day: 06:00 - 23:00</span>
+            <span style="color: #10b981; font-size: 0.85rem; font-weight: 700; margin-top: 0.5rem;"><i class="fa-solid fa-check-circle"></i> Open 7 Days A Week</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Center Location</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Plot 42, Knowledge Park III, Near Metro Gate 2, Education Hub</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 98765 43210 / 011-23456789</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>desk@studyhubcenter.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 StudyHub Self-Study Center. All rights reserved. Your Seat. Your Time. Your Focus.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Center Rules</a>
+          <a href="#">Terms of Membership</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

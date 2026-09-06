@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About StudyHub - A modern self-study center providing reserved study desks, strict silence, and infrastructure for exam preparation. Bring your own books and laptop.">
+  <title>About StudyHub | Dedicated Self-Study Sanctuary</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Core Modular Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="site-header" id="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="StudyHub Homepage">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-name">Study<span>Hub</span></div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="pricing.html" class="nav-link">Memberships</a>
+        <a href="seats.html" class="nav-link">Seats</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-ctas">
+        <a href="pricing.html" class="btn btn-outline btn-sm">Plans</a>
+        <a href="seats.html" class="btn btn-primary btn-sm">Check Seats</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 1. PAGE HEADER HERO ================= -->
+  <section class="section" style="background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%); padding-block: 4rem 4.5rem; border-bottom: 1px solid var(--border-light);">
+    <div class="container" style="text-align: center; max-width: 820px;">
+      <div class="section-tag">
+        <i class="fa-solid fa-book-open-reader"></i> The Self-Study Revolution
+      </div>
+      <h1 style="margin-bottom: 1rem;">
+        Designed Solely for Deep Learning & Focus
+      </h1>
+      <p style="font-size: 1.15rem; line-height: 1.7; color: var(--text-muted);">
+        StudyHub is <strong>not a traditional book-lending library</strong>. We do not provide books on shelves. Students bring their own textbooks, laptops, notebooks, and notes, while we guarantee your dedicated, quiet study workstation.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 2. ABOUT THE STUDY CENTER & CONCEPT ================= -->
+  <section class="section">
+    <div class="container" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center;">
+      <div>
+        <div class="section-tag">The Concept</div>
+        <h2 style="margin-bottom: 1.25rem;">Why Self-Study Centers Exist</h2>
+        <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.25rem; color: var(--text-muted);">
+          Today's serious aspirants already own their specific study resources—whether comprehensive test series, tablet lecture recordings, coaching modules, or legal & medical treatises. What they critically lack is an undisturbed environment with guaranteed desk space, constant power, and academic discipline.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; color: var(--text-muted);">
+          At home, students face family disruptions, household noises, and comfortable procrastination. At public libraries, students face early morning line-ups, noisy neighbors, poor ventilation, and frequent table handovers. StudyHub bridges this gap with professional, reservation-based individual study bays.
+        </p>
+
+        <!-- Highlight Boxes -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-light); border-left: 4px solid var(--accent); padding: 1.25rem; border-radius: var(--radius-md);">
+            <h4 style="font-size: 1.05rem; margin-bottom: 0.35rem;"><i class="fa-solid fa-bag-shopping" style="color: var(--accent);"></i> Bring Your Own</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Bring your study kit, laptop, chargers, and tablets. Your desk is reserved solely for your assigned slot.</p>
+          </div>
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-light); border-left: 4px solid var(--secondary); padding: 1.25rem; border-radius: var(--radius-md);">
+            <h4 style="font-size: 1.05rem; margin-bottom: 0.35rem;"><i class="fa-solid fa-lock" style="color: var(--secondary);"></i> Zero Overlap</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Our scheduling system strictly prevents two students from occupying the same seat during identical shifts.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Visual Card -->
+      <div class="card" style="box-shadow: var(--shadow-xl); padding: 2.25rem; border: 1px solid #dbeafe;">
+        <div style="height: 260px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 1.5rem; background: var(--bg-alt); position: relative;">
+          <img src="images/gallery/gallery-1.jpg" alt="Dedicated Study Bay at StudyHub" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='images/gallery-1.jpg';">
+          <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(15, 23, 42, 0.85); color: #fff; padding: 0.35rem 0.85rem; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 600;">
+            <i class="fa-solid fa-cube"></i> Private Partition Workstation
+          </div>
+        </div>
+        <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">A Purpose-Built Study Facility</h3>
+        <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+          Open 7 days a week from 6:00 AM to 11:00 PM. We provide climate-controlled silence, ergonomic seating, dedicated power plugs, and fast Wi-Fi so you can focus 100% on your preparation goals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3. OUR MISSION ================= -->
+  <section class="section section-alt">
+    <div class="container">
+      <div style="max-width: 860px; margin: 0 auto; text-align: center;">
+        <div class="section-tag">
+          <i class="fa-solid fa-compass"></i> Guiding Principles
+        </div>
+        <h2 style="margin-bottom: 1.5rem;">Our Core Mission</h2>
+        <p style="font-size: 1.25rem; line-height: 1.8; color: var(--text-main); font-weight: 500; margin-bottom: 2.5rem;">
+          "To empower every student and competitive aspirant with a guaranteed personal desk, uninterrupted study infrastructure, and a distraction-free sanctuary that turns rigorous study routines into successful career results."
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-bullseye"></i></div>
+          <h3>Guaranteed Availability</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">We eliminate the stress of finding a place to sit. When you book Desk C03 for your shift, it is 100% reserved for you for the full month.</p>
+        </div>
+
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-hourglass-half"></i></div>
+          <h3>Maximizing Focus Time</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">By taking care of power, Wi-Fi speed, lighting, climate, and hydration, we free you from daily logistics so all your mental energy goes into study.</p>
+        </div>
+
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-users"></i></div>
+          <h3>Community of Aspirants</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">Surround yourself with like-minded, disciplined peers studying for UPSC, GATE, CA, Medical, State Services, and tech certifications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4. WHY DEDICATED SEATING MATTERS ================= -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Seat Psychology</div>
+        <h2 class="section-title">Why Dedicated Seating Matters</h2>
+        <p class="section-desc">
+          Having an assigned desk triggers a powerful psychological cue that eliminates daily friction and promotes deep work.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 2rem;">
+        <div class="card">
+          <div style="color: var(--accent); font-size: 1.8rem; margin-bottom: 1rem;"><i class="fa-solid fa-brain"></i></div>
+          <h3>Habit Conditioning</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+            Sitting at the exact same desk every day creates an immediate cognitive trigger: the moment you sit down, your brain transitions straight into focus mode.
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="color: var(--accent); font-size: 1.8rem; margin-bottom: 1rem;"><i class="fa-solid fa-person-circle-check"></i></div>
+          <h3>Zero Morning Decision Fatigue</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+            No rushing through traffic early just to race for a desk near a power outlet. Your seat number is set, locked, and waiting for you.
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="color: var(--accent); font-size: 1.8rem; margin-bottom: 1rem;"><i class="fa-solid fa-mug-hot"></i></div>
+          <h3>Worry-Free Study Breaks</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+            Step out for a 20-minute tea or meal break without the fear that someone else will pack up your books or claim your chair while you are away.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. QUIET AND FOCUSED ENVIRONMENT ================= -->
+  <section class="section section-alt">
+    <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
+      <div>
+        <div class="section-tag">Acoustic Standards</div>
+        <h2 style="margin-bottom: 1.25rem;">Silence As A Core Commitment</h2>
+        <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem; color: var(--text-muted);">
+          True concentration requires undisturbed mental flow. StudyHub maintains an uncompromising silence code in all main reading halls:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--primary-light); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="fa-solid fa-volume-xmark"></i>
+            </div>
+            <div>
+              <h4 style="font-size: 1.05rem;">100% Silent Hall Policy</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.2rem;">Whispering and verbal discussions inside the reading rooms are strictly prohibited.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--primary-light); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="fa-solid fa-phone-slash"></i>
+            </div>
+            <div>
+              <h4 style="font-size: 1.05rem;">Acoustic Phone Call Pods</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.2rem;">Urgent incoming calls must be taken inside soundproof glass phone booths located outside the study zone.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--primary-light); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="fa-solid fa-headphones"></i>
+            </div>
+            <div>
+              <h4 style="font-size: 1.05rem;">Auditory Etiquette</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.2rem;">Headphones are required for all laptop lectures; audio leakage checks are routinely conducted by staff.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow: var(--shadow-lg); padding: 2rem;">
+        <div style="height: 240px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 1.5rem; background: var(--bg-alt);">
+          <img src="images/gallery/gallery-3.jpg" alt="Acoustic silent reading zone" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='images/gallery-3.jpg';">
+        </div>
+        <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Sound-Dampened Architecture</h4>
+        <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+          Our floors are layered with acoustic dampening underlay to minimize footstep thuds and chair movements, ensuring an uninterrupted flow state for all aspirants.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. STUDENT EXPERIENCE ================= -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Day In The Life</div>
+        <h2 class="section-title">The Student Experience at StudyHub</h2>
+        <p class="section-desc">
+          How our seamless routine helps students maintain 8 to 14 hours of high-retention study daily.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.75rem;">
+        <div class="card card-hover">
+          <div style="font-size: 1.5rem; color: var(--accent); margin-bottom: 0.75rem;"><i class="fa-solid fa-door-open"></i></div>
+          <h4>1. Frictionless Arrival</h4>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 0.35rem;">Scan your biometric thumbprint or access card at the entrance, drop your backpack in your locker, and head to your designated seat.</p>
+        </div>
+
+        <div class="card card-hover">
+          <div style="font-size: 1.5rem; color: var(--accent); margin-bottom: 0.75rem;"><i class="fa-solid fa-laptop-code"></i></div>
+          <h4>2. Plug In & Prepare</h4>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 0.35rem;">Connect your laptop to the dedicated desk socket, adjust your LED task lamp, and connect to high-speed fiber Wi-Fi in seconds.</p>
+        </div>
+
+        <div class="card card-hover">
+          <div style="font-size: 1.5rem; color: var(--accent); margin-bottom: 0.75rem;"><i class="fa-solid fa-mug-saucer"></i></div>
+          <h4>3. Re-Energize in Pantry</h4>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 0.35rem;">Take scheduled 15-minute breaks in our cafeteria. Enjoy fresh RO water, hot tea, or heat your packed lunch in the microwave.</p>
+        </div>
+
+        <div class="card card-hover">
+          <div style="font-size: 1.5rem; color: var(--accent); margin-bottom: 0.75rem;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <h4>4. Predictable Departure</h4>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 0.35rem;">Pack your materials or store books securely in your personal locker. Workstations are promptly sanitized for the incoming student shift.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 7. SECURITY & DISCIPLINE ================= -->
+  <section class="section section-alt">
+    <div class="container" style="display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 3.5rem; align-items: center;">
+      <div class="card" style="box-shadow: var(--shadow-lg); padding: 2.25rem;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 1.25rem;"><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Safety & Code of Discipline</h3>
+        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+          To guarantee an environment of trust and mutual respect, StudyHub enforces structured rules across all shifts:
+        </p>
+
+        <ul style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-main);">
+            <i class="fa-solid fa-circle-check" style="color: var(--success); margin-top: 0.25rem;"></i>
+            <span><strong>24/7 High-Definition CCTV:</strong> Continuous camera monitoring across hallways, lockers, and reading zones.</span>
+          </li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-main);">
+            <i class="fa-solid fa-circle-check" style="color: var(--success); margin-top: 0.25rem;"></i>
+            <span><strong>Strict Shift Turnover:</strong> Desks must be vacated cleanly at the exact shift conclusion hour.</span>
+          </li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-main);">
+            <i class="fa-solid fa-circle-check" style="color: var(--success); margin-top: 0.25rem;"></i>
+            <span><strong>Female-Safe Premises:</strong> Well-lit premises, biometric gates, and round-the-clock on-site security guards.</span>
+          </li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-main);">
+            <i class="fa-solid fa-circle-check" style="color: var(--success); margin-top: 0.25rem;"></i>
+            <span><strong>No Outsiders Allowed:</strong> Non-members and unauthorized guests are strictly prohibited beyond the reception desk.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="section-tag">Peace of Mind</div>
+        <h2 style="margin-bottom: 1.25rem;">Study-Friendly Infrastructure</h2>
+        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem;">
+          Our physical facilities are engineered deliberately for long-haul competitive study marathons. We inspect air quality, lighting lumens, internet latency, and chair tension weekly.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 48px; height: 48px; font-size: 1.25rem;"><i class="fa-solid fa-car-battery"></i></div>
+            <div>
+              <strong style="display: block; font-size: 1rem;">Zero-Cut Electricity Backup</strong>
+              <span style="font-size: 0.88rem; color: var(--text-muted);">Instant generator cut-over prevents sudden laptop or Wi-Fi interruptions.</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <div class="card-icon-box" style="margin-bottom: 0; width: 48px; height: 48px; font-size: 1.25rem;"><i class="fa-solid fa-fan"></i></div>
+            <div>
+              <strong style="display: block; font-size: 1rem;">Climate Control & Air Purity</strong>
+              <span style="font-size: 0.88rem; color: var(--text-muted);">Quiet inverter ACs paired with continuous HEPA air filtration.</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <a href="facilities.html" class="btn btn-primary">
+            <i class="fa-solid fa-cubes"></i> View All 12 Facility Specs &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8. CALL TO ACTION ================= -->
+  <section class="section" style="text-align: center;">
+    <div class="container" style="max-width: 760px;">
+      <div class="section-tag">Join The Focus Community</div>
+      <h2>Experience StudyHub For Yourself</h2>
+      <p style="margin: 1rem auto 2rem auto; font-size: 1.1rem; color: var(--text-muted);">
+        Schedule a complimentary 1-hour trial session. Check the silence, test the chair comfort, and select your desk number in person.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="seats.html" class="btn btn-primary btn-lg">Check Available Seats</a>
+        <a href="contact.html" class="btn btn-outline btn-lg">Book Walkthrough Tour</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="brand-name">Study<span>Hub</span></div>
+          </a>
+          <p>
+            StudyHub is a modern self-study sanctuary providing reserved study desks, uninterrupted power, fast Wi-Fi, and a distraction-free environment for students and aspirants.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Explore Center</h4>
+          <div class="footer-links">
+            <a href="about.html">About Concept</a>
+            <a href="facilities.html">Facilities & Specs</a>
+            <a href="pricing.html">Membership Plans</a>
+            <a href="seats.html">Live Seat Availability</a>
+            <a href="gallery.html">Center Gallery</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Shift Options</h4>
+          <div class="footer-links">
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Morning: 06:00 - 12:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Afternoon: 12:00 - 18:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Evening: 18:00 - 00:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Full Day: 06:00 - 23:00</span>
+            <span style="color: #10b981; font-size: 0.85rem; font-weight: 700; margin-top: 0.5rem;"><i class="fa-solid fa-check-circle"></i> Open 7 Days A Week</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Center Location</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Plot 42, Knowledge Park III, Near Metro Gate 2, Education Hub</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 98765 43210 / 011-23456789</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>desk@studyhubcenter.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 StudyHub Self-Study Center. All rights reserved. Your Seat. Your Time. Your Focus.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Center Rules</a>
+          <a href="#">Terms of Membership</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

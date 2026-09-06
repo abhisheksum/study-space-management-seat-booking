@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Register for StudyHub monthly membership. Select your time slot, claim your workstation number, and join our quiet study sanctuary.">
+  <title>Student Membership Registration | StudyHub Self-Study Center</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Core Modular Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="site-header" id="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="StudyHub Homepage">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-name">Study<span>Hub</span></div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="pricing.html" class="nav-link">Memberships</a>
+        <a href="seats.html" class="nav-link">Seats</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-ctas">
+        <a href="pricing.html" class="btn btn-outline btn-sm">Plans</a>
+        <a href="seats.html" class="btn btn-primary btn-sm">Check Seats</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 1. PAGE HEADER ================= -->
+  <section class="section" style="background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%); padding-block: 3.5rem; border-bottom: 1px solid var(--border-light);">
+    <div class="container" style="text-align: center; max-width: 820px;">
+      <div class="section-tag">
+        <i class="fa-solid fa-id-card"></i> Student Onboarding
+      </div>
+      <h1 style="margin-bottom: 0.75rem;">
+        Student Membership Registration
+      </h1>
+      <p style="font-size: 1.15rem; line-height: 1.7; color: var(--text-muted);">
+        Enroll for your monthly study desk. Complete the application below to lock in your preferred workstation and study shift.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 2. MAIN REGISTRATION FORM SECTION ================= -->
+  <section class="section" style="padding-top: 3rem;">
+    <div class="container">
+
+      <!-- CONFIRMATION SCREEN CONTAINER (Hidden by default; revealed on successful submit) -->
+      <div id="registration-confirmation-section" style="display: none;"></div>
+
+      <!-- THE REGISTRATION FORM SECTION -->
+      <div id="registration-form-section" style="max-width: 860px; margin: 0 auto;">
+        
+        <div class="card" style="padding: 2.75rem 3rem; box-shadow: var(--shadow-lg);">
+          
+          <form id="student-registration-form" novalidate>
+            
+            <!-- SECTION 1: PERSONAL INFORMATION -->
+            <div style="margin-bottom: 2.5rem;">
+              <h3 class="form-section-title">
+                <i class="fa-solid fa-user"></i> 1. Personal Information
+              </h3>
+
+              <div class="form-group">
+                <label class="form-label" for="reg-full-name">Full Name *</label>
+                <input type="text" id="reg-full-name" class="form-control" placeholder="e.g. Priyanshu Sharma" required>
+                <span id="error-full-name" class="form-error"></span>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="reg-mobile">Mobile Number (WhatsApp) *</label>
+                  <input type="tel" id="reg-mobile" class="form-control" placeholder="e.g. 9876543210" maxlength="10" required>
+                  <span id="error-mobile" class="form-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-email">Email Address *</label>
+                  <input type="email" id="reg-email" class="form-control" placeholder="e.g. priyanshu@example.com" required>
+                  <span id="error-email" class="form-error"></span>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="reg-dob">Date of Birth *</label>
+                  <input type="date" id="reg-dob" class="form-control" required>
+                  <span id="error-dob" class="form-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-gender">Gender *</label>
+                  <select id="reg-gender" class="form-control" required>
+                    <option value="">-- Select Gender --</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <span id="error-gender" class="form-error"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 2: ADDRESS -->
+            <div style="margin-bottom: 2.5rem;">
+              <h3 class="form-section-title">
+                <i class="fa-solid fa-location-dot"></i> 2. Residential Address
+              </h3>
+
+              <div class="form-group">
+                <label class="form-label" for="reg-address">Street Address / Hostels / PG *</label>
+                <input type="text" id="reg-address" class="form-control" placeholder="e.g. Flat 302, Green Valley PG, Knowledge Park" required>
+                <span id="error-address" class="form-error"></span>
+              </div>
+
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label class="form-label" for="reg-city">City *</label>
+                  <input type="text" id="reg-city" class="form-control" placeholder="e.g. Greater Noida" required>
+                  <span id="error-city" class="form-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-state">State *</label>
+                  <input type="text" id="reg-state" class="form-control" placeholder="e.g. Uttar Pradesh" required>
+                  <span id="error-state" class="form-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-pincode">Pincode *</label>
+                  <input type="text" id="reg-pincode" class="form-control" placeholder="e.g. 201306" maxlength="6" required>
+                  <span id="error-pincode" class="form-error"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 3: MEMBERSHIP & SEAT SELECTION -->
+            <div style="margin-bottom: 2.5rem;">
+              <h3 class="form-section-title">
+                <i class="fa-solid fa-chair"></i> 3. Membership & Workstation Allocation
+              </h3>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="reg-membership-type">Membership Type *</label>
+                  <select id="reg-membership-type" class="form-control" required>
+                    <option value="slot-based">Slot-Based Plan (Single Specific Shift)</option>
+                    <option value="half-day">Half Day Plan (12 Hours Continuous)</option>
+                    <option value="full-day">Full Day Unlimited (06:00 AM - 11:00 PM)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-preferred-date">Preferred Start Date *</label>
+                  <input type="date" id="reg-preferred-date" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="reg-time-slot">Preferred Time Slot *</label>
+                  <select id="reg-time-slot" class="form-control" required>
+                    <!-- Populated dynamically based on membership type -->
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-seat-number">Preferred Seat Number *</label>
+                  <select id="reg-seat-number" class="form-control" required>
+                    <!-- Populated with 30 seats A01-C10 -->
+                  </select>
+                  <span id="error-seat" class="form-error"></span>
+                </div>
+              </div>
+
+              <!-- Live Seat Selection Preview Badge -->
+              <div id="reg-seat-preview-badge" style="margin-top: 0.5rem; margin-bottom: 1.25rem;"></div>
+
+              <div style="background: var(--bg-alt); padding: 0.85rem 1rem; border-radius: var(--radius-md); font-size: 0.85rem; color: var(--text-muted);">
+                <i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> 
+                <strong>Anti-Overlap Engine:</strong> Chosen seats are guaranteed strictly for your slot with zero mid-shift table relocations.
+              </div>
+            </div>
+
+            <!-- SECTION 4: EMERGENCY CONTACT -->
+            <div style="margin-bottom: 2.5rem;">
+              <h3 class="form-section-title">
+                <i class="fa-solid fa-phone-volume"></i> 4. Emergency Contact
+              </h3>
+
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label class="form-label" for="reg-emergency-name">Contact Person Name *</label>
+                  <input type="text" id="reg-emergency-name" class="form-control" placeholder="e.g. Ramesh Sharma" required>
+                  <span id="error-emergency-name" class="form-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-emergency-phone">Contact Mobile Number *</label>
+                  <input type="tel" id="reg-emergency-phone" class="form-control" placeholder="e.g. 9876500000" maxlength="10" required>
+                  <span id="error-emergency-phone" class="form-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-emergency-rel">Relationship *</label>
+                  <input type="text" id="reg-emergency-rel" class="form-control" placeholder="e.g. Father / Mother / Guardian" required>
+                  <span id="error-emergency-rel" class="form-error"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 5: ADDITIONAL DETAILS & VERIFICATION -->
+            <div style="margin-bottom: 2.5rem;">
+              <h3 class="form-section-title">
+                <i class="fa-solid fa-file-shield"></i> 5. Additional Information & Identity
+              </h3>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="reg-student-id">Student ID / College Roll No / Exam Roll No</label>
+                  <input type="text" id="reg-student-id" class="form-control" placeholder="e.g. DU/2024/9482 or UPSC-2026">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reg-profile-photo">Upload Profile Photo (JPG, PNG, WebP &le; 3MB)</label>
+                  <input type="file" id="reg-profile-photo" class="form-control" accept="image/jpeg, image/png, image/webp">
+                  <span id="error-profile-photo" class="form-error"></span>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 1.5rem;">
+                <label style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-muted); cursor: pointer;">
+                  <input type="checkbox" id="reg-terms" style="margin-top: 0.25rem; width: 18px; height: 18px; accent-color: var(--accent);" required>
+                  <span>
+                    I agree to the <a href="about.html" style="color: var(--accent); text-decoration: underline;">Center Silence Code & Rules</a>. I understand that StudyHub is a self-study sanctuary where students bring their own materials, and that seats are vacated punctually at the end of each slot.
+                  </span>
+                </label>
+                <span id="error-terms" class="form-error"></span>
+              </div>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <div style="border-top: 1px solid var(--border-light); padding-top: 2rem;">
+              <button type="submit" id="btn-submit-registration" class="btn btn-primary btn-full btn-lg">
+                <i class="fa-solid fa-paper-plane"></i> Submit Registration & Reserve Seat
+              </button>
+              <p style="font-size: 0.82rem; color: var(--text-subtle); text-align: center; margin-top: 0.75rem;">
+                No upfront payment required during initial online enrollment.
+              </p>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="brand-name">Study<span>Hub</span></div>
+          </a>
+          <p>
+            StudyHub is a modern self-study sanctuary providing reserved study desks, uninterrupted power, fast Wi-Fi, and a distraction-free environment for students and aspirants.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Explore Center</h4>
+          <div class="footer-links">
+            <a href="about.html">About Concept</a>
+            <a href="facilities.html">Facilities & Specs</a>
+            <a href="pricing.html">Membership Plans</a>
+            <a href="seats.html">Live Seat Availability</a>
+            <a href="register.html">Student Registration</a>
+            <a href="gallery.html">Center Gallery</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Shift Options</h4>
+          <div class="footer-links">
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Morning: 06:00 - 12:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Afternoon: 12:00 - 18:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Evening: 18:00 - 00:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Full Day: 06:00 - 23:00</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Center Location</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Plot 42, Knowledge Park III, Near Metro Gate 2, Education Hub</span></div>
+            <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+91 98765 43210 / 011-23456789</span></div>
+            <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>desk@studyhubcenter.com</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 StudyHub Self-Study Center. All rights reserved. Your Seat. Your Time. Your Focus.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Center Rules</a>
+          <a href="#">Terms of Membership</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/register.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

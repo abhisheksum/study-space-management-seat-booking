@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard & Center Metrics | StudyHub Console</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Admin Style -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-wrapper">
+    
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <div class="admin-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>StudyHub <em>Admin</em></span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="index.html" class="admin-nav-item active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="students.html" class="admin-nav-item"><i class="fa-solid fa-user-graduate"></i> Student Management</a>
+        <a href="seats.html" class="admin-nav-item"><i class="fa-solid fa-chair"></i> Seat Management</a>
+        <a href="bookings.html" class="admin-nav-item"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+        <a href="memberships.html" class="admin-nav-item"><i class="fa-solid fa-id-card"></i> Memberships</a>
+        <a href="payments.html" class="admin-nav-item"><i class="fa-solid fa-credit-card"></i> Payments</a>
+        <a href="attendance.html" class="admin-nav-item"><i class="fa-solid fa-fingerprint"></i> Attendance Logs</a>
+        <a href="settings.html" class="admin-nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info">
+          <div class="admin-avatar">AD</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #fff;">Admin Manager</div>
+            <div style="font-size: 0.75rem; color: #64748b;">Center Staff</div>
+          </div>
+        </div>
+        <a href="../index.html" title="Exit Admin Console" style="color: #94a3b8;"><i class="fa-solid fa-right-from-bracket"></i></a>
+      </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="admin-main">
+      
+      <!-- TOP BAR -->
+      <header class="admin-topbar">
+        <h1 class="admin-page-title">Executive Operations Dashboard</h1>
+        <div class="admin-topbar-actions">
+          <span class="status-badge status-active"><i class="fa-solid fa-circle"></i> Live Shift Active</span>
+          <a href="seats.html" class="admin-btn admin-btn-primary admin-btn-sm"><i class="fa-solid fa-plus"></i> Allocate Desk</a>
+          <a href="../index.html" class="admin-btn admin-btn-outline admin-btn-sm"><i class="fa-solid fa-globe"></i> View Live Site</a>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <!-- 7 CORE METRICS GRID -->
+        <div class="metrics-grid">
+          
+          <!-- Total Seats -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Total Seats</span>
+              <div class="metric-icon-wrap icon-blue"><i class="fa-solid fa-chair"></i></div>
+            </div>
+            <div class="metric-value">30</div>
+            <div class="metric-subtitle">Across Bay A, B, C</div>
+          </div>
+
+          <!-- Available Seats -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Available Seats</span>
+              <div class="metric-icon-wrap icon-green"><i class="fa-solid fa-circle-check"></i></div>
+            </div>
+            <div class="metric-value" style="color: var(--status-success);">16</div>
+            <div class="metric-subtitle">Ready for new enrollment</div>
+          </div>
+
+          <!-- Occupied Seats -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Occupied Seats</span>
+              <div class="metric-icon-wrap icon-rose"><i class="fa-solid fa-user-lock"></i></div>
+            </div>
+            <div class="metric-value">11</div>
+            <div class="metric-subtitle">Active shift students</div>
+          </div>
+
+          <!-- Active Members -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Active Members</span>
+              <div class="metric-icon-wrap icon-purple"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div class="metric-value">42</div>
+            <div class="metric-subtitle">Enrolled students</div>
+          </div>
+
+          <!-- Today's Bookings -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Today's Bookings</span>
+              <div class="metric-icon-wrap icon-blue"><i class="fa-solid fa-calendar-day"></i></div>
+            </div>
+            <div class="metric-value">8</div>
+            <div class="metric-subtitle">Shift renewals & trials</div>
+          </div>
+
+          <!-- Today's Revenue -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Today's Revenue</span>
+              <div class="metric-icon-wrap icon-green"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+            </div>
+            <div class="metric-value">₹14,290</div>
+            <div class="metric-subtitle">Offline & online renewals</div>
+          </div>
+
+          <!-- Expiring Memberships -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Expiring Soon</span>
+              <div class="metric-icon-wrap icon-amber"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            </div>
+            <div class="metric-value" style="color: #d97706;">5</div>
+            <div class="metric-subtitle">Next 48 hours renewals</div>
+          </div>
+
+        </div>
+
+        <!-- RECENT BOOKINGS & ACTIVE SHIFT STATUS TABLES -->
+        <div style="display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 2rem; align-items: start;">
+          
+          <!-- Recent Bookings Table -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title"><i class="fa-solid fa-clock"></i> Recent Daily Bookings</h3>
+              <a href="bookings.html" class="admin-btn admin-btn-outline admin-btn-sm">View All &rarr;</a>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Student Name</th>
+                    <th>Seat</th>
+                    <th>Shift Window</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>BK-8021</strong></td>
+                    <td>Priyanshu Verma</td>
+                    <td><span class="status-badge status-active">A04</span></td>
+                    <td>Full Day (06:00 - 23:00)</td>
+                    <td><span class="status-badge status-active">Confirmed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>BK-8022</strong></td>
+                    <td>Ananya Roy</td>
+                    <td><span class="status-badge status-active">A01</span></td>
+                    <td>Morning (06:00 - 12:00)</td>
+                    <td><span class="status-badge status-active">Confirmed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>BK-8023</strong></td>
+                    <td>Rohan Mukherjee</td>
+                    <td><span class="status-badge status-active">A01</span></td>
+                    <td>Afternoon (12:00 - 18:00)</td>
+                    <td><span class="status-badge status-active">Confirmed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>BK-8024</strong></td>
+                    <td>Meghna Iyer</td>
+                    <td><span class="status-badge status-active">B01</span></td>
+                    <td>Half Day AM (06:00 - 18:00)</td>
+                    <td><span class="status-badge status-active">Confirmed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>BK-8027</strong></td>
+                    <td>Aman Preet</td>
+                    <td><span class="status-badge status-reserved">A03</span></td>
+                    <td>Morning (06:00 - 12:00)</td>
+                    <td><span class="status-badge status-reserved">Pending</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Quick Actions & Facility Health -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title"><i class="fa-solid fa-bolt"></i> Operational Health</h3>
+            </div>
+            <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.9rem; color: var(--admin-text-muted);"><i class="fa-solid fa-wifi" style="color: var(--status-success); margin-right: 0.5rem;"></i> Primary Fiber Leased Line</span>
+                <span class="status-badge status-active">312 Mbps • Stable</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.9rem; color: var(--admin-text-muted);"><i class="fa-solid fa-car-battery" style="color: var(--status-success); margin-right: 0.5rem;"></i> Online UPS & Generator</span>
+                <span class="status-badge status-active">100% Ready</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.9rem; color: var(--admin-text-muted);"><i class="fa-solid fa-wind" style="color: var(--status-success); margin-right: 0.5rem;"></i> HVAC Climate & Ambient</span>
+                <span class="status-badge status-active">22.4°C • Clean</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.9rem; color: var(--admin-text-muted);"><i class="fa-solid fa-video" style="color: var(--status-success); margin-right: 0.5rem;"></i> CCTV Cameras (16 units)</span>
+                <span class="status-badge status-active">16/16 Online</span>
+              </div>
+              
+              <div style="border-top: 1px solid var(--admin-border); padding-top: 1rem; margin-top: 0.5rem;">
+                <a href="attendance.html" class="admin-btn admin-btn-primary admin-btn-sm" style="width: 100%; justify-content: center;">
+                  <i class="fa-solid fa-fingerprint"></i> Biometric Attendance Console
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="js/admin-data.js"></script>
+</body>
+</html>

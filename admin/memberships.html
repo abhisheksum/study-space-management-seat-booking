@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Plan Management | StudyHub Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-wrapper">
+    
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <div class="admin-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>StudyHub <em>Admin</em></span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="index.html" class="admin-nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="students.html" class="admin-nav-item"><i class="fa-solid fa-user-graduate"></i> Student Management</a>
+        <a href="seats.html" class="admin-nav-item"><i class="fa-solid fa-chair"></i> Seat Management</a>
+        <a href="bookings.html" class="admin-nav-item"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+        <a href="memberships.html" class="admin-nav-item active"><i class="fa-solid fa-id-card"></i> Memberships</a>
+        <a href="payments.html" class="admin-nav-item"><i class="fa-solid fa-credit-card"></i> Payments</a>
+        <a href="attendance.html" class="admin-nav-item"><i class="fa-solid fa-fingerprint"></i> Attendance Logs</a>
+        <a href="settings.html" class="admin-nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info">
+          <div class="admin-avatar">AD</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #fff;">Admin Manager</div>
+            <div style="font-size: 0.75rem; color: #64748b;">Center Staff</div>
+          </div>
+        </div>
+        <a href="../index.html" title="Exit Admin Console" style="color: #94a3b8;"><i class="fa-solid fa-right-from-bracket"></i></a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h1 class="admin-page-title">Membership Plans & Pricing Controls</h1>
+        <div class="admin-topbar-actions">
+          <button class="admin-btn admin-btn-primary admin-btn-sm" onclick="alert('Configure custom corporate or student pass')"><i class="fa-solid fa-plus"></i> New Plan Tier</button>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+          
+          <!-- Full Day -->
+          <div class="admin-card" style="padding: 1.75rem; border-top: 4px solid var(--admin-accent);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+              <h3 style="font-size: 1.25rem;">Full Day Unlimited</h3>
+              <span class="status-badge status-active">Active Tier</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--admin-text-muted); margin-bottom: 1rem;">17 Hours Continuous (06:00 AM – 11:00 PM)</p>
+            <div style="font-size: 2.25rem; font-weight: 800; font-family: 'Outfit', sans-serif; margin-bottom: 1rem; color: var(--admin-primary);">
+              ₹1,699 <span style="font-size: 0.9rem; font-weight: 500; color: var(--admin-text-muted);">/ month</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--admin-text-muted); margin-bottom: 1.25rem;">Includes sole desk lock across all shifts, locker allocation, and dual fiber priority.</p>
+            <button class="admin-btn admin-btn-outline admin-btn-sm admin-btn-full" onclick="alert('Edit Full Day Tier')">Edit Timing & Price</button>
+          </div>
+
+          <!-- Half Day -->
+          <div class="admin-card" style="padding: 1.75rem; border-top: 4px solid var(--status-info);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+              <h3 style="font-size: 1.25rem;">Half Day Pass</h3>
+              <span class="status-badge status-active">Active Tier</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--admin-text-muted); margin-bottom: 1rem;">12 Hours Continuous (Two contiguous shifts)</p>
+            <div style="font-size: 2.25rem; font-weight: 800; font-family: 'Outfit', sans-serif; margin-bottom: 1rem; color: var(--admin-primary);">
+              ₹1,349 <span style="font-size: 0.9rem; font-weight: 500; color: var(--admin-text-muted);">/ month</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--admin-text-muted); margin-bottom: 1.25rem;">Locks seat for two slots, leaving either morning or night open for other learners.</p>
+            <button class="admin-btn admin-btn-outline admin-btn-sm admin-btn-full" onclick="alert('Edit Half Day Tier')">Edit Timing & Price</button>
+          </div>
+
+          <!-- Slot-Based -->
+          <div class="admin-card" style="padding: 1.75rem; border-top: 4px solid var(--status-success);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+              <h3 style="font-size: 1.25rem;">Slot-Based Plan</h3>
+              <span class="status-badge status-active">Active Tier</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--admin-text-muted); margin-bottom: 1rem;">Single Shift (4 to 6 Hours)</p>
+            <div style="font-size: 2.25rem; font-weight: 800; font-family: 'Outfit', sans-serif; margin-bottom: 1rem; color: var(--admin-primary);">
+              ₹899 <span style="font-size: 0.9rem; font-weight: 500; color: var(--admin-text-muted);">/ month</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--admin-text-muted); margin-bottom: 1.25rem;">Morning, afternoon, or evening shifts with sanitized seat handover between shifts.</p>
+            <button class="admin-btn admin-btn-outline admin-btn-sm admin-btn-full" onclick="alert('Edit Slot-Based Tier')">Edit Timing & Price</button>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="js/admin-data.js"></script>
+</body>
+</html>

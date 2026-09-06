@@ -1,0 +1,117 @@
+/* ==========================================================================
+   RESPONSIVE DESIGN RULES - StudyHub
+   ========================================================================== */
+
+/* --- Tablet / Large screens below 1024px --- */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .stats-banner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* --- Mobile / Tablet below 868px --- */
+@media (max-width: 868px) {
+  :root {
+    --header-height: 68px;
+  }
+
+  .section {
+    padding-block: 3.5rem;
+  }
+
+  .desktop-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    gap: 1.25rem;
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+    z-index: 999;
+  }
+
+  .desktop-nav.mobile-active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    width: 100%;
+    font-size: 1.05rem;
+    padding-block: 0.5rem;
+  }
+
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-ctas .btn-outline {
+    display: none; /* Keep primary CTA prominent on mobile nav header */
+  }
+
+  .pricing-card.featured {
+    transform: none;
+  }
+
+  .seat-grid {
+    gap: 0.75rem;
+  }
+}
+
+/* --- Mobile below 640px --- */
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .stats-banner {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .seat-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .seat-btn {
+    font-size: 0.85rem;
+  }
+
+  .seat-btn .seat-icon {
+    font-size: 0.95rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}

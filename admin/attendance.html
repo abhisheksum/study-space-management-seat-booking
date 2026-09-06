@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biometric Attendance Logs | StudyHub Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-wrapper">
+    
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <div class="admin-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>StudyHub <em>Admin</em></span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="index.html" class="admin-nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="students.html" class="admin-nav-item"><i class="fa-solid fa-user-graduate"></i> Student Management</a>
+        <a href="seats.html" class="admin-nav-item"><i class="fa-solid fa-chair"></i> Seat Management</a>
+        <a href="bookings.html" class="admin-nav-item"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+        <a href="memberships.html" class="admin-nav-item"><i class="fa-solid fa-id-card"></i> Memberships</a>
+        <a href="payments.html" class="admin-nav-item"><i class="fa-solid fa-credit-card"></i> Payments</a>
+        <a href="attendance.html" class="admin-nav-item active"><i class="fa-solid fa-fingerprint"></i> Attendance Logs</a>
+        <a href="settings.html" class="admin-nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info">
+          <div class="admin-avatar">AD</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #fff;">Admin Manager</div>
+            <div style="font-size: 0.75rem; color: #64748b;">Center Staff</div>
+          </div>
+        </div>
+        <a href="../index.html" title="Exit Admin Console" style="color: #94a3b8;"><i class="fa-solid fa-right-from-bracket"></i></a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h1 class="admin-page-title">Biometric Turnstile & Entry/Exit Logs</h1>
+        <div class="admin-topbar-actions">
+          <span class="status-badge status-active"><i class="fa-solid fa-fingerprint"></i> Biometric Device Sync: Online</span>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="metric-card">
+            <span class="metric-title">Students Inside Center</span>
+            <div class="metric-value" style="color: var(--status-success);">11 Students</div>
+            <div class="metric-subtitle">Currently occupying workstations</div>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">Completed Shifts Today</span>
+            <div class="metric-value">14 Students</div>
+            <div class="metric-subtitle">Shift hours ended & sanitized</div>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">Upcoming Shifts (Evening)</span>
+            <div class="metric-value" style="color: var(--admin-accent);">8 Students</div>
+            <div class="metric-subtitle">Expected entry between 18:00 - 18:30</div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div>
+              <h3 class="admin-card-title">Live Gate Swipes & Check-Ins</h3>
+              <p style="font-size: 0.85rem; color: var(--admin-text-muted);">Real-time biometric turnstile timestamp records</p>
+            </div>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Assigned Workstation</th>
+                  <th>Check-In Time</th>
+                  <th>Check-Out Time</th>
+                  <th>Current State</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="attendance-table-body">
+                <!-- Populated from admin-data.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="js/admin-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tbody = document.getElementById('attendance-table-body');
+      if (!tbody || !window.ADMIN_MOCK_DATA) return;
+
+      tbody.innerHTML = '';
+      window.ADMIN_MOCK_DATA.attendance.forEach(att => {
+        const tr = document.createElement('tr');
+        const badgeClass = att.status === 'present' ? 'status-active' : (att.status === 'completed' ? 'status-slot' : 'status-reserved');
+
+        tr.innerHTML = `
+          <td><strong>${att.student}</strong></td>
+          <td><strong style="color: var(--admin-primary);">${att.seat}</strong></td>
+          <td>${att.checkIn}</td>
+          <td>${att.checkOut}</td>
+          <td><span class="status-badge ${badgeClass}">${att.status}</span></td>
+          <td>
+            <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="alert('Manual check-out logged for ${att.student}')"><i class="fa-solid fa-arrow-right-from-bracket"></i> Check-Out</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    });
+  </script>
+</body>
+</html>

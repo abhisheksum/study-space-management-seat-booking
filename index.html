@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="StudyHub - Modern self-study center and library. Guaranteed personal desks, time-slot memberships, fast Wi-Fi, and 100% silent focus environment.">
+  <title>StudyHub | Your Seat. Your Time. Your Focus.</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Core Modular Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="site-header" id="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="StudyHub Homepage">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-name">Study<span>Hub</span></div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="pricing.html" class="nav-link">Memberships</a>
+        <a href="seats.html" class="nav-link">Seats</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-ctas">
+        <a href="pricing.html" class="btn btn-outline btn-sm">Plans</a>
+        <a href="seats.html" class="btn btn-primary btn-sm">Check Seats</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 1. HERO SECTION ================= -->
+  <section class="section hero-section"
+    style="background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%); padding-top: 4.5rem; padding-bottom: 5.5rem;">
+    <div class="container"
+      style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3.5rem; align-items: center;">
+
+      <div class="hero-text-content">
+        <div class="section-tag">
+          <i class="fa-solid fa-shield-halved"></i> Modern Self-Study Center
+        </div>
+
+        <h1 style="margin-bottom: 1.25rem;">
+          Your Seat. Your Time. <br>
+          <span style="color: var(--accent);">Your Focus.</span>
+        </h1>
+
+        <p style="font-size: 1.15rem; line-height: 1.7; margin-bottom: 2.25rem; max-width: 560px;">
+          A quiet, purpose-built study sanctuary for college students, competitive exam aspirants, and working
+          professionals. Bring your own books or laptop, claim your reserved workstation, and achieve peak productivity.
+        </p>
+
+        <!-- CTA Hierarchy -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.75rem;">
+          <a href="seats.html" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-chair"></i> Check Seat Availability
+          </a>
+          <a href="pricing.html" class="btn btn-outline btn-lg">
+            <i class="fa-solid fa-tags"></i> View Membership Plans
+          </a>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div
+          style="display: flex; gap: 2rem; border-top: 1px solid var(--border-light); padding-top: 1.5rem; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fa-solid fa-user-shield" style="color: var(--accent); font-size: 1.1rem;"></i>
+            <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">Assigned Desks</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fa-solid fa-volume-xmark" style="color: #ef4444; font-size: 1.1rem;"></i>
+            <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">Acoustic Silence</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fa-solid fa-plug-circle-check" style="color: var(--secondary); font-size: 1.1rem;"></i>
+            <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">Continuous Power & Wi-Fi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="hero-visual">
+        <div class="card"
+          style="box-shadow: var(--shadow-xl); border: 1px solid #dbeafe; padding: 2rem; position: relative;">
+          <div style="position: absolute; top: -12px; right: 24px;">
+            <span class="badge badge-success"><i class="fa-solid fa-circle"></i> Open 7 Days: 06:00 AM – 11:00 PM</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.5rem;">
+            <div
+              style="width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              <i class="fa-solid fa-desktop"></i>
+            </div>
+            <div>
+              <h4 style="font-size: 1.1rem; margin-bottom: 0.15rem;">Reading Bay 01 • Live Desk Status</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Dynamic shift-based workstation allocation</p>
+            </div>
+          </div>
+
+          <!-- Visual Mini Map -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; margin-bottom: 1.5rem;">
+            <div
+              style="background: var(--seat-available-bg); border: 2px solid var(--seat-available); border-radius: var(--radius-md); padding: 0.75rem; text-align: center;">
+              <i class="fa-solid fa-chair" style="color: var(--seat-available);"></i>
+              <div style="font-size: 0.85rem; font-weight: 700; margin-top: 0.25rem;">A01</div>
+              <span style="font-size: 0.68rem; color: #065f46; font-weight: 700;">AVAILABLE</span>
+            </div>
+            <div
+              style="background: #f1f5f9; border: 2px solid var(--border-light); border-radius: var(--radius-md); padding: 0.75rem; text-align: center; opacity: 0.65;">
+              <i class="fa-solid fa-chair" style="color: #94a3b8;"></i>
+              <div style="font-size: 0.85rem; font-weight: 700; margin-top: 0.25rem;">A02</div>
+              <span style="font-size: 0.68rem; color: #64748b; font-weight: 700;">OCCUPIED</span>
+            </div>
+            <div
+              style="background: var(--warning-bg); border: 2px solid var(--warning); border-radius: var(--radius-md); padding: 0.75rem; text-align: center;">
+              <i class="fa-solid fa-chair" style="color: #d97706;"></i>
+              <div style="font-size: 0.85rem; font-weight: 700; margin-top: 0.25rem;">A03</div>
+              <span style="font-size: 0.68rem; color: #92400e; font-weight: 700;">RESERVED</span>
+            </div>
+            <div
+              style="background: var(--seat-selected); border: 2px solid var(--seat-selected); border-radius: var(--radius-md); padding: 0.75rem; text-align: center; color: #ffffff;">
+              <i class="fa-solid fa-chair" style="color: #ffffff;"></i>
+              <div style="font-size: 0.85rem; font-weight: 700; margin-top: 0.25rem;">A04</div>
+              <span style="font-size: 0.68rem; font-weight: 700;">SELECTED</span>
+            </div>
+          </div>
+
+          <div
+            style="background: var(--bg-alt); padding: 1rem 1.25rem; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 0.88rem; color: var(--text-muted);">
+              <strong>Zero Conflict:</strong> Desks lock strictly per time slot.
+            </div>
+            <a href="seats.html" class="btn btn-secondary btn-sm">Try Interactive Map &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 2. WHY CHOOSE US ================= -->
+  <section class="section section-alt" id="why-choose-us">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Benefits & Value</div>
+        <h2 class="section-title">Why Serious Students Choose StudyHub</h2>
+        <p class="section-desc">
+          Engineered from the ground up to replace distractions at home and noisy cafes with a laser-focused
+          productivity atmosphere.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.75rem;">
+        <!-- 1 -->
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-chair"></i></div>
+          <h4>Dedicated Seating</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">Your desk number is booked exclusively for your selected
+            hours. No morning seat-racing or table poaching.</p>
+        </div>
+
+        <!-- 2 -->
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-volume-xmark"></i></div>
+          <h4>Quiet Study Environment</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">Strict acoustic silent policy with acoustic partition
+            panels, soft flooring, and isolated phone call booths.</p>
+        </div>
+
+        <!-- 3 -->
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-wifi"></i></div>
+          <h4>High-Speed Wi-Fi</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">Redundant dual 300 Mbps commercial leased lines ensuring
+            smooth live online test series and video lectures.</p>
+        </div>
+
+        <!-- 4 -->
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-car-battery"></i></div>
+          <h4>100% Power Backup</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">Instantaneous generator and UPS backup keeps your laptop
+            charger, LED reading lamp, and Wi-Fi active 24/7.</p>
+        </div>
+
+        <!-- 5 -->
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-couch"></i></div>
+          <h4>Comfortable Seating</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">High-back breathable mesh chairs with ergonomic lumbar
+            support designed for marathon 10-hour study sessions.</p>
+        </div>
+
+        <!-- 6 -->
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-video"></i></div>
+          <h4>CCTV Security</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">Continuous CCTV surveillance, biometric fingerprint access,
+            and locked premises safe for female students.</p>
+        </div>
+
+        <!-- 7 -->
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-bottle-water"></i></div>
+          <h4>Purified Drinking Water</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">Multi-stage RO water filter with instant hot, cold, and
+            ambient options along with complimentary green tea.</p>
+        </div>
+
+        <!-- 8 -->
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-broom"></i></div>
+          <h4>Clean Environment</h4>
+          <p style="margin-top: 0.5rem; font-size: 0.92rem;">Regular sanitization between shifts, clean restrooms, HEPA
+            air purifiers, and quiet climate-controlled airflow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3. HOW IT WORKS (4-STEP PROCESS) ================= -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Smooth & Simple</div>
+        <h2 class="section-title">How It Works in 4 Steps</h2>
+        <p class="section-desc">
+          Get started with your dedicated workstation in under three minutes.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-num-badge">1</div>
+          <h3 class="step-title">Choose Membership</h3>
+          <p class="step-desc">Pick between flexible Slot-based plans, Half-Day options, or Full-Day unlimited study
+            access.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-num-badge">2</div>
+          <h3 class="step-title">Select Time Slot</h3>
+          <p class="step-desc">Select Morning (06:00-12:00), Afternoon (12:00-18:00), or Evening (18:00-00:00) according
+            to your routine.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-num-badge">3</div>
+          <h3 class="step-title">Get Seat Assigned</h3>
+          <p class="step-desc">Pick your unique seat number (e.g. Desk B04). The seat is reserved strictly for you
+            during that slot.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-card">
+          <div class="step-num-badge">4</div>
+          <h3 class="step-title">Start Studying</h3>
+          <p class="step-desc">Walk in, scan your biometric entry, plug in your devices, and dive into focused
+            preparation without disruptions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4. MEMBERSHIP PREVIEW ================= -->
+  <section class="section section-alt" id="memberships">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Configurable Monthly Plans</div>
+        <h2 class="section-title">Membership Plans Designed for Your Schedule</h2>
+        <p class="section-desc">
+          Transparent monthly rates with designated seat reservations. Select the plan that matches your study rhythm.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Plan 1: Single Slot Plan -->
+        <div class="pricing-card">
+          <h3 class="pricing-card-title">Single Slot Plan</h3>
+          <p class="pricing-card-desc">Ideal for students needing a dedicated 6-hour daily focus block.</p>
+          <div class="pricing-timing-tag"><i class="fa-regular fa-clock"></i> Morning / Evening (6 Hours / Day)</div>
+
+          <div class="pricing-price">
+            <span class="pricing-currency">₹</span>
+            <span class="pricing-amount">899</span>
+            <span class="pricing-period">/ month (est.)</span>
+          </div>
+
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-check"></i> Guaranteed desk number for 30 days</li>
+            <li><i class="fa-solid fa-check"></i> High-speed 300 Mbps Wi-Fi</li>
+            <li><i class="fa-solid fa-check"></i> Dedicated power outlet on desk</li>
+            <li><i class="fa-solid fa-check"></i> RO chilled and hot water</li>
+            <li><i class="fa-solid fa-check"></i> Sanitized workstation handover</li>
+          </ul>
+
+          <a href="seats.html?plan=slot" class="btn btn-outline btn-full">Choose Slot Seat</a>
+        </div>
+
+        <!-- Plan 2: Half Day Plan -->
+        <div class="pricing-card">
+          <h3 class="pricing-card-title">Half Day Plan</h3>
+          <p class="pricing-card-desc">Two contiguous shift blocks for deep mock tests and extended preparation.</p>
+          <div class="pricing-timing-tag"><i class="fa-regular fa-clock"></i> Morning + Afternoon (12 Hours / Day)</div>
+
+          <div class="pricing-price">
+            <span class="pricing-currency">₹</span>
+            <span class="pricing-amount">1,349</span>
+            <span class="pricing-period">/ month (est.)</span>
+          </div>
+
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-check"></i> Guaranteed continuous seat assignment</li>
+            <li><i class="fa-solid fa-check"></i> Personal locker storage option</li>
+            <li><i class="fa-solid fa-check"></i> Dual leased line backup Wi-Fi</li>
+            <li><i class="fa-solid fa-check"></i> Cafeteria and lunch lounge access</li>
+            <li><i class="fa-solid fa-check"></i> No midday table relocation</li>
+          </ul>
+
+          <a href="seats.html?plan=half-day" class="btn btn-outline btn-full">Choose Half Day Seat</a>
+        </div>
+
+        <!-- Plan 3: Full Day (Featured) -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">All-Day Immersion</div>
+          <h3 class="pricing-card-title">Full Day Unlimited</h3>
+          <p class="pricing-card-desc">Sole owner of your desk from dawn to dusk. Zero handovers.</p>
+          <div class="pricing-timing-tag"><i class="fa-regular fa-clock"></i> 06:00 AM – 11:00 PM (17 Hours / Day)</div>
+
+          <div class="pricing-price">
+            <span class="pricing-currency">₹</span>
+            <span class="pricing-amount">1,699</span>
+            <span class="pricing-period">/ month (est.)</span>
+          </div>
+
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-check"></i> Fixed desk assigned exclusively 24/7</li>
+            <li><i class="fa-solid fa-check"></i> Lockable steel drawer for heavy books</li>
+            <li><i class="fa-solid fa-check"></i> Unlimited Wi-Fi with priority bandwidth</li>
+            <li><i class="fa-solid fa-check"></i> Free hot herbal teas and refreshments</li>
+            <li><i class="fa-solid fa-check"></i> Biometric card entry at any hour</li>
+          </ul>
+
+          <a href="seats.html?plan=full-day" class="btn btn-primary btn-full">Claim Full Day Desk</a>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2.75rem;">
+        <p style="font-size: 0.9rem; color: var(--text-subtle); margin-bottom: 1rem;">
+          * Rates are illustrative monthly estimates. Custom corporate & group rates available upon request.
+        </p>
+        <a href="pricing.html" class="btn btn-secondary">
+          Compare Detailed Shift Windows & Features &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. SEAT AVAILABILITY PREVIEW ================= -->
+  <section class="section" id="seat-preview">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Interactive Preview</div>
+        <h2 class="section-title">Visual Seat Allocation System</h2>
+        <p class="section-desc">
+          Check live occupancy states: Available (ready to book), Occupied (active student shift), or Reserved (hold in
+          progress).
+        </p>
+      </div>
+
+      <!-- Color Legend -->
+      <div class="seat-legend" style="max-width: 600px; margin: 0 auto 2.5rem auto;">
+        <div class="legend-item">
+          <span class="legend-sample available"></span> Available
+        </div>
+        <div class="legend-item">
+          <span class="legend-sample occupied"></span> Occupied
+        </div>
+        <div class="legend-item">
+          <span class="legend-sample" style="background: var(--warning-bg); border: 2px solid var(--warning);"></span>
+          Reserved
+        </div>
+        <div class="legend-item">
+          <span class="legend-sample selected"></span> Your Selection
+        </div>
+      </div>
+
+      <!-- Realistic Visual Seat Bay Layout Grid -->
+      <div class="card" style="max-width: 780px; margin: 0 auto; padding: 2.5rem; box-shadow: var(--shadow-md);">
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
+          <div>
+            <span
+              style="font-size: 0.8rem; font-weight: 700; color: var(--text-subtle); text-transform: uppercase;">Preview
+              Zone</span>
+            <h4 style="font-size: 1.15rem;">Silent Reading Bay A • Floor 1</h4>
+          </div>
+          <div style="font-size: 0.9rem; font-weight: 600; color: var(--accent);">
+            <i class="fa-regular fa-clock"></i> Active Slot: Morning (06:00 AM - 12:00 PM)
+          </div>
+        </div>
+
+        <!-- 15 Sample Workstations representing the three states -->
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 2rem;">
+          <!-- Available -->
+          <div class="seat-btn available" title="Seat A01 - Available">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>A01</span>
+            <span class="seat-tag">Open</span>
+          </div>
+
+          <!-- Occupied -->
+          <div class="seat-btn occupied" title="Seat A02 - Occupied">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>A02</span>
+            <span class="seat-tag">Taken</span>
+          </div>
+
+          <!-- Reserved -->
+          <div class="seat-btn reserved" title="Seat A03 - Reserved">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>A03</span>
+            <span class="seat-tag">Hold</span>
+          </div>
+
+          <!-- Available -->
+          <div class="seat-btn available" title="Seat A04 - Available">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>A04</span>
+            <span class="seat-tag">Open</span>
+          </div>
+
+          <!-- Occupied -->
+          <div class="seat-btn occupied" title="Seat A05 - Occupied">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>A05</span>
+            <span class="seat-tag">Taken</span>
+          </div>
+
+          <!-- Row B -->
+          <div class="seat-btn available" title="Seat B01 - Available">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>B01</span>
+            <span class="seat-tag">Open</span>
+          </div>
+
+          <!-- Selected State Preview -->
+          <div class="seat-btn selected" title="Seat B02 - Selected">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>B02</span>
+            <span class="seat-tag">Selected</span>
+          </div>
+
+          <div class="seat-btn available" title="Seat B03 - Available">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>B03</span>
+            <span class="seat-tag">Open</span>
+          </div>
+
+          <div class="seat-btn occupied" title="Seat B04 - Occupied">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>B04</span>
+            <span class="seat-tag">Taken</span>
+          </div>
+
+          <div class="seat-btn reserved" title="Seat B05 - Reserved">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>B05</span>
+            <span class="seat-tag">Hold</span>
+          </div>
+
+          <!-- Row C -->
+          <div class="seat-btn occupied" title="Seat C01 - Occupied">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>C01</span>
+            <span class="seat-tag">Taken</span>
+          </div>
+
+          <div class="seat-btn available" title="Seat C02 - Available">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>C02</span>
+            <span class="seat-tag">Open</span>
+          </div>
+
+          <div class="seat-btn available" title="Seat C03 - Available">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>C03</span>
+            <span class="seat-tag">Open</span>
+          </div>
+
+          <div class="seat-btn reserved" title="Seat C04 - Reserved">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>C04</span>
+            <span class="seat-tag">Hold</span>
+          </div>
+
+          <div class="seat-btn available" title="Seat C05 - Available">
+            <i class="seat-icon fa-solid fa-chair"></i>
+            <span>C05</span>
+            <span class="seat-tag">Open</span>
+          </div>
+        </div>
+
+        <div
+          style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div style="font-size: 0.92rem; color: var(--text-muted);">
+            Want to test shift switching and reserve a desk number?
+          </div>
+          <a href="seats.html" class="btn btn-primary btn-sm">
+            Launch Interactive Seat Selector &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. FACILITIES SECTION ================= -->
+  <section class="section section-alt" id="facilities">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Amenities & Comfort</div>
+        <h2 class="section-title">Built Specially for Long Study Hours</h2>
+        <p class="section-desc">
+          Every physical and digital element is optimized to minimize fatigue and maximize study endurance.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-plug"></i></div>
+          <h3>Individual Power Outlets</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem;">
+            Two 3-pin AC power sockets with surge suppression, USB-C and USB-A charging ports built into every desk
+            partition.
+          </p>
+        </div>
+
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-wind"></i></div>
+          <h3>Centralized AC & Fresh Air Flow</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem;">
+            Whisper-quiet air conditioning with HEPA air filters keeping CO2 levels low, preventing afternoon
+            drowsiness.
+          </p>
+        </div>
+
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-box-archive"></i></div>
+          <h3>Assigned Book Lockers</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem;">
+            Secure personal steel lockers with digital PIN locks so you never have to haul heavy textbooks back and
+            forth daily.
+          </p>
+        </div>
+
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-mug-saucer"></i></div>
+          <h3>Cafeteria & Discussion Area</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem;">
+            Isolated meal lounge with refrigerator, microwave, and tea/coffee machines ensuring zero food smell inside
+            study bays.
+          </p>
+        </div>
+
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-lightbulb"></i></div>
+          <h3>4000K Soft Desk Lamps</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem;">
+            Eye-friendly warm-white LED illumination eliminating shadows and glare during intense nighttime reading
+            sessions.
+          </p>
+        </div>
+
+        <div class="card card-hover">
+          <div class="card-icon-box"><i class="fa-solid fa-fingerprint"></i></div>
+          <h3>Biometric Contactless Access</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.95rem;">
+            Authorized student-only entry system protecting personal belongings, laptops, and study materials around the
+            clock.
+          </p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="facilities.html" class="btn btn-outline">
+          Explore Complete Facilities & Specs &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 7. GALLERY PREVIEW ================= -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Take A Look Inside</div>
+        <h2 class="section-title">A Sneak Peek at Our Study Center</h2>
+        <p class="section-desc">
+          High-definition authentic snapshots of our silent study bays, ergonomic desks, and student common spaces.
+        </p>
+      </div>
+
+      <div class="home-gallery-grid">
+        <!-- Photo 1 -->
+        <div class="home-gallery-card">
+          <div class="home-gallery-thumb">
+            <img src="images/gallery/gallery-1.jpg" alt="Individual reading cubicles with privacy partitions"
+              loading="lazy" onerror="this.onerror=null; this.src='images/gallery-1.jpg';">
+          </div>
+          <div class="home-gallery-caption">
+            <h4 style="font-size: 1.05rem;">Private Reading Cubicles</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Equipped with acoustic
+              partitions and personal LED illumination.</p>
+          </div>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="home-gallery-card">
+          <div class="home-gallery-thumb">
+            <img src="images/gallery/gallery-2.jpg" alt="Ergonomic workstations in main reading hall" loading="lazy"
+              onerror="this.onerror=null; this.src='images/gallery-2.jpg';">
+          </div>
+          <div class="home-gallery-caption">
+            <h4 style="font-size: 1.05rem;">Main Aspirant Hall</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Spacious table layouts
+              accommodating laptops and legal pads.</p>
+          </div>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="home-gallery-card">
+          <div class="home-gallery-thumb">
+            <img src="images/gallery/gallery-3.jpg" alt="Night study atmosphere with warm lighting" loading="lazy"
+              onerror="this.onerror=null; this.src='images/gallery-3.jpg';">
+          </div>
+          <div class="home-gallery-caption">
+            <h4 style="font-size: 1.05rem;">Night Shift Focus Zone</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Calm ambience tuned
+              specifically for post-work competitive preparation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2.75rem;">
+        <a href="gallery.html" class="btn btn-secondary">
+          View All Center Photos & Tour &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8. TESTIMONIALS ================= -->
+  <section class="section section-alt" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Aspirant Experiences</div>
+        <h2 class="section-title">Trusted by Serious Learners</h2>
+        <p class="section-desc">
+          Read how having a dedicated seat and fixed time window transformed daily revision and study consistency.
+        </p>
+      </div>
+
+      <div class="testimonial-grid">
+        <!-- Review 1 -->
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-quote">
+              "The silence here is absolute. Having my dedicated desk B04 in the morning shift meant I never wasted an
+              hour hunting for a seat like I used to in the public library. Cleared my Mains with confidence!"
+            </p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <h4>Aditya Kashyap</h4>
+              <span>Civil Services Aspirant (UPSC)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-quote">
+              "As a software engineer preparing for competitive gate exams after office hours, the evening slot from 6
+              PM to midnight is a lifesaver. Fast Wi-Fi, constant power, and zero interruptions."
+            </p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">SM</div>
+            <div class="author-info">
+              <h4>Sneha Mukhopadhyay</h4>
+              <span>GATE CS & Data Science Prep</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-quote">
+              "The ergonomic chairs genuinely saved my back during 12-hour full day study marathons. The locker facility
+              also meant I could leave heavy medical reference books safely overnight."
+            </p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">RT</div>
+            <div class="author-info">
+              <h4>Dr. Rohan Taneja</h4>
+              <span>NEET-PG Resident Scholar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 9. FAQ SECTION ================= -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Got Questions?</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-desc">
+          Everything you need to know about our seating policies, time slots, and membership plans.
+        </p>
+      </div>
+
+      <div class="faq-list">
+        <!-- Question 1 -->
+        <div class="faq-item active">
+          <button type="button" class="faq-question">
+            <span>Do you provide textbooks or study materials?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              No. StudyHub is a self-study center, not a book-lending library. Students bring their own textbooks, test
+              notes, tablets, and laptops. We provide the dedicated desk, high-speed Wi-Fi, power outlets, and an
+              undisturbed study environment.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Can two students be assigned the same seat?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Never during the same time window. If Student A books Desk A01 for the Morning Slot (6:00 AM - 12:00 PM),
+              that desk is exclusively locked. After that slot concludes, another student can occupy Desk A01 for the
+              Afternoon Shift (12:00 PM - 6:00 PM) without any overlap.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Can I leave my books on the desk during lunch or breaks?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes, absolutely! Throughout your booked shift hours, that desk is completely yours. You can step out for a
+              meal or coffee break, and your items remain safe under our CCTV monitoring. Full-day members also receive
+              private lockers.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>What happens if I need to change my time slot later?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              You can easily submit a shift change request to the center manager at the end of your billing cycle, or
+              mid-month subject to seat availability in your requested new shift.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Can I try a free study session before booking a monthly pass?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes! We offer a complimentary 1-hour trial walkthrough for new aspirants so you can experience the
+              acoustics, chair comfort, and Wi-Fi speed firsthand.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 10. CONTACT CTA SECTION ================= -->
+  <section class="section section-alt" id="contact-cta">
+    <div class="container">
+      <div class="card"
+        style="background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: #ffffff; padding: 4rem 3rem; text-align: center; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); border: none;">
+        <div class="section-tag"
+          style="background: rgba(255, 255, 255, 0.15); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2);">
+          Ready For Consistent Study Sessions?
+        </div>
+
+        <h2 style="color: #ffffff; font-size: clamp(2rem, 3.5vw, 2.75rem); margin-top: 1rem; margin-bottom: 1.25rem;">
+          Reserve Your Seat & Lock In Your Focus Today
+        </h2>
+
+        <p style="color: #cbd5e1; font-size: 1.15rem; max-width: 640px; margin: 0 auto 2.5rem auto; line-height: 1.6;">
+          Join over 300+ students and competitive aspirants who made StudyHub their daily preparation headquarters. Book
+          an inspection or claim your desk online.
+        </p>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="seats.html" class="btn btn-primary btn-lg"
+            style="background: #ffffff; color: var(--primary); font-weight: 700; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);">
+            <i class="fa-solid fa-chair"></i> Select Workstation
+          </a>
+          <a href="contact.html" class="btn btn-outline btn-lg"
+            style="border-color: rgba(255, 255, 255, 0.4); color: #ffffff;">
+            <i class="fa-regular fa-calendar"></i> Book Center Tour
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Summary -->
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="brand-name">Study<span>Hub</span></div>
+          </a>
+          <p>
+            StudyHub is a modern self-study sanctuary providing reserved study desks, uninterrupted power, fast Wi-Fi,
+            and a distraction-free environment for students and aspirants.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-title">Explore Center</h4>
+          <div class="footer-links">
+            <a href="about.html">About Concept</a>
+            <a href="facilities.html">Facilities & Specs</a>
+            <a href="pricing.html">Membership Plans</a>
+            <a href="seats.html">Live Seat Availability</a>
+            <a href="gallery.html">Center Gallery</a>
+          </div>
+        </div>
+
+        <!-- Operational Hours -->
+        <div>
+          <h4 class="footer-title">Shift Options</h4>
+          <div class="footer-links">
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Morning: 06:00 - 12:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Afternoon: 12:00 - 18:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Evening: 18:00 - 00:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Full Day: 06:00 - 23:00</span>
+            <span style="color: #10b981; font-size: 0.85rem; font-weight: 700; margin-top: 0.5rem;"><i
+                class="fa-solid fa-check-circle"></i> Open 7 Days A Week</span>
+          </div>
+        </div>
+
+        <!-- Contact details -->
+        <div>
+          <h4 class="footer-title">Center Location</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Plot 42, Knowledge Park III, Near Metro Gate 2, Education Hub</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 98765 43210 / 011-23456789</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>desk@studyhubcenter.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 StudyHub Self-Study Center. All rights reserved. Your Seat. Your Time. Your Focus.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Center Rules</a>
+          <a href="#">Terms of Membership</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

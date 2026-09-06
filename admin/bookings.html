@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Management & Overlaps | StudyHub Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-wrapper">
+    
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <div class="admin-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>StudyHub <em>Admin</em></span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="index.html" class="admin-nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="students.html" class="admin-nav-item"><i class="fa-solid fa-user-graduate"></i> Student Management</a>
+        <a href="seats.html" class="admin-nav-item"><i class="fa-solid fa-chair"></i> Seat Management</a>
+        <a href="bookings.html" class="admin-nav-item active"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+        <a href="memberships.html" class="admin-nav-item"><i class="fa-solid fa-id-card"></i> Memberships</a>
+        <a href="payments.html" class="admin-nav-item"><i class="fa-solid fa-credit-card"></i> Payments</a>
+        <a href="attendance.html" class="admin-nav-item"><i class="fa-solid fa-fingerprint"></i> Attendance Logs</a>
+        <a href="settings.html" class="admin-nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info">
+          <div class="admin-avatar">AD</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #fff;">Admin Manager</div>
+            <div style="font-size: 0.75rem; color: #64748b;">Center Staff</div>
+          </div>
+        </div>
+        <a href="../index.html" title="Exit Admin Console" style="color: #94a3b8;"><i class="fa-solid fa-right-from-bracket"></i></a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h1 class="admin-page-title">Booking Management & Reservation Ledger</h1>
+        <div class="admin-topbar-actions">
+          <button class="admin-btn admin-btn-primary admin-btn-sm" onclick="alert('Manual booking modal')"><i class="fa-solid fa-plus"></i> Create Walk-in Booking</button>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div>
+              <h3 class="admin-card-title">All Shift Bookings</h3>
+              <p style="font-size: 0.85rem; color: var(--admin-text-muted);">Validated with strict anti-overlap conflict rules</p>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem;">
+              <input type="text" id="booking-search-input" class="admin-search-input" placeholder="Search by student, ID, or desk...">
+            </div>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Student Name</th>
+                  <th>Student ID</th>
+                  <th>Assigned Seat</th>
+                  <th>Booking Date</th>
+                  <th>Shift Slot</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="bookings-table-body">
+                <!-- Dynamically populated from admin-data.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="js/admin-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tbody = document.getElementById('bookings-table-body');
+      if (!tbody || !window.ADMIN_MOCK_DATA) return;
+
+      function render(bookings) {
+        tbody.innerHTML = '';
+        bookings.forEach(b => {
+          const tr = document.createElement('tr');
+          const badgeClass = b.status === 'confirmed' ? 'status-active' : 'status-reserved';
+
+          tr.innerHTML = `
+            <td><strong style="font-family: monospace; color: var(--admin-accent); font-size: 0.95rem;">${b.bookingId}</strong></td>
+            <td><strong>${b.student}</strong></td>
+            <td>${b.studentId}</td>
+            <td><strong style="color: var(--admin-primary);">${b.seat}</strong></td>
+            <td>${b.date}</td>
+            <td>${b.slot}</td>
+            <td><span class="status-badge ${badgeClass}">${b.status}</span></td>
+            <td>
+              <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="alert('Viewing receipt for ${b.bookingId}')"><i class="fa-solid fa-receipt"></i> Receipt</button>
+              <button class="admin-btn admin-btn-outline admin-btn-sm" style="color: var(--status-danger);" onclick="alert('Cancel and release seat on ${b.seat}')"><i class="fa-solid fa-ban"></i></button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      render(window.ADMIN_MOCK_DATA.bookings);
+
+      const searchInput = document.getElementById('booking-search-input');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase();
+          const filtered = window.ADMIN_MOCK_DATA.bookings.filter(b => 
+            b.bookingId.toLowerCase().includes(query) ||
+            b.student.toLowerCase().includes(query) ||
+            b.seat.toLowerCase().includes(query)
+          );
+          render(filtered);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

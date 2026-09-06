@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Transactions & Invoices | StudyHub Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-wrapper">
+    
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <div class="admin-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>StudyHub <em>Admin</em></span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="index.html" class="admin-nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="students.html" class="admin-nav-item"><i class="fa-solid fa-user-graduate"></i> Student Management</a>
+        <a href="seats.html" class="admin-nav-item"><i class="fa-solid fa-chair"></i> Seat Management</a>
+        <a href="bookings.html" class="admin-nav-item"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+        <a href="memberships.html" class="admin-nav-item"><i class="fa-solid fa-id-card"></i> Memberships</a>
+        <a href="payments.html" class="admin-nav-item active"><i class="fa-solid fa-credit-card"></i> Payments</a>
+        <a href="attendance.html" class="admin-nav-item"><i class="fa-solid fa-fingerprint"></i> Attendance Logs</a>
+        <a href="settings.html" class="admin-nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info">
+          <div class="admin-avatar">AD</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #fff;">Admin Manager</div>
+            <div style="font-size: 0.75rem; color: #64748b;">Center Staff</div>
+          </div>
+        </div>
+        <a href="../index.html" title="Exit Admin Console" style="color: #94a3b8;"><i class="fa-solid fa-right-from-bracket"></i></a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h1 class="admin-page-title">Payment Transactions & Monthly Fee Collection</h1>
+        <div class="admin-topbar-actions">
+          <button class="admin-btn admin-btn-primary admin-btn-sm" onclick="alert('Record offline cash/UPI payment at reception')"><i class="fa-solid fa-receipt"></i> Record Offline Fee</button>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="metric-card">
+            <span class="metric-title">Today's Collections</span>
+            <div class="metric-value" style="color: var(--status-success);">₹14,290</div>
+            <div class="metric-subtitle">8 successful renewals</div>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">Current Month Revenue</span>
+            <div class="metric-value" style="color: var(--admin-primary);">₹64,750</div>
+            <div class="metric-subtitle">September 2026 to date</div>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">Pending Invoices</span>
+            <div class="metric-value" style="color: #d97706;">2 Invoices</div>
+            <div class="metric-subtitle">₹1,798 awaiting payment</div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div>
+              <h3 class="admin-card-title">Recent Fee Payments</h3>
+              <p style="font-size: 0.85rem; color: var(--admin-text-muted);">UPI, Cards, Net Banking, and Offline desk receipts</p>
+            </div>
+            <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="alert('Exporting CSV Ledger...')"><i class="fa-solid fa-download"></i> Export CSV</button>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Student Name</th>
+                  <th>Amount</th>
+                  <th>Payment Date</th>
+                  <th>Payment Method</th>
+                  <th>Plan Subscribed</th>
+                  <th>Status</th>
+                  <th>Receipt</th>
+                </tr>
+              </thead>
+              <tbody id="payments-table-body">
+                <!-- Populated from admin-data.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="js/admin-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tbody = document.getElementById('payments-table-body');
+      if (!tbody || !window.ADMIN_MOCK_DATA) return;
+
+      tbody.innerHTML = '';
+      window.ADMIN_MOCK_DATA.payments.forEach(p => {
+        const tr = document.createElement('tr');
+        const badgeClass = p.status === 'paid' ? 'status-active' : 'status-reserved';
+
+        tr.innerHTML = `
+          <td><strong style="font-family: monospace; color: var(--admin-accent);">${p.txnId}</strong></td>
+          <td><strong>${p.student}</strong></td>
+          <td><strong style="color: var(--admin-text-main);">${p.amount}</strong></td>
+          <td>${p.date}</td>
+          <td>${p.method}</td>
+          <td>${p.plan}</td>
+          <td><span class="status-badge ${badgeClass}">${p.status}</span></td>
+          <td>
+            <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="alert('Generating GST invoice for ${p.txnId}')"><i class="fa-solid fa-file-invoice"></i> PDF</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    });
+  </script>
+</body>
+</html>

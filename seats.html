@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Check real-time study seat availability across rows A01-A10, B01-B10, and C01-C10. Filter by Date, Full Day, Morning, Afternoon, and Evening slots.">
+  <title>Live Seat Availability & Allocation Map | StudyHub</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Core Modular Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="site-header" id="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="StudyHub Homepage">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-name">Study<span>Hub</span></div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="pricing.html" class="nav-link">Memberships</a>
+        <a href="seats.html" class="nav-link active">Seats</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-ctas">
+        <a href="pricing.html" class="btn btn-outline btn-sm">Plans</a>
+        <a href="seats.html" class="btn btn-primary btn-sm">Check Seats</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 1. PAGE HEADER ================= -->
+  <section class="section" style="background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%); padding-block: 3.5rem; border-bottom: 1px solid var(--border-light);">
+    <div class="container" style="text-align: center; max-width: 820px;">
+      <div class="section-tag">
+        <i class="fa-solid fa-chair"></i> Interactive Floor Allocation
+      </div>
+      <h1 style="margin-bottom: 1rem;">
+        Live Seat Availability Map
+      </h1>
+      <p style="font-size: 1.15rem; line-height: 1.7; color: var(--text-muted);">
+        Select your study date and preferred time slot below to view live vacancies across our 30 dedicated workstations (A01–C10).
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 2. MAIN INTERACTIVE APPLICATION LAYOUT ================= -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Toast Feedback Area -->
+      <div id="seat-status-alert" class="seat-toast-msg" role="alert"></div>
+
+      <!-- FILTER CONTROLS BAR -->
+      <div class="card" style="margin-bottom: 2.5rem; padding: 1.75rem 2rem; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+          
+          <!-- Date Picker Filter -->
+          <div style="display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap;">
+            <label for="filter-date" style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 0.4rem;">
+              <i class="fa-regular fa-calendar-days" style="color: var(--accent);"></i> Select Date:
+            </label>
+            <input type="date" id="filter-date" class="form-control" style="width: auto; min-width: 170px; padding: 0.55rem 0.9rem; font-weight: 600;">
+          </div>
+
+          <!-- Time Slot Buttons Filter -->
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); margin-right: 0.35rem;">Filter Slot:</span>
+            
+            <button type="button" class="tab-btn slot-filter-btn active" data-slot="morning">
+              <i class="fa-solid fa-sun"></i> Morning (06:00 - 12:00)
+            </button>
+
+            <button type="button" class="tab-btn slot-filter-btn" data-slot="afternoon">
+              <i class="fa-solid fa-cloud-sun"></i> Afternoon (12:00 - 18:00)
+            </button>
+
+            <button type="button" class="tab-btn slot-filter-btn" data-slot="evening">
+              <i class="fa-solid fa-moon"></i> Evening (18:00 - 22:00)
+            </button>
+
+            <button type="button" class="tab-btn slot-filter-btn" data-slot="half-day-am">
+              <i class="fa-solid fa-business-time"></i> Half Day (06:00 - 18:00)
+            </button>
+
+            <button type="button" class="tab-btn slot-filter-btn" data-slot="full-day">
+              <i class="fa-solid fa-star"></i> Full Day (06:00 - 23:00)
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- VISUAL LEGEND -->
+      <div class="seat-legend" style="max-width: 680px; margin: 0 auto 2.5rem auto;">
+        <div class="legend-item">
+          <span class="legend-sample available"></span> Available (Click to select)
+        </div>
+        <div class="legend-item">
+          <span class="legend-sample occupied"></span> Occupied (Active shift)
+        </div>
+        <div class="legend-item">
+          <span class="legend-sample" style="background: var(--warning-bg); border: 2px solid var(--warning);"></span> Reserved (Hold)
+        </div>
+        <div class="legend-item">
+          <span class="legend-sample selected"></span> Selected Desk
+        </div>
+      </div>
+
+      <!-- TWO-COLUMN WORKSPACE: 30-SEAT MATRIX (LEFT) + SUMMARY & SELECTION (RIGHT) -->
+      <div style="display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 2.5rem; align-items: start;">
+        
+        <!-- LEFT: 30 DYNAMICALLY GENERATED SEATS (ROWS A, B, C) -->
+        <div>
+          <div id="seats-matrix-container" class="seat-matrix-wrapper">
+            <!-- Dynamically injected by js/seats.js -->
+          </div>
+
+          <div style="margin-top: 1.75rem; padding: 1rem 1.25rem; background: var(--bg-alt); border-radius: var(--radius-md); font-size: 0.88rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.85rem; border-left: 4px solid var(--accent);">
+            <i class="fa-solid fa-circle-info" style="color: var(--accent); font-size: 1.2rem;"></i>
+            <span><strong>Anti-Conflict Policy:</strong> Seats shown as Occupied or Reserved are locked for the chosen slot to guarantee zero schedule clashes.</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: SEAT SELECTION & SUMMARY AREA -->
+        <div>
+          
+          <!-- Live Summary Card -->
+          <div class="card" style="box-shadow: var(--shadow-lg); border: 1px solid #dbeafe; margin-bottom: 2rem;">
+            <div class="section-tag" style="margin-bottom: 0.75rem;">Occupancy Overview</div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Live Shift Counts</h3>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; text-align: center; margin-bottom: 1.5rem;">
+              <div style="background: var(--success-bg); padding: 0.85rem 0.5rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.25);">
+                <div id="stat-available-count" style="font-size: 1.75rem; font-weight: 800; color: #065f46; font-family: 'Outfit', sans-serif;">--</div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: #065f46; text-transform: uppercase;">Available</div>
+              </div>
+
+              <div style="background: #f1f5f9; padding: 0.85rem 0.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                <div id="stat-occupied-count" style="font-size: 1.75rem; font-weight: 800; color: #475569; font-family: 'Outfit', sans-serif;">--</div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Occupied</div>
+              </div>
+
+              <div style="background: var(--primary-light); padding: 0.85rem 0.5rem; border-radius: var(--radius-md); border: 1px solid rgba(37, 99, 235, 0.2);">
+                <div id="stat-total-count" style="font-size: 1.75rem; font-weight: 800; color: var(--primary); font-family: 'Outfit', sans-serif;">30</div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase;">Total Seats</div>
+              </div>
+            </div>
+
+            <!-- Detail List -->
+            <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.92rem; border-top: 1px solid var(--border-light); padding-top: 1.25rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Selected Date:</span>
+                <strong id="summary-selected-date" style="color: var(--text-main);">--</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Selected Slot:</span>
+                <strong id="summary-selected-slot" style="color: var(--primary); text-align: right; max-width: 180px;">Morning Shift</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selection & Intent Card -->
+          <div class="card" style="box-shadow: var(--shadow-lg); border: 2px solid var(--accent);">
+            <div class="section-tag" style="margin-bottom: 0.75rem;">Your Selection</div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Desk Hold Details</h3>
+
+            <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-subtle); text-transform: uppercase; margin-bottom: 0.2rem;">Chosen Workstation</div>
+              <div id="summary-selected-seat" style="font-family: 'Outfit', sans-serif; font-size: 2.25rem; font-weight: 800; color: var(--text-subtle); line-height: 1.2; margin-bottom: 0.5rem;">
+                None Selected
+              </div>
+              <div id="summary-selected-status">
+                <span style="font-size: 0.88rem; color: var(--text-subtle);">Click an open green desk in the map</span>
+              </div>
+            </div>
+
+            <!-- Choose This Seat CTA -->
+            <button type="button" id="btn-choose-seat" class="btn btn-primary btn-full btn-lg" disabled>
+              <i class="fa-solid fa-hand-pointer"></i> Choose This Seat
+            </button>
+
+            <p style="font-size: 0.8rem; color: var(--text-subtle); text-align: center; margin-top: 1rem; line-height: 1.5;">
+              Frontend simulation only. In the next phase, clicking this opens student registration and instant payment verification.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="brand-name">Study<span>Hub</span></div>
+          </a>
+          <p>
+            StudyHub is a modern self-study sanctuary providing reserved study desks, uninterrupted power, fast Wi-Fi, and a distraction-free environment for students and aspirants.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Explore Center</h4>
+          <div class="footer-links">
+            <a href="about.html">About Concept</a>
+            <a href="facilities.html">Facilities & Specs</a>
+            <a href="pricing.html">Membership Plans</a>
+            <a href="seats.html">Live Seat Availability</a>
+            <a href="gallery.html">Center Gallery</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Shift Options</h4>
+          <div class="footer-links">
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Morning: 06:00 - 12:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Afternoon: 12:00 - 18:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Evening: 18:00 - 00:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Full Day: 06:00 - 23:00</span>
+            <span style="color: #10b981; font-size: 0.85rem; font-weight: 700; margin-top: 0.5rem;"><i class="fa-solid fa-check-circle"></i> Open 7 Days A Week</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Center Location</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Plot 42, Knowledge Park III, Near Metro Gate 2, Education Hub</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 98765 43210 / 011-23456789</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>desk@studyhubcenter.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 StudyHub Self-Study Center. All rights reserved. Your Seat. Your Time. Your Focus.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Center Rules</a>
+          <a href="#">Terms of Membership</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/seats.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the visual tour of StudyHub: study areas, ergonomic seating, facilities, entrance, silence environment, and students studying.">
+  <title>Center Photo Gallery & Visual Tour | StudyHub</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Core Modular Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="site-header" id="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="StudyHub Homepage">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-name">Study<span>Hub</span></div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="pricing.html" class="nav-link">Memberships</a>
+        <a href="seats.html" class="nav-link">Seats</a>
+        <a href="gallery.html" class="nav-link active">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-ctas">
+        <a href="pricing.html" class="btn btn-outline btn-sm">Plans</a>
+        <a href="seats.html" class="btn btn-primary btn-sm">Check Seats</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 1. PAGE HEADER ================= -->
+  <section class="section" style="background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%); padding-block: 3.5rem; border-bottom: 1px solid var(--border-light);">
+    <div class="container" style="text-align: center; max-width: 820px;">
+      <div class="section-tag">
+        <i class="fa-solid fa-camera"></i> Visual Center Tour
+      </div>
+      <h1 style="margin-bottom: 0.75rem;">
+        Inside The StudyHub Center
+      </h1>
+      <p style="font-size: 1.15rem; line-height: 1.7; color: var(--text-muted);">
+        Take a walk through our physical infrastructure. Explore our private study cubicles, ergonomic mesh seating, high-focus environment, and student amenities.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 2. CATEGORY FILTERS & IMAGE GRID ================= -->
+  <section class="section">
+    <div class="container">
+
+      <!-- CATEGORY TABS -->
+      <div class="gallery-category-bar" role="tablist" aria-label="Gallery Categories">
+        <button type="button" class="gallery-filter-btn active" data-category="all">
+          <i class="fa-solid fa-border-all"></i> All Photos
+        </button>
+        <button type="button" class="gallery-filter-btn" data-category="study-area">
+          <i class="fa-solid fa-table"></i> Study Area
+        </button>
+        <button type="button" class="gallery-filter-btn" data-category="seating">
+          <i class="fa-solid fa-chair"></i> Seating
+        </button>
+        <button type="button" class="gallery-filter-btn" data-category="facilities">
+          <i class="fa-solid fa-box-archive"></i> Facilities
+        </button>
+        <button type="button" class="gallery-filter-btn" data-category="entrance">
+          <i class="fa-solid fa-door-open"></i> Entrance
+        </button>
+        <button type="button" class="gallery-filter-btn" data-category="environment">
+          <i class="fa-solid fa-volume-xmark"></i> Environment
+        </button>
+        <button type="button" class="gallery-filter-btn" data-category="students-studying">
+          <i class="fa-solid fa-user-graduate"></i> Students Studying
+        </button>
+      </div>
+
+      <!-- THE DYNAMIC RESPONSIVE MASONRY GRID -->
+      <div id="gallery-grid" class="gallery-masonry-grid" aria-live="polite">
+        <!-- Injected dynamically via js/gallery.js -->
+      </div>
+
+      <!-- IN-PERSON WALKTHROUGH BANNER -->
+      <div style="margin-top: 4.5rem; background: var(--bg-surface); padding: 3rem 2rem; border-radius: var(--radius-xl); border: 1px solid var(--border-light); text-align: center; box-shadow: var(--shadow-sm);">
+        <div class="section-tag" style="margin-bottom: 0.75rem;">Experience The Silence</div>
+        <h2>Want to Inspect Our Desks in Person?</h2>
+        <p style="margin: 0.75rem auto 2rem auto; max-width: 600px; color: var(--text-muted); font-size: 1.05rem;">
+          Photos convey our infrastructure, but the absolute acoustic silence must be experienced. Book a free 1-hour trial desk session today.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="seats.html" class="btn btn-primary btn-lg">Reserve A Desk</a>
+          <a href="contact.html" class="btn btn-outline btn-lg">Schedule A Visit</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 3. INTERACTIVE LIGHTBOX MODAL ================= -->
+  <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Photo Lightbox Modal">
+    
+    <!-- Prev Button -->
+    <button type="button" id="lightbox-prev" class="lightbox-btn lightbox-nav-btn lightbox-btn-prev" aria-label="Previous Photo">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <!-- Modal Content Box -->
+    <div class="lightbox-content-box">
+      <!-- Close Button -->
+      <button type="button" id="lightbox-close" class="lightbox-btn lightbox-btn-close" aria-label="Close Lightbox">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Zoomed Image -->
+      <div class="lightbox-img-wrap">
+        <img id="lightbox-img" src="" alt="Enlarged gallery photo">
+      </div>
+
+      <!-- Metadata Info Bar -->
+      <div class="lightbox-meta-bar">
+        <div>
+          <div id="lightbox-title" class="lightbox-meta-title">Photo Title</div>
+          <div id="lightbox-desc" class="lightbox-meta-desc">Photo Description</div>
+        </div>
+        <div id="lightbox-counter" class="lightbox-counter">1 / 12</div>
+      </div>
+    </div>
+
+    <!-- Next Button -->
+    <button type="button" id="lightbox-next" class="lightbox-btn lightbox-nav-btn lightbox-btn-next" aria-label="Next Photo">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="brand-name">Study<span>Hub</span></div>
+          </a>
+          <p>
+            StudyHub is a modern self-study sanctuary providing reserved study desks, uninterrupted power, fast Wi-Fi, and a distraction-free environment for students and aspirants.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Explore Center</h4>
+          <div class="footer-links">
+            <a href="about.html">About Concept</a>
+            <a href="facilities.html">Facilities & Specs</a>
+            <a href="pricing.html">Membership Plans</a>
+            <a href="seats.html">Live Seat Availability</a>
+            <a href="gallery.html">Center Gallery</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Shift Options</h4>
+          <div class="footer-links">
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Morning: 06:00 - 12:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Afternoon: 12:00 - 18:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Evening: 18:00 - 00:00</span>
+            <span style="color: #cbd5e1; font-size: 0.9rem;">Full Day: 06:00 - 23:00</span>
+            <span style="color: #10b981; font-size: 0.85rem; font-weight: 700; margin-top: 0.5rem;"><i class="fa-solid fa-check-circle"></i> Open 7 Days A Week</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Center Location</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Plot 42, Knowledge Park III, Near Metro Gate 2, Education Hub</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 98765 43210 / 011-23456789</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>desk@studyhubcenter.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 StudyHub Self-Study Center. All rights reserved. Your Seat. Your Time. Your Focus.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Center Rules</a>
+          <a href="#">Terms of Membership</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

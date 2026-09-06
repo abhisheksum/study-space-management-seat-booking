@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Center Operations & System Settings | StudyHub Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-wrapper">
+    
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <div class="admin-brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>StudyHub <em>Admin</em></span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="index.html" class="admin-nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="students.html" class="admin-nav-item"><i class="fa-solid fa-user-graduate"></i> Student Management</a>
+        <a href="seats.html" class="admin-nav-item"><i class="fa-solid fa-chair"></i> Seat Management</a>
+        <a href="bookings.html" class="admin-nav-item"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+        <a href="memberships.html" class="admin-nav-item"><i class="fa-solid fa-id-card"></i> Memberships</a>
+        <a href="payments.html" class="admin-nav-item"><i class="fa-solid fa-credit-card"></i> Payments</a>
+        <a href="attendance.html" class="admin-nav-item"><i class="fa-solid fa-fingerprint"></i> Attendance Logs</a>
+        <a href="settings.html" class="admin-nav-item active"><i class="fa-solid fa-gear"></i> Settings</a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-info">
+          <div class="admin-avatar">AD</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #fff;">Admin Manager</div>
+            <div style="font-size: 0.75rem; color: #64748b;">Center Staff</div>
+          </div>
+        </div>
+        <a href="../index.html" title="Exit Admin Console" style="color: #94a3b8;"><i class="fa-solid fa-right-from-bracket"></i></a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h1 class="admin-page-title">Center Operations & Rule Configuration</h1>
+        <div class="admin-topbar-actions">
+          <button class="admin-btn admin-btn-primary admin-btn-sm" onclick="alert('Settings saved successfully (Frontend Simulation)')"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+      </header>
+
+      <div class="admin-content" style="max-width: 900px;">
+
+        <!-- 1. Center Profile Settings -->
+        <div class="admin-card" style="padding: 2rem; margin-bottom: 2rem;">
+          <h3 class="admin-card-title" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-building"></i> Branch Profile & Contact Information</h3>
+          <p style="font-size: 0.88rem; color: var(--admin-text-muted); margin-bottom: 1.5rem;">Values configured here sync with the public website footer and contact page.</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Center Branch Name</label>
+              <input type="text" class="admin-search-input" style="width: 100%;" value="StudyHub Self-Study Center (Knowledge Park III)">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Official Helpline Phone</label>
+              <input type="text" class="admin-search-input" style="width: 100%;" value="+91 98765 43210">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">WhatsApp Coordinator Number</label>
+              <input type="text" class="admin-search-input" style="width: 100%;" value="+91 98765 43211">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Admissions Desk Email</label>
+              <input type="email" class="admin-search-input" style="width: 100%;" value="desk@studyhubcenter.com">
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Conflict Engine & Booking Rules -->
+        <div class="admin-card" style="padding: 2rem; margin-bottom: 2rem;">
+          <h3 class="admin-card-title" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-shield-halved"></i> Seat Allocation & Shift Handover Rules</h3>
+          <p style="font-size: 0.88rem; color: var(--admin-text-muted); margin-bottom: 1.5rem;">Controls the automated anti-overlap engine logic.</p>
+
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.92rem; padding: 0.75rem 1rem; background: var(--admin-bg); border-radius: 8px;">
+              <div>
+                <strong>Enforce Strict Anti-Overlap Engine</strong>
+                <span style="display: block; font-size: 0.8rem; color: var(--admin-text-muted);">Prevent any booking on a seat that has a conflicting time interval.</span>
+              </div>
+              <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--admin-accent);">
+            </label>
+
+            <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.92rem; padding: 0.75rem 1rem; background: var(--admin-bg); border-radius: 8px;">
+              <div>
+                <strong>Shift Handover Buffer Window</strong>
+                <span style="display: block; font-size: 0.8rem; color: var(--admin-text-muted);">Cleaning and sanitization break allocated between incoming student shifts.</span>
+              </div>
+              <select class="admin-search-input" style="width: auto;">
+                <option value="15">15 Minutes Buffer</option>
+                <option value="20">20 Minutes Buffer</option>
+                <option value="30">30 Minutes Buffer</option>
+              </select>
+            </label>
+
+            <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.92rem; padding: 0.75rem 1rem; background: var(--admin-bg); border-radius: 8px;">
+              <div>
+                <strong>Automated Expired Desk Release</strong>
+                <span style="display: block; font-size: 0.8rem; color: var(--admin-text-muted);">Release workstation back to Available pool 24 hours after unpaid membership expiry.</span>
+              </div>
+              <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--admin-accent);">
+            </label>
+          </div>
+        </div>
+
+        <!-- 3. Biometric & Turnstile Gate Settings -->
+        <div class="admin-card" style="padding: 2rem;">
+          <h3 class="admin-card-title" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-fingerprint"></i> Biometric Hardware Sync</h3>
+          <p style="font-size: 0.88rem; color: var(--admin-text-muted); margin-bottom: 1.5rem;">Access control gate integrations and IP configuration.</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Turnstile Gate 1 Controller IP</label>
+              <input type="text" class="admin-search-input" style="width: 100%; font-family: monospace;" value="192.168.1.120:8080">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Sync Frequency</label>
+              <select class="admin-search-input" style="width: 100%;">
+                <option value="realtime">Real-Time WebSocket Sync</option>
+                <option value="1min">Poll Every 1 Minute</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="js/admin-data.js"></script>
+</body>
+</html>
