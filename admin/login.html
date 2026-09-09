@@ -24,13 +24,12 @@
       <p style="font-size: 0.9rem; color: var(--admin-text-muted); margin-top: 0.35rem;">Sign in to access seat allocations & student records</p>
     </div>
 
-    <!-- Login Form Simulation -->
-    <form onsubmit="event.preventDefault(); window.location.href='index.html';">
+    <form id="admin-login-form">
       
       <div style="margin-bottom: 1.25rem;">
         <label style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.4rem;">Staff ID / Email</label>
         <div style="position: relative;">
-          <input type="text" class="admin-search-input" style="width: 100%; padding-left: 2.5rem;" value="admin@studyhubcenter.com" required>
+          <input name="login" type="text" class="admin-search-input" style="width: 100%; padding-left: 2.5rem;" autocomplete="username" required>
           <i class="fa-regular fa-user" style="position: absolute; left: 14px; top: 13px; color: var(--admin-text-muted);"></i>
         </div>
       </div>
@@ -41,7 +40,7 @@
           <a href="#" style="font-size: 0.8rem; color: var(--admin-accent);">Forgot password?</a>
         </div>
         <div style="position: relative;">
-          <input type="password" class="admin-search-input" style="width: 100%; padding-left: 2.5rem;" value="studyhub2026" required>
+          <input name="password" type="password" class="admin-search-input" style="width: 100%; padding-left: 2.5rem;" autocomplete="current-password" required>
           <i class="fa-solid fa-lock" style="position: absolute; left: 14px; top: 13px; color: var(--admin-text-muted);"></i>
         </div>
       </div>
@@ -49,6 +48,7 @@
       <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem;">
         <i class="fa-solid fa-arrow-right-to-bracket"></i> Login to Admin Console
       </button>
+      <p id="admin-login-status" role="alert" hidden style="margin-top: 1rem; color: #f87171; text-align: center;"></p>
 
       <div style="margin-top: 1.5rem; text-align: center;">
         <a href="../index.html" style="font-size: 0.88rem; color: var(--admin-text-muted);">
@@ -57,12 +57,13 @@
       </div>
 
       <p style="font-size: 0.75rem; color: var(--admin-text-muted); text-align: center; margin-top: 2rem;">
-        * Frontend Simulation Only. Authentication will be wired to security tokens in Phase 2.
+        * Admin access requires a valid server-issued authentication token.
       </p>
 
     </form>
 
   </div>
 
+  <script src="js/admin-auth.js"></script>
 </body>
 </html>

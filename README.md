@@ -65,6 +65,18 @@ A modern, production-grade web platform for a dedicated **self-study library / s
 
 ---
 
+## Admin authentication
+
+Admin credentials are stored as bcrypt hashes and are never seeded with a shared password. Configure `JWT_SECRET` (at least 32 characters), then provision an account with environment variables and:
+
+```bash
+ADMIN_USERNAME=admin ADMIN_PASSWORD='use-a-unique-password' ADMIN_FULL_NAME='StudyHub Admin' npm run admin:create
+```
+
+The login endpoint is `POST /api/admin/login`. Send its bearer token with protected student, seat, membership, booking, payment, and attendance management requests.
+
+---
+
 ## ⚑ Anti-Overlap Booking Engine
 
 The business rule *"the same seat cannot be booked by two students for overlapping time windows"* is enforced at **two layers**:

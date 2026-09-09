@@ -21,6 +21,14 @@ const Admin = {
     return rows[0] || null;
   },
 
+  async findByLogin(login) {
+    const [rows] = await pool.execute(
+      'SELECT * FROM admins WHERE (username = ? OR email = ?) AND is_active = 1 LIMIT 1',
+      [login, login]
+    );
+    return rows[0] || null;
+  },
+
   /**
    * Find an admin by ID.
    * @param {number} id
@@ -32,6 +40,14 @@ const Admin = {
       [id]
     );
     return rows[0] || null;
+  },
+
+  async create({ username, passwordHash, fullName, email, role = 'staff' }) {
+    const [result] = await pool.execute(
+      'INSERT INTO admins (username, password_hash, full_name, email, role) VALUES (?, ?, ?, ?, ?)',
+      [username, passwordHash, fullName, email || null, role]
+    );
+    return result.insertId;
   }
 };
 

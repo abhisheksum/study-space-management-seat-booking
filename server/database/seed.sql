@@ -77,12 +77,8 @@ INSERT INTO seats (seat_number, zone, row_position) VALUES
 ON DUPLICATE KEY UPDATE zone=VALUES(zone);
 
 -- -----------------------------------------------------------------------------
--- DEFAULT ADMIN (password: Admin@123)
--- Hash generated with bcrypt rounds=10. Change before production!
--- -----------------------------------------------------------------------------
-INSERT INTO admins (username, password_hash, full_name, email, role) VALUES
-  ('admin', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Admin User', 'admin@studyhub.com', 'super')
-ON DUPLICATE KEY UPDATE username=username;
+-- Admin accounts must be provisioned out-of-band with a bcrypt hash.
+-- Never seed a shared development password into a deployed database.
 
 -- -----------------------------------------------------------------------------
 -- SAMPLE STUDENTS

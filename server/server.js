@@ -22,6 +22,7 @@ const path         = require('path');
 
 // Internal
 const { testConnection } = require('./config/database');
+const { getJwtSecret } = require('./config/auth');
 const errorHandler       = require('./middleware/errorHandler');
 
 // Route modules
@@ -32,6 +33,7 @@ const bookingsRouter    = require('./routes/bookings');
 const paymentsRouter    = require('./routes/payments');
 const attendanceRouter  = require('./routes/attendance');
 const plansRouter       = require('./routes/plans');
+const adminAuthRouter   = require('./routes/adminAuth');
 
 // ============================================================================
 // Express App Setup
@@ -70,6 +72,7 @@ app.use('/api/bookings',    bookingsRouter);
 app.use('/api/payments',    paymentsRouter);
 app.use('/api/attendance',  attendanceRouter);
 app.use('/api/plans',       plansRouter);
+app.use('/api/admin',       adminAuthRouter);
 
 // Health-check endpoint — returns server status + DB connectivity indicator
 app.get('/api/health', async (req, res) => {
@@ -98,6 +101,7 @@ app.use(errorHandler);
 const PORT = parseInt(process.env.PORT || '3000', 10);
 
 async function startServer() {
+  getJwtSecret();
   // Verify MySQL connection before binding port
   await testConnection();
 
@@ -116,9 +120,11 @@ async function startServer() {
   });
 }
 
-startServer().catch(err => {
-  console.error('💥 Failed to start server:', err.message);
-  process.exit(1);
-});
+if (require.main === module) {
+  startServer().catch(err => {
+    console.error('💥 Failed to start server:', err.message);
+    process.exit(1);
+  });
+}
 
 module.exports = app; // Export for testing (supertest)

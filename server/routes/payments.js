@@ -7,6 +7,9 @@
 const router = require('express').Router();
 const ctrl   = require('../controllers/paymentController');
 const wrap   = require('../middleware/asyncWrapper');
+const { requireAdmin } = require('../middleware/auth');
+
+router.use(requireAdmin);
 
 // Specific named sub-path before /:id
 router.get   ('/stats/today',      wrap(ctrl.todayRevenue));

@@ -7,6 +7,9 @@
 const router = require('express').Router();
 const ctrl   = require('../controllers/attendanceController');
 const wrap   = require('../middleware/asyncWrapper');
+const { requireAdmin } = require('../middleware/auth');
+
+router.use(requireAdmin);
 
 router.post  ('/',                 wrap(ctrl.checkIn));
 router.get   ('/',                 wrap(ctrl.getAttendance));
