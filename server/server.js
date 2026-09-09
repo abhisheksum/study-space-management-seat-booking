@@ -37,6 +37,7 @@ const plansRouter       = require('./routes/plans');
 const adminAuthRouter   = require('./routes/adminAuth');
 const settingsRouter    = require('./routes/settings');
 const contactRouter     = require('./routes/contact');
+const { startMembershipExpiryScheduler } = require('./services/membershipExpiryService');
 
 // ============================================================================
 // Express App Setup
@@ -116,6 +117,7 @@ async function startServer() {
   await testConnection();
 
   app.listen(PORT, () => {
+    startMembershipExpiryScheduler();
     console.log('');
     console.log('╔══════════════════════════════════════════════════════════╗');
     console.log('║           StudyHub API Server — Running ✅               ║');
