@@ -100,113 +100,8 @@
         </p>
       </div>
 
-      <div class="pricing-grid">
-        
-        <!-- CARD 1: FULL DAY -->
-        <div class="pricing-card featured">
-          <div class="pricing-badge">All-Day Immersion</div>
-          <h3 class="pricing-card-title">1. Full Day Plan</h3>
-          <p class="pricing-card-desc">Complete freedom to use your dedicated workstation for the entire operating day without handovers.</p>
-          
-          <div class="pricing-timing-tag">
-            <i class="fa-regular fa-clock"></i> 06:00 AM – 11:00 PM (17 Hours / Day)
-          </div>
-
-          <div class="pricing-price">
-            <span class="pricing-currency">₹</span>
-            <span class="pricing-amount">1,699</span>
-            <span class="pricing-period">/ month (configurable)</span>
-          </div>
-
-          <div style="font-size: 0.85rem; color: var(--text-subtle); margin-bottom: 1.25rem;">
-            <i class="fa-solid fa-calendar-days"></i> Duration: 30 Calendar Days
-          </div>
-
-          <ul class="pricing-features">
-            <li><i class="fa-solid fa-check"></i> <strong>24/7 Sole Assigned Desk:</strong> Zero shift turnover</li>
-            <li><i class="fa-solid fa-check"></i> <strong>Personal Book Locker:</strong> Store heavy books overnight</li>
-            <li><i class="fa-solid fa-check"></i> <strong>Priority Dual Wi-Fi:</strong> High-bandwidth 300 Mbps</li>
-            <li><i class="fa-solid fa-check"></i> <strong>Individual Power Socket:</strong> 2 AC outlets + USB-C</li>
-            <li><i class="fa-solid fa-check"></i> <strong>Pantry & Refreshments:</strong> Complimentary herbal tea</li>
-            <li><i class="fa-solid fa-check"></i> <strong>Biometric Anytime Entry:</strong> Flexible walk-in</li>
-          </ul>
-
-          <a href="seats.html?plan=full-day" class="btn btn-primary btn-full btn-lg">
-            <i class="fa-solid fa-chair"></i> Select Full Day Seat
-          </a>
-        </div>
-
-        <!-- CARD 2: HALF DAY -->
-        <div class="pricing-card">
-          <h3 class="pricing-card-title">2. Half Day Plan</h3>
-          <p class="pricing-card-desc">Continuous 12-hour dual-shift coverage for deep test series and extensive revision schedules.</p>
-          
-          <div class="pricing-timing-tag">
-            <i class="fa-regular fa-clock"></i> Choose Morning or Afternoon Shift Block
-          </div>
-
-          <div class="pricing-price">
-            <span class="pricing-currency">₹</span>
-            <span class="pricing-amount">1,349</span>
-            <span class="pricing-period">/ month (configurable)</span>
-          </div>
-
-          <div style="font-size: 0.85rem; color: var(--text-subtle); margin-bottom: 1.25rem;">
-            <i class="fa-solid fa-calendar-days"></i> Duration: 30 Calendar Days
-          </div>
-
-          <ul class="pricing-features">
-            <li><i class="fa-solid fa-check"></i> <strong>Continuous Desk Assignment:</strong> 12 hours unbroken</li>
-            <li><i class="fa-solid fa-check"></i> <strong>Guaranteed Seat Number:</strong> Locked for full month</li>
-            <li><i class="fa-solid fa-check"></i> <strong>High-Speed Wi-Fi:</strong> Redundant leased fiber</li>
-            <li><i class="fa-solid fa-check"></i> <strong>Power Point & Desk Lamp:</strong> 4000K warm LED</li>
-            <li><i class="fa-solid fa-check"></i> <strong>RO Drinking Water:</strong> Cold, hot & ambient</li>
-            <li><i class="fa-solid fa-check"></i> <strong>Cafeteria Lounge Access:</strong> Meal break room</li>
-          </ul>
-
-          <a href="seats.html?plan=half-day" class="btn btn-outline btn-full btn-lg">
-            <i class="fa-solid fa-chair"></i> Select Half Day Seat
-          </a>
-        </div>
-
-        <!-- CARD 3: SLOT BASED -->
-        <div class="pricing-card">
-          <h3 class="pricing-card-title">3. Slot-Based Plan</h3>
-          <p class="pricing-card-desc">Select one specific time slot according to your daily college, coaching, or job schedule.</p>
-          
-          <div class="pricing-timing-tag">
-            <i class="fa-regular fa-clock"></i> One Specific Time Slot (4 - 6 Hours)
-          </div>
-
-          <div class="pricing-price">
-            <span class="pricing-currency">₹</span>
-            <span class="pricing-amount">899</span>
-            <span class="pricing-period">/ month (configurable)</span>
-          </div>
-
-          <div style="font-size: 0.85rem; color: var(--text-subtle); margin-bottom: 1.25rem;">
-            <i class="fa-solid fa-calendar-days"></i> Duration: 30 Calendar Days
-          </div>
-
-          <ul class="pricing-features">
-            <li><i class="fa-solid fa-check"></i> <strong>Configurable Slot Timings:</strong>
-              <div style="font-size: 0.82rem; color: var(--text-subtle); margin-top: 0.2rem;">
-                • Morning: 06:00 AM – 12:00 PM<br>
-                • Afternoon: 12:00 PM – 06:00 PM<br>
-                • Evening: 06:00 PM – 10:00 PM
-              </div>
-            </li>
-            <li><i class="fa-solid fa-check"></i> <strong>Dedicated Numbered Desk:</strong> Locked during slot</li>
-            <li><i class="fa-solid fa-check"></i> <strong>300 Mbps High-Speed Wi-Fi</strong></li>
-            <li><i class="fa-solid fa-check"></i> <strong>Dual Power Plugs at Desk</strong></li>
-            <li><i class="fa-solid fa-check"></i> <strong>Full CCTV Security & AC</strong></li>
-          </ul>
-
-          <a href="seats.html?plan=slot" class="btn btn-outline btn-full btn-lg">
-            <i class="fa-solid fa-chair"></i> Select Slot Seat
-          </a>
-        </div>
-
+      <div class="pricing-grid" id="pricing-plans" aria-live="polite">
+        <p class="pricing-status" role="status">Loading membership plans...</p>
       </div>
 
       <p style="text-align: center; margin-top: 2rem; font-size: 0.88rem; color: var(--text-subtle);">
@@ -231,101 +126,11 @@
           <thead>
             <tr>
               <th style="width: 34%;">Feature / Service</th>
-              <th class="col-highlight" style="width: 22%;">Full Day Plan</th>
-              <th style="width: 22%;">Half Day Plan</th>
-              <th style="width: 22%;">Slot-Based Plan</th>
+              <th id="comparison-plan-headers" colspan="3">Loading plan comparison...</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><strong>Dedicated Seat</strong></td>
-              <td class="col-highlight"><span class="table-check"><i class="fa-solid fa-check"></i> Yes (Exclusive 24/7)</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> Yes (For 12 Hours)</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> Yes (For Specific Slot)</span></td>
-            </tr>
-
-            <tr>
-              <td><strong>Monthly Membership</strong></td>
-              <td class="col-highlight"><span class="table-check"><i class="fa-solid fa-check"></i> 30-Day Cycle</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> 30-Day Cycle</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> 30-Day Cycle</span></td>
-            </tr>
-
-            <tr>
-              <td><strong>Access Hours</strong></td>
-              <td class="col-highlight"><strong>06:00 AM – 11:00 PM (17 Hrs)</strong></td>
-              <td><strong>12 Hours Continuous</strong></td>
-              <td><strong>4 to 6 Hours (Selected Slot)</strong></td>
-            </tr>
-
-            <tr>
-              <td><strong>Seat Allocation Engine</strong></td>
-              <td class="col-highlight">Locks seat across all shifts</td>
-              <td>Locks seat for two shifts</td>
-              <td>Locks seat strictly for slot</td>
-            </tr>
-
-            <tr>
-              <td><strong>Anti-Overlap Conflict Protection</strong></td>
-              <td class="col-highlight"><span class="table-check"><i class="fa-solid fa-shield-halved"></i> 100% Guaranteed</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-shield-halved"></i> 100% Guaranteed</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-shield-halved"></i> 100% Guaranteed</span></td>
-            </tr>
-
-            <tr>
-              <td><strong>High-Speed Wi-Fi (300 Mbps)</strong></td>
-              <td class="col-highlight"><span class="table-check"><i class="fa-solid fa-check"></i> Priority Bandwidth</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> Unlimited</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> Unlimited</span></td>
-            </tr>
-
-            <tr>
-              <td><strong>Individual Charging Point</strong></td>
-              <td class="col-highlight"><span class="table-check"><i class="fa-solid fa-check"></i> 2 AC Outlets + USB</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> 2 AC Outlets + USB</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> 2 AC Outlets + USB</span></td>
-            </tr>
-
-            <tr>
-              <td><strong>100% Power Backup (UPS + Gen)</strong></td>
-              <td class="col-highlight"><span class="table-check"><i class="fa-solid fa-check"></i> Included</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> Included</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> Included</span></td>
-            </tr>
-
-            <tr>
-              <td><strong>24/7 CCTV Surveillance & Security</strong></td>
-              <td class="col-highlight"><span class="table-check"><i class="fa-solid fa-check"></i> Included</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> Included</span></td>
-              <td><span class="table-check"><i class="fa-solid fa-check"></i> Included</span></td>
-            </tr>
-
-            <tr>
-              <td><strong>Personal Steel Book Locker</strong></td>
-              <td class="col-highlight"><span class="table-check"><i class="fa-solid fa-check"></i> Included Free</span></td>
-              <td><span>Optional Add-on</span></td>
-              <td><span class="table-cross"><i class="fa-solid fa-minus"></i> Not Included</span></td>
-            </tr>
-
-            <tr>
-              <td><strong>Midday Shift Handover</strong></td>
-              <td class="col-highlight"><strong>None (Sole Desk Owner)</strong></td>
-              <td>Sanitized at 12-hr mark</td>
-              <td>Sanitized between slots</td>
-            </tr>
-
-            <tr>
-              <td><strong>Action / Booking</strong></td>
-              <td class="col-highlight">
-                <a href="seats.html?plan=full-day" class="btn btn-primary btn-sm btn-full">Choose Full Day</a>
-              </td>
-              <td>
-                <a href="seats.html?plan=half-day" class="btn btn-outline btn-sm btn-full">Choose Half Day</a>
-              </td>
-              <td>
-                <a href="seats.html?plan=slot" class="btn btn-outline btn-sm btn-full">Choose Slot</a>
-              </td>
-            </tr>
+          <tbody id="comparison-plan-rows">
+            <tr><td colspan="4">Loading plan comparison...</td></tr>
           </tbody>
         </table>
       </div>
@@ -506,5 +311,6 @@
   <!-- Scripts -->
   <script src="js/navigation.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/pricing.js"></script>
 </body>
 </html>
