@@ -370,6 +370,7 @@ class RegistrationController {
     submitButton.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Registering...';
     submitError.textContent = '';
     submitError.style.display = 'none';
+    let createdMembershipId = null;
 
     const registrationPayload = {
       full_name: document.getElementById('reg-full-name').value.trim(),
@@ -443,10 +444,34 @@ class RegistrationController {
           : '';
         throw new Error(`${membershipPayload.message || 'Membership creation failed.'}${details}`);
       }
+      createdMembershipId = membershipPayload.data.id;
+
+      const bookingResponse = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          membership_id: membershipPayload.data.id,
+          student_id: payload.data.id,
+          seat_id: seat.id,
+          slot_key: selectedSlot,
+          booking_date: this.dateInput.value
+        })
+      });
+      const bookingPayload = await bookingResponse.json();
+      if (!bookingResponse.ok || !bookingPayload.success || !bookingPayload.data) {
+        const details = Array.isArray(bookingPayload.errors) && bookingPayload.errors.length
+          ? ` ${bookingPayload.errors.map((item) => item.message || item).join(' ')}`
+          : '';
+        throw new Error(`${bookingPayload.message || 'Seat booking failed.'}${details}`);
+      }
+
+      // Ensure the next seat-map view reads the committed database state.
+      await fetch(`/api/seats/availability?date=${encodeURIComponent(this.dateInput.value)}&slot=${encodeURIComponent(selectedSlot)}`);
 
       this.renderConfirmation({
         registrationId: payload.data.id,
         membershipId: membershipPayload.data.id,
+        bookingId: bookingPayload.data.id,
         personal: {
           fullName: payload.data.full_name,
           mobile: payload.data.mobile
@@ -460,6 +485,15 @@ class RegistrationController {
       });
     } catch (error) {
       console.error('Student registration failed:', error);
+      if (createdMembershipId) {
+        await fetch(`/api/memberships/${encodeURIComponent(createdMembershipId)}/status`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: 'cancelled' })
+        }).catch((cleanupError) => {
+          console.error('Unable to cancel membership after booking failure:', cleanupError);
+        });
+      }
       submitError.textContent = error.message;
       submitError.style.display = 'block';
       submitButton.disabled = false;
@@ -501,6 +535,10 @@ class RegistrationController {
           <div class="confirmation-detail-row">
             <span style="color: var(--text-muted);">Membership ID:</span>
             <strong style="color: var(--accent); font-family: monospace;">${data.membershipId}</strong>
+          </div>
+          <div class="confirmation-detail-row">
+            <span style="color: var(--text-muted);">Booking ID:</span>
+            <strong style="color: var(--accent); font-family: monospace;">${data.bookingId}</strong>
           </div>
 
           <div class="confirmation-detail-row">

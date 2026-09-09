@@ -31,6 +31,24 @@ const Booking = {
     return result.insertId;
   },
 
+  async createWithConnection(connection, data) {
+    const [result] = await connection.execute(`
+      INSERT INTO bookings
+        (membership_id, student_id, seat_id, slot_key, booking_date, start_hour, end_hour, status, notes)
+      VALUES (?, ?, ?, ?, ?, ?, ?, 'active', ?)
+    `, [
+      data.membership_id || null,
+      data.student_id,
+      data.seat_id,
+      data.slot_key,
+      data.booking_date,
+      data.start_hour,
+      data.end_hour,
+      data.notes || null
+    ]);
+    return result.insertId;
+  },
+
   /**
    * Find bookings with optional filters.
    * @param {object} [filters] - { student_id, seat_id, date, status }

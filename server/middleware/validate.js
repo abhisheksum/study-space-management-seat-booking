@@ -122,6 +122,15 @@ function validateBooking(body) {
   push(isRequired(body.booking_date, 'booking_date'));
 
   if (body.booking_date) push(isDateString(body.booking_date));
+  if (body.student_id && (!Number.isInteger(Number(body.student_id)) || Number(body.student_id) <= 0)) {
+    push('student_id must be a positive number.');
+  }
+  if (body.seat_id && (!Number.isInteger(Number(body.seat_id)) || Number(body.seat_id) <= 0)) {
+    push('seat_id must be a positive number.');
+  }
+  if (body.membership_id && (!Number.isInteger(Number(body.membership_id)) || Number(body.membership_id) <= 0)) {
+    push('membership_id must be a positive number.');
+  }
 
   return errors;
 }
