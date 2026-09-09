@@ -120,8 +120,14 @@ function validateBooking(body) {
   push(isRequired(body.seat_id,      'seat_id'));
   push(isRequired(body.slot_key,     'slot_key'));
   push(isRequired(body.booking_date, 'booking_date'));
+  push(isRequired(body.booking_id, 'booking_id'));
 
   if (body.booking_date) push(isDateString(body.booking_date));
+  for (const field of ['student_id', 'seat_id', 'booking_id']) {
+    if (body[field] && (!Number.isInteger(Number(body[field])) || Number(body[field]) <= 0)) {
+      push(`${field} must be a positive number.`);
+    }
+  }
   if (body.student_id && (!Number.isInteger(Number(body.student_id)) || Number(body.student_id) <= 0)) {
     push('student_id must be a positive number.');
   }

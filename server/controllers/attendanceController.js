@@ -16,7 +16,14 @@ async function checkIn(req, res) {
   const errors = validateAttendanceCheckIn(req.body);
   if (errors.length) return sendError(res, 'Validation failed', 422, errors);
 
-  const id = await Attendance.checkIn(req.body);
+  if (!req.body.booking_id) return sendError(res, 'booking_id is required for check-in.', 422);
+  let id;
+  try {
+    id = await Attendance.checkInValidated(req.body);
+  } catch (error) {
+    if (error.statusCode) return sendError(res, error.message, error.statusCode);
+    throw error;
+  }
   const record = await Attendance.findById(id);
   return sendSuccess(res, record, 'Check-in recorded.', 201);
 }

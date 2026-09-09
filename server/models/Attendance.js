@@ -6,6 +6,12 @@
 
 const { pool } = require('../config/database');
 
+function domainError(message, statusCode) {
+  const error = new Error(message);
+  error.statusCode = statusCode;
+  return error;
+}
+
 const Attendance = {
   /**
    * Create a check-in record (check_out_time is NULL until check-out).
@@ -25,6 +31,48 @@ const Attendance = {
       data.booking_date
     ]);
     return result.insertId;
+  },
+
+  async checkInValidated(data) {
+    const connection = await pool.getConnection();
+    try {
+      await connection.beginTransaction();
+      const [bookings] = await connection.execute(`
+        SELECT b.id, b.student_id, b.seat_id, b.slot_key, b.booking_date,
+               m.status AS membership_status, m.start_date, m.end_date
+        FROM bookings b
+        JOIN memberships m ON m.id = b.membership_id
+        WHERE b.id = ? AND b.student_id = ? AND b.seat_id = ?
+          AND b.slot_key = ? AND b.booking_date = ?
+        FOR UPDATE
+      `, [data.booking_id, data.student_id, data.seat_id, data.slot_key, data.booking_date]);
+      const booking = bookings[0];
+      if (!booking || booking.booking_status === 'cancelled' || booking.status !== 'active') {
+        throw domainError('An active booking matching the student, seat, slot, and date is required.', 422);
+      }
+      const dateOnly = (value) => String(value).slice(0, 10);
+      if (booking.membership_status !== 'active' ||
+          data.booking_date < dateOnly(booking.start_date) ||
+          data.booking_date >= dateOnly(booking.end_date)) {
+        throw domainError('The student does not have a valid active membership for this booking.', 422);
+      }
+      const [openRecords] = await connection.execute(
+        'SELECT id FROM attendance WHERE student_id = ? AND booking_date = ? AND check_out_time IS NULL LIMIT 1 FOR UPDATE',
+        [data.student_id, data.booking_date]
+      );
+      if (openRecords[0]) throw domainError('The student already has an active check-in for this date.', 409);
+      const [result] = await connection.execute(`
+        INSERT INTO attendance (student_id, seat_id, booking_id, slot_key, booking_date, check_in_time)
+        VALUES (?, ?, ?, ?, ?, NOW())
+      `, [data.student_id, data.seat_id, data.booking_id, data.slot_key, data.booking_date]);
+      await connection.commit();
+      return result.insertId;
+    } catch (error) {
+      await connection.rollback();
+      throw error;
+    } finally {
+      connection.release();
+    }
   },
 
   /**

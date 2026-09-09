@@ -172,9 +172,12 @@ async function loadPayments() {
 
 async function loadAttendance() {
   const tbody = document.getElementById('attendance-table-body');
-  const records = await adminApi('/attendance');
+  const today = new Date().toISOString().slice(0, 10);
+  let records = await adminApi(`/attendance?date=${today}`);
   const attendanceMetric = document.querySelector('.metric-value');
   if (attendanceMetric) attendanceMetric.textContent = `${records.filter((record) => !record.check_out_time).length} Students`;
+  const metricValues = document.querySelectorAll('.metric-value');
+  if (metricValues[1]) metricValues[1].textContent = `${records.filter((record) => record.check_out_time).length} Students`;
   renderTable(tbody, records, 6, (record) => `<tr><td><strong>${escapeHtml(record.student_name)}</strong></td><td><strong style="color:var(--admin-primary)">${escapeHtml(record.seat_number)}</strong></td>
     <td>${escapeHtml(record.check_in_time)}</td><td>${escapeHtml(record.check_out_time || '--')}</td>
     <td><span class="status-badge ${statusClass(record.check_out_time ? 'completed' : 'active')}">${record.check_out_time ? 'completed' : 'present'}</span></td>
@@ -182,8 +185,24 @@ async function loadAttendance() {
   tbody.addEventListener('click', async (event) => {
     const button = event.target.closest('[data-checkout]');
     if (!button) return;
-    try { await adminApi(`/attendance/${button.dataset.checkout}/checkout`, { method: 'PATCH' }); notify('Check-out recorded.'); window.location.reload(); }
+    try { await adminApi(`/attendance/${button.dataset.checkout}/checkout`, { method: 'PATCH' }); notify('Check-out recorded.'); records = await adminApi(`/attendance?date=${today}`); renderTable(tbody, records, 6, attendanceRow); }
     catch (error) { notify(error.message, true); }
+  });
+  const attendanceRow = (record) => `<tr><td><strong>${escapeHtml(record.student_name)}</strong></td><td><strong style="color:var(--admin-primary)">${escapeHtml(record.seat_number)}</strong></td>
+    <td>${escapeHtml(record.check_in_time)}</td><td>${escapeHtml(record.check_out_time || '--')}</td>
+    <td><span class="status-badge ${statusClass(record.check_out_time ? 'completed' : 'active')}">${record.check_out_time ? 'completed' : 'present'}</span></td>
+    <td>${record.check_out_time ? '--' : `<button class="admin-btn admin-btn-outline admin-btn-sm" data-checkout="${record.id}">Check-out</button>`}</td></tr>`;
+  document.querySelector('[data-checkin]')?.addEventListener('click', async () => {
+    const student_id = window.prompt('Student ID');
+    const booking_id = window.prompt('Active booking ID');
+    const seat_id = window.prompt('Seat ID');
+    const slot_key = window.prompt('Slot key (morning, afternoon, evening, half-day-am, half-day-pm, full-day)');
+    if (!student_id || !booking_id || !seat_id || !slot_key) return;
+    try {
+      await adminApi('/attendance', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ student_id, booking_id, seat_id, slot_key, booking_date: today }) });
+      notify('Check-in recorded.'); window.location.reload();
+    } catch (error) { notify(error.message, true); }
   });
 }
 
