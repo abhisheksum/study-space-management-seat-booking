@@ -16,13 +16,26 @@ async function createStudent(req, res) {
   const errors = validateStudent(req.body);
   if (errors.length) return sendError(res, 'Validation failed', 422, errors);
 
-  // Check for duplicate mobile
-  const existing = await Student.findByMobile(req.body.mobile);
-  if (existing) {
+  // Check both unique identifiers before attempting the insert.
+  const existingMobile = await Student.findByMobile(req.body.mobile);
+  if (existingMobile) {
     return sendError(res, `A student with mobile ${req.body.mobile} is already registered.`, 409);
   }
+  const existingEmail = await Student.findByEmail(req.body.email);
+  if (existingEmail) {
+    return sendError(res, `A student with email ${req.body.email} is already registered.`, 409);
+  }
 
-  const id = await Student.create(req.body);
+  let id;
+  try {
+    id = await Student.create(req.body);
+  } catch (error) {
+    // Keep duplicate protection correct if two requests race between the checks.
+    if (error.code === 'ER_DUP_ENTRY') {
+      return sendError(res, 'A student with that mobile number or email address is already registered.', 409);
+    }
+    throw error;
+  }
   const student = await Student.findById(id);
 
   return sendSuccess(res, student, 'Student registered successfully.', 201);

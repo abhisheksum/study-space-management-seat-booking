@@ -101,6 +101,19 @@ const Student = {
   },
 
   /**
+   * Find a student by email address.
+   * @param {string} email
+   * @returns {Promise<object|null>}
+   */
+  async findByEmail(email) {
+    const [rows] = await pool.execute(
+      'SELECT * FROM students WHERE email = ? LIMIT 1',
+      [email]
+    );
+    return rows[0] || null;
+  },
+
+  /**
    * Update a student record.
    * @param {number} id
    * @param {object} data

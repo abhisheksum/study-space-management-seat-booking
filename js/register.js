@@ -353,7 +353,7 @@ class RegistrationController {
     }
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     if (!this.validateForm()) {
       // Scroll to the first error
       const firstInvalid = document.querySelector('.is-invalid');
@@ -364,46 +364,63 @@ class RegistrationController {
       return;
     }
 
-    // Construct registration payload ready for backend API POST
+    const submitButton = document.getElementById('btn-submit-registration');
+    const submitError = document.getElementById('registration-submit-error');
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Registering...';
+    submitError.textContent = '';
+    submitError.style.display = 'none';
+
     const registrationPayload = {
-      registrationId: `SH-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`,
-      timestamp: new Date().toISOString(),
-      personal: {
-        fullName: document.getElementById('reg-full-name').value.trim(),
-        mobile: document.getElementById('reg-mobile').value.trim(),
-        email: document.getElementById('reg-email').value.trim(),
-        dob: document.getElementById('reg-dob').value,
-        gender: document.getElementById('reg-gender').value
-      },
-      address: {
-        street: document.getElementById('reg-address').value.trim(),
-        city: document.getElementById('reg-city').value.trim(),
-        state: document.getElementById('reg-state').value.trim(),
-        pincode: document.getElementById('reg-pincode').value.trim()
-      },
-      membership: {
-        type: this.membershipTypeSelect.value,
-        typeLabel: this.membershipTypeSelect.selectedOptions[0].textContent,
-        preferredDate: this.dateInput.value,
-        timeSlot: this.timeSlotSelect.value,
-        slotLabel: this.timeSlotSelect.selectedOptions[0].textContent,
-        seatNumber: this.seatSelect.value
-      },
-      emergency: {
-        name: document.getElementById('reg-emergency-name').value.trim(),
-        phone: document.getElementById('reg-emergency-phone').value.trim(),
-        relationship: document.getElementById('reg-emergency-rel').value.trim()
-      },
-      additional: {
-        studentId: document.getElementById('reg-student-id').value.trim(),
-        photoFileName: this.photoInput.files[0] ? this.photoInput.files[0].name : 'Not provided'
-      }
+      full_name: document.getElementById('reg-full-name').value.trim(),
+      mobile: document.getElementById('reg-mobile').value.replace(/[\s\-+]/g, '').slice(-10),
+      email: document.getElementById('reg-email').value.trim(),
+      date_of_birth: document.getElementById('reg-dob').value,
+      gender: document.getElementById('reg-gender').value,
+      address: document.getElementById('reg-address').value.trim(),
+      city: document.getElementById('reg-city').value.trim(),
+      state: document.getElementById('reg-state').value.trim(),
+      pincode: document.getElementById('reg-pincode').value.trim(),
+      student_id_no: document.getElementById('reg-student-id').value.trim(),
+      emergency_contact_name: document.getElementById('reg-emergency-name').value.trim(),
+      emergency_contact_mobile: document.getElementById('reg-emergency-phone').value.replace(/[\s\-+]/g, '').slice(-10),
+      emergency_contact_rel: document.getElementById('reg-emergency-rel').value.trim()
     };
 
-    console.log('[StudyHub] Registration Payload (Ready for API):', registrationPayload);
+    try {
+      const response = await fetch('/api/students', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(registrationPayload)
+      });
+      const payload = await response.json();
+      if (!response.ok || !payload.success || !payload.data) {
+        const details = Array.isArray(payload.errors) && payload.errors.length
+          ? ` ${payload.errors.join(' ')}`
+          : '';
+        throw new Error(`${payload.message || 'Registration failed.'}${details}`);
+      }
 
-    // Render Confirmation Screen
-    this.renderConfirmation(registrationPayload);
+      this.renderConfirmation({
+        registrationId: payload.data.id,
+        personal: {
+          fullName: payload.data.full_name,
+          mobile: payload.data.mobile
+        },
+        membership: {
+          typeLabel: this.membershipTypeSelect.selectedOptions[0].textContent,
+          preferredDate: this.dateInput.value,
+          slotLabel: this.timeSlotSelect.selectedOptions[0].textContent,
+          seatNumber: this.seatSelect.value
+        }
+      });
+    } catch (error) {
+      console.error('Student registration failed:', error);
+      submitError.textContent = error.message;
+      submitError.style.display = 'block';
+      submitButton.disabled = false;
+      submitButton.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Registration & Reserve Seat';
+    }
   }
 
   renderConfirmation(data) {

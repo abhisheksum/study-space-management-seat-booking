@@ -41,6 +41,9 @@ const isPincode = (pincode) =>
 /** @param {string} date - YYYY-MM-DD */
 const isDateString = (date) => {
   if (!date) return 'Date is required.';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(date))) {
+    return 'Must be a valid date (YYYY-MM-DD).';
+  }
   const d = new Date(date);
   return isNaN(d.getTime()) ? 'Must be a valid date (YYYY-MM-DD).' : null;
 };
@@ -66,19 +69,35 @@ function validateStudent(body) {
 
   push(isRequired(body.full_name, 'Full name'));
   push(isRequired(body.mobile,    'Mobile number'));
+  push(isRequired(body.email, 'Email address'));
+  push(isRequired(body.date_of_birth, 'Date of birth'));
+  push(isRequired(body.gender, 'Gender'));
+  push(isRequired(body.address, 'Address'));
+  push(isRequired(body.city, 'City'));
+  push(isRequired(body.state, 'State'));
+  push(isRequired(body.pincode, 'Pincode'));
+  push(isRequired(body.emergency_contact_name, 'Emergency contact name'));
+  push(isRequired(body.emergency_contact_mobile, 'Emergency contact mobile'));
+  push(isRequired(body.emergency_contact_rel, 'Emergency contact relationship'));
+  if (body.full_name && String(body.full_name).trim().length < 3) {
+    push('Full name must be at least 3 characters.');
+  }
 
   const mobileErr = isMobile(body.mobile);
   if (mobileErr) push(mobileErr);
 
-  if (body.email) {
-    const emailErr = isEmail(body.email);
-    if (emailErr) push(emailErr);
+  const emailErr = isEmail(body.email);
+  if (emailErr) push(emailErr);
+
+  const dobErr = isDateString(body.date_of_birth);
+  if (dobErr) push(dobErr);
+
+  if (body.gender && !['male', 'female', 'other', 'prefer_not_to_say'].includes(body.gender)) {
+    push('Gender must be male, female, other, or prefer_not_to_say.');
   }
 
-  if (body.pincode) {
-    const pincodeErr = isPincode(body.pincode);
-    if (pincodeErr) push(pincodeErr);
-  }
+  const pincodeErr = isPincode(body.pincode);
+  if (pincodeErr) push(pincodeErr);
 
   if (body.emergency_contact_mobile) {
     const emErr = isMobile(body.emergency_contact_mobile);
