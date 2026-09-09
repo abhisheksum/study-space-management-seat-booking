@@ -387,6 +387,7 @@ class RegistrationController {
       full_name: document.getElementById('reg-full-name').value.trim(),
       mobile: document.getElementById('reg-mobile').value.replace(/[\s\-+]/g, '').slice(-10),
       email: document.getElementById('reg-email').value.trim(),
+      password: document.getElementById('reg-password').value,
       date_of_birth: document.getElementById('reg-dob').value,
       gender: document.getElementById('reg-gender').value,
       address: document.getElementById('reg-address').value.trim(),

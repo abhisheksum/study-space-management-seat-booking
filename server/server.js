@@ -35,9 +35,12 @@ const paymentsRouter    = require('./routes/payments');
 const attendanceRouter  = require('./routes/attendance');
 const plansRouter       = require('./routes/plans');
 const adminAuthRouter   = require('./routes/adminAuth');
+const studentAuthRouter = require('./routes/studentAuth');
+const studentPortalRouter = require('./routes/studentPortal');
 const settingsRouter    = require('./routes/settings');
 const contactRouter     = require('./routes/contact');
 const { startMembershipExpiryScheduler } = require('./services/membershipExpiryService');
+const Student = require('./models/Student');
 
 // ============================================================================
 // Express App Setup
@@ -80,6 +83,9 @@ app.use('/api/payments',    paymentsRouter);
 app.use('/api/attendance',  attendanceRouter);
 app.use('/api/plans',       plansRouter);
 app.use('/api/admin',       adminAuthRouter);
+app.use('/api/student-auth', studentAuthRouter);
+app.use('/api/student', studentAuthRouter);
+app.use('/api/student', studentPortalRouter);
 app.use('/api/settings',    settingsRouter);
 app.use('/api/contact',     contactRouter);
 
@@ -112,6 +118,7 @@ const PORT = parseInt(process.env.PORT || '3000', 10);
 async function startServer() {
   getJwtSecret();
   await AdminSettings.ensureTable();
+  await Student.ensureAuthColumn();
   await ensurePaymentGatewayColumns();
   // Verify MySQL connection before binding port
   await testConnection();

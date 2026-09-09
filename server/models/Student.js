@@ -18,8 +18,8 @@ const Student = {
         (full_name, mobile, email, date_of_birth, gender,
          address, city, state, pincode, student_id_no,
          emergency_contact_name, emergency_contact_mobile, emergency_contact_rel,
-         profile_photo_path)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         profile_photo_path, password_hash)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
     const [result] = await pool.execute(sql, [
       data.full_name,
@@ -35,9 +35,33 @@ const Student = {
       data.emergency_contact_name   || null,
       data.emergency_contact_mobile || null,
       data.emergency_contact_rel    || null,
-      data.profile_photo_path       || null
+      data.profile_photo_path       || null,
+      data.password_hash            || null
     ]);
     return result.insertId;
+  },
+
+  async findByLogin(login) {
+    const [rows] = await pool.execute(
+      'SELECT * FROM students WHERE (mobile = ? OR email = ?) LIMIT 1',
+      [login, login]
+    );
+    return rows[0] || null;
+  },
+
+  async updatePassword(id, passwordHash) {
+    const [result] = await pool.execute(
+      'UPDATE students SET password_hash = ? WHERE id = ?', [passwordHash, id]
+    );
+    return result.affectedRows > 0;
+  },
+
+  async ensureAuthColumn() {
+    try {
+      await pool.execute('ALTER TABLE students ADD COLUMN password_hash VARCHAR(255) NULL');
+    } catch (error) {
+      if (error.code !== 'ER_DUP_FIELDNAME') throw error;
+    }
   },
 
   async updateProfilePhoto(id, profilePhotoPath) {
@@ -89,7 +113,10 @@ const Student = {
    */
   async findById(id) {
     const [rows] = await pool.execute(
-      'SELECT * FROM students WHERE id = ? LIMIT 1',
+      `SELECT id, full_name, mobile, email, date_of_birth, gender, address, city, state,
+              pincode, student_id_no, emergency_contact_name, emergency_contact_mobile,
+              emergency_contact_rel, profile_photo_path, is_active, registered_at, updated_at
+       FROM students WHERE id = ? LIMIT 1`,
       [id]
     );
     return rows[0] || null;

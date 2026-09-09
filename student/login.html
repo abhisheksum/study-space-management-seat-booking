@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StudyHub Student Login</title><link rel="stylesheet" href="../style.css"></head>
+<body><main class="container" style="max-width:480px;margin:8rem auto">
+  <h1>Student Portal</h1><p>Sign in to manage your StudyHub membership.</p>
+  <form id="login-form"><label>Mobile or email<input name="login" required autocomplete="username"></label>
+  <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+  <button type="submit">Sign in</button><p id="error" role="alert"></p></form>
+</main><script src="js/student-api.js"></script><script>
+document.querySelector('#login-form').addEventListener('submit', async event => {
+ event.preventDefault(); const form = new FormData(event.target);
+ try { await StudentAPI.login(form.get('login'), form.get('password')); location.href='dashboard.html'; }
+ catch (error) { document.querySelector('#error').textContent = error.message; }
+});
+</script></body></html>

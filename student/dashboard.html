@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StudyHub Dashboard</title><link rel="stylesheet" href="../style.css"></head>
+<body><main class="container"><header><h1>My StudyHub</h1><button id="logout">Sign out</button></header>
+<section id="welcome"></section><div id="membership"></div>
+<section class="card"><h2>Book a seat</h2>
+<form id="booking-form"><label>Date <input id="booking-date" type="date" required></label>
+<label>Slot <select id="booking-slot"><option value="morning">Morning</option><option value="afternoon">Afternoon</option><option value="evening">Evening</option><option value="full-day">Full day</option></select></label>
+<label>Available seat <select id="booking-seat" required><option value="">Choose a date and slot first</option></select></label>
+<button type="submit">Create booking</button><p id="booking-message" role="status"></p></form></section>
+<section class="card"><h2>Profile</h2><form id="profile-form"><label>Full name <input id="profile-name" required></label><label>Email <input id="profile-email" type="email"></label><label>City <input id="profile-city"></label><button type="submit">Save profile</button><p id="profile-message" role="status"></p></form></section>
+<h2>Bookings</h2><div id="bookings"></div>
+<h2>Attendance</h2><div id="attendance"></div><h2>Payments</h2><div id="payments"></div></main>
+<script src="js/student-api.js"></script><script>
+const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rows = (items, fields, actions=false) => items.length ? '<ul>'+items.map(item => '<li>'+fields.map(f=>esc(item[f])).join(' · ')+(actions&&item.status==='active'?' <button data-cancel="'+esc(item.id)+'" type="button">Cancel</button>':'')+'</li>').join('')+'</ul>' : '<p>Nothing to show.</p>';
+let dashboard;
+async function refresh() { dashboard=await StudentAPI.dashboard(); const d=dashboard; document.querySelector('#welcome').innerHTML='<h2>Welcome, '+esc(d.student.fullName)+'</h2>';
+ document.querySelector('#membership').innerHTML='<h2>Membership</h2>'+(d.membership?'<p>'+esc(d.membership.plan_name)+' · Seat '+esc(d.membership.seat_number)+' · '+esc(d.membership.status)+'</p>':'<p>No membership.</p>');
+ document.querySelector('#bookings').innerHTML=rows(d.bookings,['booking_date','slot_key','seat_number','status'],true);
+ document.querySelector('#attendance').innerHTML=rows(d.attendance,['booking_date','slot_key','check_in_time','check_out_time']);
+ document.querySelector('#payments').innerHTML=rows(d.payments,['amount','status','payment_date']);
+ document.querySelector('#profile-name').value=d.student.fullName||''; document.querySelector('#profile-email').value=d.student.email||'';
+ document.querySelector('#profile-city').value=d.student.city||''; }
+async function load() { try { await refresh(); } catch(e) { if(e.status===401) location.href='login.html'; else document.body.insertAdjacentHTML('beforeend','<p>'+esc(e.message)+'</p>'); } }
+const today=new Date().toISOString().slice(0,10); document.querySelector('#booking-date').value=today; document.querySelector('#booking-date').min=today;
+async function seats() { const list=await StudentAPI.seats(document.querySelector('#booking-date').value,document.querySelector('#booking-slot').value); document.querySelector('#booking-seat').innerHTML=list.filter(s=>s.status==='available').map(s=>'<option value="'+esc(s.id)+'">'+esc(s.seatNumber)+'</option>').join('')||'<option value="">No seats available</option>'; }
+document.querySelector('#booking-date').onchange=seats; document.querySelector('#booking-slot').onchange=seats;
+document.querySelector('#booking-form').onsubmit=async e=>{e.preventDefault(); const m=dashboard.membership; if(!m)return; try {await StudentAPI.createBooking({membership_id:m.id,seat_id:document.querySelector('#booking-seat').value,slot_key:document.querySelector('#booking-slot').value,booking_date:document.querySelector('#booking-date').value}); document.querySelector('#booking-message').textContent='Booking created.'; await refresh();}catch(err){document.querySelector('#booking-message').textContent=err.message;}};
+document.querySelector('#bookings').onclick=async e=>{if(!e.target.dataset.cancel)return; try{await StudentAPI.cancelBooking(e.target.dataset.cancel);await refresh();}catch(err){alert(err.message);}};
+document.querySelector('#profile-form').onsubmit=async e=>{e.preventDefault();try{await StudentAPI.updateProfile({full_name:document.querySelector('#profile-name').value,email:document.querySelector('#profile-email').value,city:document.querySelector('#profile-city').value});document.querySelector('#profile-message').textContent='Profile saved.';}catch(err){document.querySelector('#profile-message').textContent=err.message;}};
+document.querySelector('#logout').onclick=()=>{StudentAPI.logout();location.href='login.html'}; load().then(seats);
+</script></body></html>

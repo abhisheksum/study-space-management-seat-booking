@@ -97,6 +97,7 @@ CREATE TABLE IF NOT EXISTS students (
   emergency_contact_mobile VARCHAR(15),
   emergency_contact_rel    VARCHAR(60),            -- "Father", "Mother", etc.
   profile_photo_path       VARCHAR(255),           -- relative path to uploaded file
+  password_hash            VARCHAR(255),           -- bcrypt hash for student portal login
   is_active                TINYINT(1)   NOT NULL DEFAULT 1,
   registered_at            DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at               DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

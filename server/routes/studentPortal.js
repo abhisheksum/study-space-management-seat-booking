@@ -1,0 +1,17 @@
+'use strict';
+const router = require('express').Router();
+const wrap = require('../middleware/asyncWrapper');
+const { requireStudent } = require('../middleware/auth');
+const ctrl = require('../controllers/studentPortalController');
+router.use(requireStudent);
+router.get('/dashboard', wrap(ctrl.dashboard));
+router.get('/seats/availability', wrap(ctrl.seatAvailability));
+router.get('/memberships', wrap(ctrl.getMembership));
+router.get('/bookings', wrap(ctrl.getBookings));
+router.post('/bookings', wrap(ctrl.createBooking));
+router.patch('/bookings/:id/cancel', wrap(ctrl.cancelBooking));
+router.get('/attendance', wrap(ctrl.getAttendance));
+router.get('/payments', wrap(ctrl.getPayments));
+router.get('/profile', wrap(ctrl.profile));
+router.patch('/profile', wrap(ctrl.profile));
+module.exports = router;

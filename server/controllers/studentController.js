@@ -9,6 +9,7 @@ const { validateStudent }          = require('../middleware/validate');
 const { sendSuccess, sendError, sendNotFound } = require('../utils/responseHelper');
 const fs = require('fs/promises');
 const path = require('path');
+const bcrypt = require('bcryptjs');
 
 /**
  * POST /api/students
@@ -22,11 +23,17 @@ async function createStudent(req, res) {
     }
   };
   req.body.profile_photo_path = profilePhotoPath || null;
+  delete req.body.password_hash;
+  const password = req.body.password;
   const errors = validateStudent(req.body);
+  if (typeof password !== 'string' || password.length < 8) {
+    errors.push('Password must be at least 8 characters.');
+  }
   if (errors.length) {
     await removeUploadedPhoto().catch(() => {});
     return sendError(res, 'Validation failed', 422, errors);
   }
+  req.body.password_hash = await bcrypt.hash(password, 12);
 
   // Check both unique identifiers before attempting the insert.
   const existingMobile = await Student.findByMobile(req.body.mobile);

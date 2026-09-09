@@ -2,6 +2,7 @@
 
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
+const Student = require('../models/Student');
 const { getJwtSecret } = require('../config/auth');
 const { sendError } = require('../utils/responseHelper');
 
@@ -38,4 +39,24 @@ function requireRole(...roles) {
   };
 }
 
-module.exports = { requireAdmin, requireRole };
+async function requireStudent(req, res, next) {
+  const [scheme, token] = (req.get('authorization') || '').split(' ');
+  if (scheme !== 'Bearer' || !token) return sendError(res, 'Authentication required.', 401);
+  try {
+    const payload = jwt.verify(token, getJwtSecret(), { algorithms: ['HS256'] });
+    if (payload.type !== 'student' || !Number.isInteger(payload.sub)) {
+      return sendError(res, 'Invalid student authentication token.', 401);
+    }
+    const student = await Student.findById(payload.sub);
+    if (!student || !student.is_active) return sendError(res, 'Student account is inactive.', 401);
+    req.student = student;
+    return next();
+  } catch (error) {
+    if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
+      return sendError(res, 'Invalid or expired authentication token.', 401);
+    }
+    return next(error);
+  }
+}
+
+module.exports = { requireAdmin, requireStudent, requireRole };
