@@ -27,7 +27,9 @@ async function createBooking(req, res) {
   const errors = validateBooking(req.body);
   if (errors.length) return sendError(res, 'Validation failed', 422, errors);
 
-  const { student_id, seat_id, slot_key, booking_date, membership_id, notes } = req.body;
+  const { seat_id, slot_key, booking_date, membership_id, notes } = req.body;
+  const student_id = req.student ? req.student.id : req.body.student_id;
+  if (!student_id) return sendError(res, 'Authenticated student identity is required.', 422);
 
   // Resolve the slot definition before opening the transaction.
   const slotDef = SLOT_TIME_WINDOWS[slot_key];

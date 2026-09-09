@@ -7,10 +7,10 @@
 const router = require('express').Router();
 const ctrl   = require('../controllers/bookingController');
 const wrap   = require('../middleware/asyncWrapper');
-const { requireAdmin } = require('../middleware/auth');
+const { requireAdmin, requireAdminOrStudent } = require('../middleware/auth');
 const adminOps = require('../controllers/adminOperationsController');
 
-router.post  ('/',                 wrap(ctrl.createBooking));
+router.post  ('/',                 requireAdminOrStudent, wrap(ctrl.createBooking));
 router.use(requireAdmin);
 router.patch('/:id/status', wrap(adminOps.updateBooking));
 router.get   ('/',                 wrap(ctrl.getAllBookings));

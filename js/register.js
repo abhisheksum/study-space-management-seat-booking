@@ -382,6 +382,7 @@ class RegistrationController {
     submitError.textContent = '';
     submitError.style.display = 'none';
     let createdMembershipId = null;
+    let studentAuthHeaders = { 'Content-Type': 'application/json' };
 
     const registrationPayload = {
       full_name: document.getElementById('reg-full-name').value.trim(),
@@ -441,9 +442,26 @@ class RegistrationController {
       const seat = seatsPayload.data.find((item) => item.seat_number === this.seatSelect.value);
       if (!seat) throw new Error('The selected seat could not be found.');
 
-      const membershipResponse = await fetch('/api/memberships', {
+      const loginResponse = await fetch('/api/student-auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          login: registrationPayload.mobile,
+          password: registrationPayload.password
+        })
+      });
+      const loginPayload = await loginResponse.json();
+      if (!loginResponse.ok || !loginPayload.success || !loginPayload.data?.token) {
+        throw new Error(loginPayload.message || 'Unable to authenticate the new student account.');
+      }
+      studentAuthHeaders = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${loginPayload.data.token}`
+      };
+
+      const membershipResponse = await fetch('/api/memberships', {
+        method: 'POST',
+        headers: studentAuthHeaders,
         body: JSON.stringify({
           student_id: payload.data.id,
           plan_id: plan.id,
@@ -462,7 +480,7 @@ class RegistrationController {
 
       const bookingResponse = await fetch('/api/bookings', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: studentAuthHeaders,
         body: JSON.stringify({
           membership_id: membershipPayload.data.id,
           student_id: payload.data.id,
@@ -502,7 +520,7 @@ class RegistrationController {
       if (createdMembershipId) {
         await fetch(`/api/memberships/${encodeURIComponent(createdMembershipId)}/status`, {
           method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
+          headers: studentAuthHeaders,
           body: JSON.stringify({ status: 'cancelled' })
         }).catch((cleanupError) => {
           console.error('Unable to cancel membership after booking failure:', cleanupError);

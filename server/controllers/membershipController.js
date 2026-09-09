@@ -19,7 +19,9 @@ async function createMembership(req, res) {
   const errors = validateMembership(req.body);
   if (errors.length) return sendError(res, 'Validation failed', 422, errors);
 
-  const { student_id, plan_id, seat_id, start_date } = req.body;
+  const { plan_id, seat_id, start_date } = req.body;
+  const student_id = req.student ? req.student.id : req.body.student_id;
+  if (!student_id) return sendError(res, 'Authenticated student identity is required.', 422);
   const connection = await pool.getConnection();
 
   try {
@@ -128,6 +130,10 @@ async function updateMembershipStatus(req, res) {
   const { status } = req.body;
   if (!allowed.includes(status)) {
     return sendError(res, `status must be one of: ${allowed.join(', ')}`);
+  }
+  if (req.student && status !== 'cancelled') {
+    const membership = await Membership.findById(req.params.id);
+    if (!membership || membership.student_id !== req.student.id) return sendError(res, 'Membership not found.', 404);
   }
   const done = await Membership.updateStatus(req.params.id, status);
   if (!done) return sendNotFound(res, 'Membership');

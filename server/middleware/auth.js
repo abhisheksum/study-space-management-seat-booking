@@ -35,8 +35,35 @@ function requireRole(...roles) {
     if (!req.admin || !roles.includes(req.admin.role)) {
       return sendError(res, 'You are not authorized to perform this action.', 403);
     }
+
     return next();
   };
+}
+
+async function requireAdminOrStudent(req, res, next) {
+  const [scheme, token] = (req.get('authorization') || '').split(' ');
+  if (scheme !== 'Bearer' || !token) return sendError(res, 'Authentication required.', 401);
+  try {
+    const payload = jwt.verify(token, getJwtSecret(), { algorithms: ['HS256'] });
+    if (!Number.isInteger(payload.sub)) return sendError(res, 'Invalid authentication token.', 401);
+    if (payload.type === 'admin') {
+      const admin = await Admin.findById(payload.sub);
+      if (!admin || !admin.is_active) return sendError(res, 'Admin account is inactive.', 401);
+      req.admin = admin;
+    } else if (payload.type === 'student') {
+      const student = await Student.findById(payload.sub);
+      if (!student || !student.is_active) return sendError(res, 'Student account is inactive.', 401);
+      req.student = student;
+    } else {
+      return sendError(res, 'Invalid authentication token.', 401);
+    }
+    return next();
+  } catch (error) {
+    if (error.name === 'TokenExpiredError' || error.name === 'JsonWebTokenError') {
+      return sendError(res, 'Invalid or expired authentication token.', 401);
+    }
+    return next(error);
+  }
 }
 
 async function requireStudent(req, res, next) {
@@ -59,4 +86,4 @@ async function requireStudent(req, res, next) {
   }
 }
 
-module.exports = { requireAdmin, requireStudent, requireRole };
+module.exports = { requireAdmin, requireStudent, requireAdminOrStudent, requireRole };

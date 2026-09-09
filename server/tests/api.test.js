@@ -77,11 +77,11 @@ describe('POST /api/students — validation', () => {
 });
 
 describe('POST /api/bookings — validation', () => {
-  it('returns 422 if slot_key is missing', async () => {
+  it('requires authentication before validating booking input', async () => {
     const res = await request(app)
       .post('/api/bookings')
       .send({ student_id: 1, seat_id: 1, booking_date: '2026-09-10' });
-    expect(res.status).toBe(422);
+    expect(res.status).toBe(401);
   });
 
   describe('POST /api/contact', () => {
