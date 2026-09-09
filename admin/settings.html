@@ -61,19 +61,19 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
             <div>
               <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Center Branch Name</label>
-              <input type="text" class="admin-search-input" style="width: 100%;" value="StudyHub Self-Study Center (Knowledge Park III)">
+              <input data-setting="branch_name" type="text" class="admin-search-input" style="width: 100%;" value="StudyHub Self-Study Center (Knowledge Park III)">
             </div>
             <div>
               <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Official Helpline Phone</label>
-              <input type="text" class="admin-search-input" style="width: 100%;" value="+91 98765 43210">
+              <input data-setting="helpline_phone" type="text" class="admin-search-input" style="width: 100%;" value="+91 98765 43210">
             </div>
             <div>
               <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">WhatsApp Coordinator Number</label>
-              <input type="text" class="admin-search-input" style="width: 100%;" value="+91 98765 43211">
+              <input data-setting="whatsapp_phone" type="text" class="admin-search-input" style="width: 100%;" value="+91 98765 43211">
             </div>
             <div>
               <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Admissions Desk Email</label>
-              <input type="email" class="admin-search-input" style="width: 100%;" value="desk@studyhubcenter.com">
+              <input data-setting="admissions_email" type="email" class="admin-search-input" style="width: 100%;" value="desk@studyhubcenter.com">
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@
                 <strong>Enforce Strict Anti-Overlap Engine</strong>
                 <span style="display: block; font-size: 0.8rem; color: var(--admin-text-muted);">Prevent any booking on a seat that has a conflicting time interval.</span>
               </div>
-              <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--admin-accent);">
+              <input data-setting="strict_overlap" type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--admin-accent);">
             </label>
 
             <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.92rem; padding: 0.75rem 1rem; background: var(--admin-bg); border-radius: 8px;">
@@ -97,7 +97,7 @@
                 <strong>Shift Handover Buffer Window</strong>
                 <span style="display: block; font-size: 0.8rem; color: var(--admin-text-muted);">Cleaning and sanitization break allocated between incoming student shifts.</span>
               </div>
-              <select class="admin-search-input" style="width: auto;">
+              <select data-setting="handover_buffer_minutes" class="admin-search-input" style="width: auto;">
                 <option value="15">15 Minutes Buffer</option>
                 <option value="20">20 Minutes Buffer</option>
                 <option value="30">30 Minutes Buffer</option>
@@ -109,7 +109,7 @@
                 <strong>Automated Expired Desk Release</strong>
                 <span style="display: block; font-size: 0.8rem; color: var(--admin-text-muted);">Release workstation back to Available pool 24 hours after unpaid membership expiry.</span>
               </div>
-              <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--admin-accent);">
+              <input data-setting="auto_release_expired" type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--admin-accent);">
             </label>
           </div>
         </div>
@@ -122,11 +122,11 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
             <div>
               <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Turnstile Gate 1 Controller IP</label>
-              <input type="text" class="admin-search-input" style="width: 100%; font-family: monospace;" value="192.168.1.120:8080">
+              <input data-setting="gate_ip" type="text" class="admin-search-input" style="width: 100%; font-family: monospace;" value="192.168.1.120:8080">
             </div>
             <div>
               <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Sync Frequency</label>
-              <select class="admin-search-input" style="width: 100%;">
+              <select data-setting="sync_frequency" class="admin-search-input" style="width: 100%;">
                 <option value="realtime">Real-Time WebSocket Sync</option>
                 <option value="1min">Poll Every 1 Minute</option>
               </select>

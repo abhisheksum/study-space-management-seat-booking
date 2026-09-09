@@ -21,11 +21,21 @@ const AdminSettings = {
   },
 
   async save(settings) {
-    for (const [key, value] of Object.entries(settings)) {
-      await pool.execute(
+    const connection = await pool.getConnection();
+    try {
+      await connection.beginTransaction();
+      for (const [key, value] of Object.entries(settings)) {
+        await connection.execute(
         'INSERT INTO admin_settings (setting_key, setting_value) VALUES (?, ?) ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)',
         [key, JSON.stringify(value)]
-      );
+        );
+      }
+      await connection.commit();
+    } catch (error) {
+      await connection.rollback();
+      throw error;
+    } finally {
+      connection.release();
     }
     return this.get();
   }

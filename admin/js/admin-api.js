@@ -218,27 +218,24 @@ async function loadPlans() {
 
   async function loadSettings() {
     const settings = await adminApi('/settings');
-    const fields = document.querySelectorAll('.admin-content input, .admin-content select');
-    fields.forEach((field) => {
-      const label = field.parentElement?.querySelector('label')?.textContent?.toLowerCase() || '';
-      if (label.includes('branch')) field.value = settings.branch_name || field.value;
-      if (label.includes('helpline')) field.value = settings.helpline_phone || field.value;
-      if (label.includes('whatsapp')) field.value = settings.whatsapp_phone || field.value;
-      if (label.includes('admissions')) field.value = settings.admissions_email || field.value;
+    document.querySelectorAll('[data-setting]').forEach((field) => {
+      const value = settings[field.dataset.setting];
+      if (value === undefined) return;
+      if (field.type === 'checkbox') field.checked = Boolean(value);
+      else field.value = value;
     });
     document.querySelector('[data-save-settings]')?.addEventListener('click', async () => {
-      const inputs = document.querySelectorAll('.admin-content input');
-      const selects = document.querySelectorAll('.admin-content select');
+      const settingsToSave = {};
+      document.querySelectorAll('[data-setting]').forEach((field) => {
+        settingsToSave[field.dataset.setting] = field.type === 'checkbox'
+          ? field.checked
+          : field.value;
+      });
       try {
         await adminApi('/settings', {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            branch_name: inputs[0]?.value, helpline_phone: inputs[1]?.value,
-            whatsapp_phone: inputs[2]?.value, admissions_email: inputs[3]?.value,
-            strict_overlap: Boolean(inputs[4]?.checked), handover_buffer_minutes: Number(selects[0]?.value || 15),
-            auto_release_expired: Boolean(inputs[5]?.checked), gate_ip: inputs[6]?.value, sync_frequency: selects[1]?.value
-          })
+          body: JSON.stringify({ ...settingsToSave, handover_buffer_minutes: Number(settingsToSave.handover_buffer_minutes) })
         });
         notify('Settings saved.');
       } catch (error) { notify(error.message, true); }
