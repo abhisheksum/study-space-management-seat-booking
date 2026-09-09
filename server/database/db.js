@@ -24,6 +24,11 @@ const pool = mysql.createPool({
   timezone:           '+00:00'
 });
 
+async function ensurePaymentGatewayColumns() {
+  await pool.execute("ALTER TABLE payments ADD COLUMN IF NOT EXISTS gateway_order_id VARCHAR(100) UNIQUE DEFAULT NULL");
+  await pool.execute("ALTER TABLE payments ADD COLUMN IF NOT EXISTS gateway_signature VARCHAR(255) DEFAULT NULL");
+}
+
 /**
  * Test connectivity during startup.
  * Called once from server.js — not blocking on import.
@@ -41,4 +46,4 @@ async function testConnection() {
   }
 }
 
-module.exports = { pool, testConnection };
+module.exports = { pool, testConnection, ensurePaymentGatewayColumns };

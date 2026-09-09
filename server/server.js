@@ -21,7 +21,7 @@ const cors         = require('cors');
 const path         = require('path');
 
 // Internal
-const { testConnection } = require('./config/database');
+const { testConnection, ensurePaymentGatewayColumns } = require('./config/database');
 const { getJwtSecret } = require('./config/auth');
 const AdminSettings      = require('./models/AdminSettings');
 const errorHandler       = require('./middleware/errorHandler');
@@ -53,7 +53,10 @@ app.use(cors({
 }));
 
 // ------------ Body Parsers ---------------------------------------------------
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({
+  limit: '1mb',
+  verify: (req, res, buffer) => { req.rawBody = buffer; }
+}));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
 // ------------ Static Files (serve frontend) ---------------------------------
@@ -106,6 +109,7 @@ const PORT = parseInt(process.env.PORT || '3000', 10);
 async function startServer() {
   getJwtSecret();
   await AdminSettings.ensureTable();
+  await ensurePaymentGatewayColumns();
   // Verify MySQL connection before binding port
   await testConnection();
 

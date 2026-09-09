@@ -164,6 +164,8 @@ CREATE TABLE IF NOT EXISTS payments (
   payment_method  ENUM('cash','upi','card','bank_transfer','online') NOT NULL DEFAULT 'cash',
   status          ENUM('pending','completed','failed','refunded')    NOT NULL DEFAULT 'pending',
   transaction_id  VARCHAR(100)             UNIQUE DEFAULT NULL,      -- UPI ref, card auth etc.
+  gateway_order_id VARCHAR(100)             UNIQUE DEFAULT NULL,
+  gateway_signature VARCHAR(255)             DEFAULT NULL,
   payment_date    DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
   notes           VARCHAR(255)             DEFAULT NULL,
   created_at      DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,

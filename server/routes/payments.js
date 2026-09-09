@@ -9,7 +9,11 @@ const ctrl   = require('../controllers/paymentController');
 const wrap   = require('../middleware/asyncWrapper');
 const { requireAdmin } = require('../middleware/auth');
 const adminOps = require('../controllers/adminOperationsController');
+const gatewayCtrl = require('../controllers/gatewayPaymentController');
 
+router.post('/orders', wrap(gatewayCtrl.createOrder));
+router.post('/verify', wrap(gatewayCtrl.verifyPayment));
+router.post('/webhook', wrap(gatewayCtrl.webhook));
 router.use(requireAdmin);
 router.patch('/:id/status', wrap(adminOps.updatePayment));
 

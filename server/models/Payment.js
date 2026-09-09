@@ -29,6 +29,42 @@ const Payment = {
     return result.insertId;
   },
 
+  async createGatewayPending(data) {
+    const [result] = await pool.execute(`
+      INSERT INTO payments
+        (student_id, membership_id, amount, payment_method, status, transaction_id, gateway_order_id, notes)
+      VALUES (?, ?, ?, 'online', 'pending', NULL, ?, ?)
+    `, [data.student_id, data.membership_id, data.amount, data.gateway_order_id, data.notes || null]);
+    return result.insertId;
+  },
+
+  async findByGatewayOrderId(orderId) {
+    const [rows] = await pool.execute('SELECT * FROM payments WHERE gateway_order_id = ? LIMIT 1', [orderId]);
+    return rows[0] || null;
+  },
+
+  async findByGatewayPaymentId(paymentId) {
+    const [rows] = await pool.execute('SELECT * FROM payments WHERE transaction_id = ? LIMIT 1', [paymentId]);
+    return rows[0] || null;
+  },
+
+  async completeGatewayPayment(id, paymentId, signature) {
+    const [result] = await pool.execute(`
+      UPDATE payments
+      SET status = 'completed', transaction_id = ?, gateway_signature = ?
+      WHERE id = ? AND status = 'pending' AND transaction_id IS NULL
+    `, [paymentId, signature, id]);
+    return result.affectedRows > 0;
+  },
+
+  async failGatewayPayment(id, reason) {
+    const [result] = await pool.execute(
+      "UPDATE payments SET status = 'failed', notes = ? WHERE id = ? AND status = 'pending'",
+      [reason || 'Gateway payment failed.', id]
+    );
+    return result.affectedRows > 0;
+  },
+
   /**
    * Find all payments with optional filters.
    * @param {object} [filters] - { student_id, status, from_date, to_date }
@@ -38,7 +74,7 @@ const Payment = {
     let sql = `
       SELECT
         p.id, p.amount, p.payment_method, p.status,
-        p.transaction_id, p.payment_date, p.notes,
+        p.transaction_id, p.gateway_order_id, p.payment_date, p.notes,
         s.full_name  AS student_name,
         s.mobile     AS student_mobile
       FROM payments p

@@ -4,5 +4,5 @@
  */
 'use strict';
 
-const { pool, testConnection } = require('../database/db');
-module.exports = { pool, testConnection };
+const { pool, testConnection, ensurePaymentGatewayColumns } = require('../database/db');
+module.exports = { pool, testConnection, ensurePaymentGatewayColumns };
