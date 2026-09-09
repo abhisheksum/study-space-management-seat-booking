@@ -8,11 +8,37 @@
 const { pool } = require('../config/database');
 
 const MembershipPlan = {
+  async create(data) {
+    const [result] = await pool.execute(
+      'INSERT INTO membership_plans (name, type, slot_id, price, duration_days, description, features, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      [data.name, data.type, data.slot_id || null, data.price, data.duration_days, data.description || null, JSON.stringify(data.features || []), data.is_active === false ? 0 : 1]
+    );
+    return result.insertId;
+  },
+
+  async update(id, data) {
+    const fields = [];
+    const values = [];
+    for (const key of ['name', 'type', 'slot_id', 'price', 'duration_days', 'description', 'is_active']) {
+      if (data[key] !== undefined) {
+        fields.push(`${key} = ?`);
+        values.push(data[key]);
+      }
+    }
+    if (data.features !== undefined) {
+      fields.push('features = ?');
+      values.push(JSON.stringify(data.features));
+    }
+    if (!fields.length) return false;
+    values.push(id);
+    const [result] = await pool.execute(`UPDATE membership_plans SET ${fields.join(', ')} WHERE id = ?`, values);
+    return result.affectedRows > 0;
+  },
   /**
    * Get all active membership plans joined with their time_slot details.
    * @returns {Promise<Array>}
    */
-  async findAll() {
+  async findAll(includeInactive = false) {
     const [rows] = await pool.execute(`
       SELECT
         p.id,
@@ -30,7 +56,7 @@ const MembershipPlan = {
         t.name   AS slot_name
       FROM membership_plans p
       LEFT JOIN time_slots t ON t.id = p.slot_id
-      WHERE p.is_active = 1
+      ${includeInactive ? '' : 'WHERE p.is_active = 1'}
       ORDER BY p.price ASC
     `);
     // Parse JSON features field

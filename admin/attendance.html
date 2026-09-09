@@ -56,7 +56,7 @@
         <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
           <div class="metric-card">
             <span class="metric-title">Students Inside Center</span>
-            <div class="metric-value" style="color: var(--status-success);">11 Students</div>
+            <div class="metric-value" style="color: var(--status-success);">Loading...</div>
             <div class="metric-subtitle">Currently occupying workstations</div>
           </div>
           <div class="metric-card">
@@ -66,7 +66,7 @@
           </div>
           <div class="metric-card">
             <span class="metric-title">Upcoming Shifts (Evening)</span>
-            <div class="metric-value" style="color: var(--admin-accent);">8 Students</div>
+            <div class="metric-value" style="color: var(--admin-accent);">Loading...</div>
             <div class="metric-subtitle">Expected entry between 18:00 - 18:30</div>
           </div>
         </div>
@@ -92,7 +92,7 @@
                 </tr>
               </thead>
               <tbody id="attendance-table-body">
-                <!-- Populated from admin-data.js -->
+                <!-- Populated from the authenticated API. -->
               </tbody>
             </table>
           </div>
@@ -104,30 +104,6 @@
   </div>
 
   <script src="js/admin-auth.js"></script>
-  <script src="js/admin-data.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const tbody = document.getElementById('attendance-table-body');
-      if (!tbody || !window.ADMIN_MOCK_DATA) return;
-
-      tbody.innerHTML = '';
-      window.ADMIN_MOCK_DATA.attendance.forEach(att => {
-        const tr = document.createElement('tr');
-        const badgeClass = att.status === 'present' ? 'status-active' : (att.status === 'completed' ? 'status-slot' : 'status-reserved');
-
-        tr.innerHTML = `
-          <td><strong>${att.student}</strong></td>
-          <td><strong style="color: var(--admin-primary);">${att.seat}</strong></td>
-          <td>${att.checkIn}</td>
-          <td>${att.checkOut}</td>
-          <td><span class="status-badge ${badgeClass}">${att.status}</span></td>
-          <td>
-            <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="alert('Manual check-out logged for ${att.student}')"><i class="fa-solid fa-arrow-right-from-bracket"></i> Check-Out</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    });
-  </script>
+  <script src="js/admin-api.js"></script>
 </body>
 </html>

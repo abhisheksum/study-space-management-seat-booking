@@ -49,7 +49,7 @@
       <header class="admin-topbar">
         <h1 class="admin-page-title">Workstation Inventory & Real-Time Bays</h1>
         <div class="admin-topbar-actions">
-          <button class="admin-btn admin-btn-primary admin-btn-sm" onclick="alert('In Phase 2, this opens the desk physical maintenance and locker configuration modal.')"><i class="fa-solid fa-plus"></i> Add New Workstation</button>
+          <button class="admin-btn admin-btn-primary admin-btn-sm" data-add-seat><i class="fa-solid fa-plus"></i> Add New Workstation</button>
         </div>
       </header>
 
@@ -58,12 +58,12 @@
         <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
           <div class="metric-card">
             <span class="metric-title">Available Desks</span>
-            <div class="metric-value" style="color: var(--status-success);">16 Desks</div>
+            <div class="metric-value" style="color: var(--status-success);">Loading...</div>
             <div class="metric-subtitle">Free for immediate booking</div>
           </div>
           <div class="metric-card">
             <span class="metric-title">Occupied Desks</span>
-            <div class="metric-value" style="color: var(--status-danger);">11 Desks</div>
+            <div class="metric-value" style="color: var(--status-danger);">Loading...</div>
             <div class="metric-subtitle">Assigned to active student shifts</div>
           </div>
           <div class="metric-card">
@@ -83,9 +83,9 @@
             <div style="display: flex; gap: 0.75rem;">
               <select id="seat-status-filter" class="admin-search-input" style="width: auto;">
                 <option value="all">All Statuses</option>
-                <option value="available">Available Only</option>
-                <option value="occupied">Occupied Only</option>
-                <option value="reserved">Reserved Only</option>
+                <option value="active">Active Only</option>
+                <option value="maintenance">Maintenance Only</option>
+                <option value="inactive">Inactive Only</option>
               </select>
             </div>
           </div>
@@ -103,7 +103,7 @@
                 </tr>
               </thead>
               <tbody id="seats-table-body">
-                <!-- Dynamically populated from admin-data.js -->
+                <!-- Populated from the authenticated API. -->
               </tbody>
             </table>
           </div>
@@ -115,46 +115,6 @@
   </div>
 
   <script src="js/admin-auth.js"></script>
-  <script src="js/admin-data.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const tbody = document.getElementById('seats-table-body');
-      if (!tbody || !window.ADMIN_MOCK_DATA) return;
-
-      function render(seats) {
-        tbody.innerHTML = '';
-        seats.forEach(s => {
-          const tr = document.createElement('tr');
-          const badgeClass = s.status === 'available' ? 'status-available' : (s.status === 'occupied' ? 'status-occupied' : 'status-reserved');
-
-          tr.innerHTML = `
-            <td><strong style="font-size: 1.1rem; color: var(--admin-primary);">${s.seatNumber}</strong></td>
-            <td>${s.zone}</td>
-            <td><span class="status-badge ${badgeClass}">${s.status}</span></td>
-            <td><strong>${s.assignedStudent}</strong></td>
-            <td>${s.currentSlot}</td>
-            <td>
-              <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="alert('Desk ${s.seatNumber} reallocation or manual override triggered.')">Edit Allocation</button>
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
-      }
-
-      render(window.ADMIN_MOCK_DATA.seats);
-
-      const statusFilter = document.getElementById('seat-status-filter');
-      if (statusFilter) {
-        statusFilter.addEventListener('change', (e) => {
-          const val = e.target.value;
-          if (val === 'all') {
-            render(window.ADMIN_MOCK_DATA.seats);
-          } else {
-            render(window.ADMIN_MOCK_DATA.seats.filter(s => s.status === val));
-          }
-        });
-      }
-    });
-  </script>
+  <script src="js/admin-api.js"></script>
 </body>
 </html>

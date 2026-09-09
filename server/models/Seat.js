@@ -7,6 +7,13 @@
 const { pool } = require('../config/database');
 
 const Seat = {
+  async create(data) {
+    const [result] = await pool.execute(
+      'INSERT INTO seats (seat_number, zone, row_position, status, notes) VALUES (?, ?, ?, ?, ?)',
+      [data.seat_number, data.zone, data.row_position, data.status || 'active', data.notes || null]
+    );
+    return result.insertId;
+  },
   /**
    * Return all 30 seats with their physical details.
    * @returns {Promise<Array>}
@@ -98,6 +105,21 @@ const Seat = {
       'UPDATE seats SET status = ? WHERE id = ?',
       [status, id]
     );
+    return result.affectedRows > 0;
+  },
+
+  async update(id, data) {
+    const fields = [];
+    const values = [];
+    for (const key of ['seat_number', 'zone', 'row_position', 'status', 'notes']) {
+      if (data[key] !== undefined) {
+        fields.push(`${key} = ?`);
+        values.push(data[key]);
+      }
+    }
+    if (!fields.length) return false;
+    values.push(id);
+    const [result] = await pool.execute(`UPDATE seats SET ${fields.join(', ')} WHERE id = ?`, values);
     return result.affectedRows > 0;
   }
 };

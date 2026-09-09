@@ -47,7 +47,7 @@
       <header class="admin-topbar">
         <h1 class="admin-page-title">Payment Transactions & Monthly Fee Collection</h1>
         <div class="admin-topbar-actions">
-          <button class="admin-btn admin-btn-primary admin-btn-sm" onclick="alert('Record offline cash/UPI payment at reception')"><i class="fa-solid fa-receipt"></i> Record Offline Fee</button>
+          <button class="admin-btn admin-btn-primary admin-btn-sm" data-record-payment><i class="fa-solid fa-receipt"></i> Record Offline Fee</button>
         </div>
       </header>
 
@@ -56,17 +56,17 @@
         <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
           <div class="metric-card">
             <span class="metric-title">Today's Collections</span>
-            <div class="metric-value" style="color: var(--status-success);">₹14,290</div>
+            <div class="metric-value" style="color: var(--status-success);">Loading...</div>
             <div class="metric-subtitle">8 successful renewals</div>
           </div>
           <div class="metric-card">
             <span class="metric-title">Current Month Revenue</span>
-            <div class="metric-value" style="color: var(--admin-primary);">₹64,750</div>
+            <div class="metric-value" style="color: var(--admin-primary);">Loading...</div>
             <div class="metric-subtitle">September 2026 to date</div>
           </div>
           <div class="metric-card">
             <span class="metric-title">Pending Invoices</span>
-            <div class="metric-value" style="color: #d97706;">2 Invoices</div>
+            <div class="metric-value" style="color: #d97706;">Loading...</div>
             <div class="metric-subtitle">₹1,798 awaiting payment</div>
           </div>
         </div>
@@ -77,7 +77,7 @@
               <h3 class="admin-card-title">Recent Fee Payments</h3>
               <p style="font-size: 0.85rem; color: var(--admin-text-muted);">UPI, Cards, Net Banking, and Offline desk receipts</p>
             </div>
-            <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="alert('Exporting CSV Ledger...')"><i class="fa-solid fa-download"></i> Export CSV</button>
+            <button class="admin-btn admin-btn-outline admin-btn-sm" data-export-payments><i class="fa-solid fa-download"></i> Export CSV</button>
           </div>
 
           <div class="admin-table-wrap">
@@ -95,7 +95,7 @@
                 </tr>
               </thead>
               <tbody id="payments-table-body">
-                <!-- Populated from admin-data.js -->
+                <!-- Populated from the authenticated API. -->
               </tbody>
             </table>
           </div>
@@ -107,32 +107,6 @@
   </div>
 
   <script src="js/admin-auth.js"></script>
-  <script src="js/admin-data.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const tbody = document.getElementById('payments-table-body');
-      if (!tbody || !window.ADMIN_MOCK_DATA) return;
-
-      tbody.innerHTML = '';
-      window.ADMIN_MOCK_DATA.payments.forEach(p => {
-        const tr = document.createElement('tr');
-        const badgeClass = p.status === 'paid' ? 'status-active' : 'status-reserved';
-
-        tr.innerHTML = `
-          <td><strong style="font-family: monospace; color: var(--admin-accent);">${p.txnId}</strong></td>
-          <td><strong>${p.student}</strong></td>
-          <td><strong style="color: var(--admin-text-main);">${p.amount}</strong></td>
-          <td>${p.date}</td>
-          <td>${p.method}</td>
-          <td>${p.plan}</td>
-          <td><span class="status-badge ${badgeClass}">${p.status}</span></td>
-          <td>
-            <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="alert('Generating GST invoice for ${p.txnId}')"><i class="fa-solid fa-file-invoice"></i> PDF</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    });
-  </script>
+  <script src="js/admin-api.js"></script>
 </body>
 </html>

@@ -8,9 +8,11 @@ const router     = require('express').Router();
 const ctrl       = require('../controllers/studentController');
 const wrap       = require('../middleware/asyncWrapper');
 const { requireAdmin } = require('../middleware/auth');
+const adminOps = require('../controllers/adminOperationsController');
 
 router.post  ('/',           wrap(ctrl.createStudent));
 router.use(requireAdmin);
+router.patch('/:id', wrap(adminOps.updateStudent));
 router.get   ('/',           wrap(ctrl.getAllStudents));
 router.get   ('/:id',        wrap(ctrl.getStudentById));
 router.patch ('/:id',        wrap(ctrl.updateStudent));

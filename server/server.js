@@ -23,6 +23,7 @@ const path         = require('path');
 // Internal
 const { testConnection } = require('./config/database');
 const { getJwtSecret } = require('./config/auth');
+const AdminSettings      = require('./models/AdminSettings');
 const errorHandler       = require('./middleware/errorHandler');
 
 // Route modules
@@ -34,6 +35,7 @@ const paymentsRouter    = require('./routes/payments');
 const attendanceRouter  = require('./routes/attendance');
 const plansRouter       = require('./routes/plans');
 const adminAuthRouter   = require('./routes/adminAuth');
+const settingsRouter    = require('./routes/settings');
 
 // ============================================================================
 // Express App Setup
@@ -73,6 +75,7 @@ app.use('/api/payments',    paymentsRouter);
 app.use('/api/attendance',  attendanceRouter);
 app.use('/api/plans',       plansRouter);
 app.use('/api/admin',       adminAuthRouter);
+app.use('/api/settings',    settingsRouter);
 
 // Health-check endpoint — returns server status + DB connectivity indicator
 app.get('/api/health', async (req, res) => {
@@ -102,6 +105,7 @@ const PORT = parseInt(process.env.PORT || '3000', 10);
 
 async function startServer() {
   getJwtSecret();
+  await AdminSettings.ensureTable();
   // Verify MySQL connection before binding port
   await testConnection();
 

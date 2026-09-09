@@ -196,3 +196,10 @@ CREATE TABLE IF NOT EXISTS attendance (
   INDEX idx_att_student_date (student_id, booking_date),
   INDEX idx_att_date         (booking_date)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS admin_settings (
+  setting_key VARCHAR(80) NOT NULL,
+  setting_value JSON NOT NULL,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (setting_key)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

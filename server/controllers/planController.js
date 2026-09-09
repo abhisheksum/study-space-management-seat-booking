@@ -13,7 +13,7 @@ const { sendSuccess, sendNotFound } = require('../utils/responseHelper');
  * The pricing page reads from this endpoint instead of hardcoded HTML.
  */
 async function getAllPlans(req, res) {
-  const plans = await MembershipPlan.findAll();
+  const plans = await MembershipPlan.findAll(req.admin ? req.query.all === '1' : false);
   return sendSuccess(res, plans, 'Membership plans retrieved.', 200, { count: plans.length });
 }
 

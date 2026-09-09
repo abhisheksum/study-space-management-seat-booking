@@ -89,7 +89,7 @@
                 </tr>
               </thead>
               <tbody id="students-table-body">
-                <!-- Dynamically populated from admin-data.js -->
+                <!-- Populated from the authenticated API. -->
               </tbody>
             </table>
           </div>
@@ -101,52 +101,6 @@
   </div>
 
   <script src="js/admin-auth.js"></script>
-  <script src="js/admin-data.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const tbody = document.getElementById('students-table-body');
-      if (!tbody || !window.ADMIN_MOCK_DATA) return;
-
-      function render(students) {
-        tbody.innerHTML = '';
-        students.forEach(st => {
-          const tr = document.createElement('tr');
-          const badgeClass = st.status === 'active' ? 'status-active' : (st.status === 'expiring' ? 'status-expiring' : 'status-expired');
-          
-          tr.innerHTML = `
-            <td><strong>${st.studentId}</strong></td>
-            <td><strong>${st.name}</strong><br><span style="font-size: 0.78rem; color: var(--admin-text-muted);">${st.email}</span></td>
-            <td>${st.mobile}</td>
-            <td><span class="status-badge status-slot">${st.membership}</span></td>
-            <td><strong style="color: var(--admin-accent);">${st.seat}</strong></td>
-            <td>${st.slot}</td>
-            <td>${st.expiry}</td>
-            <td><span class="status-badge ${badgeClass}">${st.status}</span></td>
-            <td>
-              <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="alert('Viewing student details for ${st.name}')"><i class="fa-regular fa-eye"></i></button>
-              <button class="admin-btn admin-btn-outline admin-btn-sm" style="color: var(--status-danger);" onclick="alert('Student pass renewal notification triggered for ${st.mobile}')"><i class="fa-solid fa-bell"></i></button>
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
-      }
-
-      render(window.ADMIN_MOCK_DATA.students);
-
-      // Search Filter
-      const searchInput = document.getElementById('student-search-input');
-      if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-          const query = e.target.value.toLowerCase();
-          const filtered = window.ADMIN_MOCK_DATA.students.filter(st => 
-            st.name.toLowerCase().includes(query) ||
-            st.studentId.toLowerCase().includes(query) ||
-            st.mobile.includes(query)
-          );
-          render(filtered);
-        });
-      }
-    });
-  </script>
+  <script src="js/admin-api.js"></script>
 </body>
 </html>

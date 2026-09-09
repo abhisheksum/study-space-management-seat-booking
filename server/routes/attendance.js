@@ -8,8 +8,10 @@ const router = require('express').Router();
 const ctrl   = require('../controllers/attendanceController');
 const wrap   = require('../middleware/asyncWrapper');
 const { requireAdmin } = require('../middleware/auth');
+const adminOps = require('../controllers/adminOperationsController');
 
 router.use(requireAdmin);
+router.patch('/:id/checkout', wrap(adminOps.checkoutAttendance));
 
 router.post  ('/',                 wrap(ctrl.checkIn));
 router.get   ('/',                 wrap(ctrl.getAttendance));
