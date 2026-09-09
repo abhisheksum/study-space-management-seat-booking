@@ -9,6 +9,7 @@ const MembershipPlan               = require('../models/MembershipPlan');
 const Seat                         = require('../models/Seat');
 const { validateMembership }       = require('../middleware/validate');
 const { sendSuccess, sendError, sendNotFound } = require('../utils/responseHelper');
+const { pool } = require('../config/database');
 
 /**
  * POST /api/memberships
@@ -19,25 +20,81 @@ async function createMembership(req, res) {
   if (errors.length) return sendError(res, 'Validation failed', 422, errors);
 
   const { student_id, plan_id, seat_id, start_date } = req.body;
+  const connection = await pool.getConnection();
 
-  // Verify plan exists
-  const plan = await MembershipPlan.findById(plan_id);
-  if (!plan) return sendError(res, `Membership plan ID ${plan_id} not found.`, 404);
+  try {
+    await connection.beginTransaction();
 
-  // Verify seat exists
-  const seat = await Seat.findById(seat_id);
-  if (!seat) return sendError(res, `Seat ID ${seat_id} not found.`, 404);
+    const [students] = await connection.execute(
+      'SELECT id FROM students WHERE id = ? AND is_active = 1 LIMIT 1',
+      [student_id]
+    );
+    if (!students[0]) {
+      await connection.rollback();
+      return sendError(res, `Active student ID ${student_id} not found.`, 404);
+    }
 
-  // Calculate end date from plan duration
-  const start  = new Date(start_date);
-  const end    = new Date(start);
-  end.setDate(end.getDate() + (plan.duration_days || 30));
-  const end_date = end.toISOString().split('T')[0];
+    const [plans] = await connection.execute(
+      'SELECT id, name, type, duration_days, is_active FROM membership_plans WHERE id = ? LIMIT 1',
+      [plan_id]
+    );
+    const plan = plans[0];
+    if (!plan) {
+      await connection.rollback();
+      return sendError(res, `Membership plan ID ${plan_id} not found.`, 404);
+    }
+    if (!plan.is_active) {
+      await connection.rollback();
+      return sendError(res, `Membership plan "${plan.name}" is inactive.`, 409);
+    }
 
-  const id = await Membership.create({ student_id, plan_id, seat_id, start_date, end_date });
-  const membership = await Membership.findById(id);
+    const [seats] = await connection.execute(
+      'SELECT id, seat_number, status FROM seats WHERE id = ? LIMIT 1',
+      [seat_id]
+    );
+    const seat = seats[0];
+    if (!seat) {
+      await connection.rollback();
+      return sendError(res, `Seat ID ${seat_id} not found.`, 404);
+    }
+    if (seat.status !== 'active') {
+      await connection.rollback();
+      return sendError(res, `Seat ${seat.seat_number} is not active and cannot be assigned.`, 409);
+    }
 
-  return sendSuccess(res, membership, 'Membership created successfully.', 201);
+    const start = new Date(`${start_date}T00:00:00Z`);
+    if (Number.isNaN(start.getTime())) {
+      await connection.rollback();
+      return sendError(res, 'Start date is invalid.', 422);
+    }
+    const end = new Date(start);
+    end.setUTCDate(end.getUTCDate() + (plan.duration_days || 30));
+    const end_date = end.toISOString().split('T')[0];
+    if (end_date <= start_date) {
+      await connection.rollback();
+      return sendError(res, 'Membership end date must be after its start date.', 422);
+    }
+
+    const overlap = await Membership.findActiveOverlap(connection, {
+      student_id, seat_id, start_date, end_date
+    });
+    if (overlap) {
+      await connection.rollback();
+      return sendError(res, 'The student or selected seat already has an overlapping active membership.', 409);
+    }
+
+    const id = await Membership.createWithConnection(connection, {
+      student_id, plan_id, seat_id, start_date, end_date
+    });
+    await connection.commit();
+    const membership = await Membership.findById(id);
+    return sendSuccess(res, membership, 'Membership created successfully.', 201);
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    connection.release();
+  }
 }
 
 /**

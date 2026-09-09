@@ -401,8 +401,52 @@ class RegistrationController {
         throw new Error(`${payload.message || 'Registration failed.'}${details}`);
       }
 
+      const [plansResponse, seatsResponse] = await Promise.all([
+        fetch('/api/plans'),
+        fetch('/api/seats')
+      ]);
+      const plansPayload = await plansResponse.json();
+      const seatsPayload = await seatsResponse.json();
+      if (!plansResponse.ok || !plansPayload.success || !Array.isArray(plansPayload.data)) {
+        throw new Error(plansPayload.message || 'Unable to load membership plans.');
+      }
+      if (!seatsResponse.ok || !seatsPayload.success || !Array.isArray(seatsPayload.data)) {
+        throw new Error(seatsPayload.message || 'Unable to verify the selected seat.');
+      }
+
+      const membershipType = this.membershipTypeSelect.value;
+      const selectedSlot = this.timeSlotSelect.value;
+      const plan = plansPayload.data.find((item) => (
+        (membershipType === 'full-day' && item.type === 'full_day') ||
+        (membershipType === 'half-day' && item.type === 'half_day') ||
+        (membershipType === 'slot-based' && item.type === 'slot' && item.slot_key === selectedSlot)
+      ));
+      if (!plan) throw new Error('The selected membership plan is not currently available.');
+
+      const seat = seatsPayload.data.find((item) => item.seat_number === this.seatSelect.value);
+      if (!seat) throw new Error('The selected seat could not be found.');
+
+      const membershipResponse = await fetch('/api/memberships', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          student_id: payload.data.id,
+          plan_id: plan.id,
+          seat_id: seat.id,
+          start_date: this.dateInput.value
+        })
+      });
+      const membershipPayload = await membershipResponse.json();
+      if (!membershipResponse.ok || !membershipPayload.success || !membershipPayload.data) {
+        const details = Array.isArray(membershipPayload.errors) && membershipPayload.errors.length
+          ? ` ${membershipPayload.errors.join(' ')}`
+          : '';
+        throw new Error(`${membershipPayload.message || 'Membership creation failed.'}${details}`);
+      }
+
       this.renderConfirmation({
         registrationId: payload.data.id,
+        membershipId: membershipPayload.data.id,
         personal: {
           fullName: payload.data.full_name,
           mobile: payload.data.mobile
@@ -453,6 +497,10 @@ class RegistrationController {
           <div class="confirmation-detail-row">
             <span style="color: var(--text-muted);">Registration ID:</span>
             <strong style="color: var(--accent); font-family: monospace; font-size: 1.15rem;">${data.registrationId}</strong>
+          </div>
+          <div class="confirmation-detail-row">
+            <span style="color: var(--text-muted);">Membership ID:</span>
+            <strong style="color: var(--accent); font-family: monospace;">${data.membershipId}</strong>
           </div>
 
           <div class="confirmation-detail-row">

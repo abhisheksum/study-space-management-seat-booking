@@ -20,6 +20,27 @@ const Membership = {
     return result.insertId;
   },
 
+  async findActiveOverlap(connection, data) {
+    const [rows] = await connection.execute(`
+      SELECT id
+      FROM memberships
+      WHERE (student_id = ? OR seat_id = ?)
+        AND status = 'active'
+        AND start_date < ?
+        AND end_date > ?
+      LIMIT 1
+    `, [data.student_id, data.seat_id, data.end_date, data.start_date]);
+    return rows[0] || null;
+  },
+
+  async createWithConnection(connection, data) {
+    const [result] = await connection.execute(`
+      INSERT INTO memberships (student_id, plan_id, seat_id, start_date, end_date, status)
+      VALUES (?, ?, ?, ?, ?, 'active')
+    `, [data.student_id, data.plan_id, data.seat_id, data.start_date, data.end_date]);
+    return result.insertId;
+  },
+
   /**
    * Find all memberships, optionally filtered.
    * @param {object} [filters] - { student_id, status }

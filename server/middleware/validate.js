@@ -141,6 +141,15 @@ function validateMembership(body) {
   push(isRequired(body.start_date, 'start_date'));
 
   if (body.start_date) push(isDateString(body.start_date));
+  if (body.student_id && (!Number.isInteger(Number(body.student_id)) || Number(body.student_id) <= 0)) {
+    push('student_id must be a positive number.');
+  }
+  if (body.plan_id && (!Number.isInteger(Number(body.plan_id)) || Number(body.plan_id) <= 0)) {
+    push('plan_id must be a positive number.');
+  }
+  if (body.seat_id && (!Number.isInteger(Number(body.seat_id)) || Number(body.seat_id) <= 0)) {
+    push('seat_id must be a positive number.');
+  }
 
   return errors;
 }
