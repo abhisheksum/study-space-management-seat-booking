@@ -205,3 +205,18 @@ CREATE TABLE IF NOT EXISTS admin_settings (
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (setting_key)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS contact_inquiries (
+  id          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name        VARCHAR(120) NOT NULL,
+  email       VARCHAR(120) NOT NULL,
+  mobile      VARCHAR(15) NOT NULL,
+  subject     VARCHAR(80) NOT NULL,
+  message     TEXT NOT NULL,
+  status      ENUM('new','in_progress','resolved','spam') NOT NULL DEFAULT 'new',
+  submitted_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  INDEX idx_contact_status (status),
+  INDEX idx_contact_submitted_at (submitted_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -36,6 +36,7 @@ const attendanceRouter  = require('./routes/attendance');
 const plansRouter       = require('./routes/plans');
 const adminAuthRouter   = require('./routes/adminAuth');
 const settingsRouter    = require('./routes/settings');
+const contactRouter     = require('./routes/contact');
 
 // ============================================================================
 // Express App Setup
@@ -79,6 +80,7 @@ app.use('/api/attendance',  attendanceRouter);
 app.use('/api/plans',       plansRouter);
 app.use('/api/admin',       adminAuthRouter);
 app.use('/api/settings',    settingsRouter);
+app.use('/api/contact',     contactRouter);
 
 // Health-check endpoint — returns server status + DB connectivity indicator
 app.get('/api/health', async (req, res) => {

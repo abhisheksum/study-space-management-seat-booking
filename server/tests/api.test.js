@@ -83,4 +83,42 @@ describe('POST /api/bookings — validation', () => {
       .send({ student_id: 1, seat_id: 1, booking_date: '2026-09-10' });
     expect(res.status).toBe(422);
   });
+
+  describe('POST /api/contact', () => {
+    it('rejects invalid contact data', async () => {
+      const res = await request(app)
+        .post('/api/contact')
+        .send({ name: 'A', email: 'invalid', mobile: '123', subject: '', message: 'short' });
+      expect(res.status).toBe(422);
+      expect(res.body.success).toBe(false);
+      expect(res.body.errors.length).toBeGreaterThan(0);
+    });
+
+    it('stores a valid contact inquiry and returns its identifier', async () => {
+      const execute = require('../config/database').pool.execute;
+      execute.mockImplementationOnce(async () => [{ insertId: 42 }])
+        .mockImplementationOnce(async () => [[{
+          id: 42,
+          name: 'Test Student',
+          email: 'student@example.com',
+          mobile: '9876543210',
+          subject: 'Trial session',
+          message: 'I would like to schedule a trial session.',
+          status: 'new'
+        }]]);
+
+      const res = await request(app)
+        .post('/api/contact')
+        .send({
+          name: 'Test Student',
+          email: 'student@example.com',
+          mobile: '9876543210',
+          subject: 'Trial session',
+          message: 'I would like to schedule a trial session.'
+        });
+      expect(res.status).toBe(201);
+      expect(res.body.success).toBe(true);
+      expect(res.body.data.id).toBe(42);
+    });
+  });
 });

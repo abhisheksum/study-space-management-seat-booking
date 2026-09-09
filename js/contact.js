@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const statusMsg = document.getElementById('contact-form-status');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const nameInput = document.getElementById('contact-name');
@@ -110,11 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
         mobile: cleanMobile,
         email: emailInput.value.trim(),
         subject: subjectInput.value,
-        message: messageInput.value.trim(),
-        submittedAt: new Date().toISOString()
+        message: messageInput.value.trim()
       };
-
-      console.log('[StudyHub] Contact Inquiry Payload:', contactPayload);
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
@@ -122,21 +119,41 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending message...';
 
-      setTimeout(() => {
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(contactPayload)
+        });
+        const payload = await response.json();
+        if (!response.ok || !payload.success) {
+          const details = Array.isArray(payload.errors) && payload.errors.length
+            ? ` ${payload.errors.join(' ')}`
+            : '';
+          throw new Error(`${payload.message || 'Unable to send your message.'}${details}`);
+        }
+
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
 
         if (statusMsg) {
           statusMsg.style.display = 'block';
           statusMsg.className = 'seat-toast-msg toast-success';
-          statusMsg.innerHTML = `
-            <i class="fa-solid fa-circle-check"></i> Thank you, <strong>${contactPayload.name}</strong>! Your message has been received. Our desk coordinator will reach out to you at <strong>${contactPayload.mobile}</strong> shortly.
-          `;
+          statusMsg.textContent = `Thank you, ${contactPayload.name}! Your message has been received. Our desk coordinator will reach out to you at ${contactPayload.mobile} shortly.`;
           statusMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         contactForm.reset();
-      }, 1000);
+      } catch (error) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+        if (statusMsg) {
+          statusMsg.style.display = 'block';
+          statusMsg.className = 'seat-toast-msg toast-error';
+          statusMsg.textContent = error.message || 'Unable to send your message. Please try again.';
+          statusMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
     });
   }
 
