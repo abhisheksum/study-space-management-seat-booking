@@ -22,7 +22,7 @@ async function getAllSeats(req, res) {
  * Returns each seat with its availability for the requested date + slot.
  * 
  * This is the endpoint the frontend seat map page calls.
- * Response structure mirrors the MOCK_BOOKINGS data in js/seats.js.
+ * Response structure is consumed by the public seat map and homepage preview.
  */
 async function getSeatAvailability(req, res) {
   const { date, slot } = req.query;

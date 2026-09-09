@@ -71,7 +71,7 @@ The business rule *"the same seat cannot be booked by two students for overlappi
 
 | Layer | File | Mechanism |
 |---|---|---|
-| Frontend | `js/seats.js` `checkTimeOverlap()` | Half-open interval math on mock data |
+| Frontend | `js/seats.js` | Displays availability from `GET /api/seats/availability`; not a security boundary |
 | **Backend (authoritative)** | `server/utils/overlapChecker.js` | SQL query with `start_hour < endHour AND end_hour > startHour` on live DB |
 
 ```sql
