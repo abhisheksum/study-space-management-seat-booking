@@ -87,7 +87,18 @@ class RegistrationController {
 
     if (this.photoInput) {
       this.photoInput.addEventListener('change', (e) => {
-        this.validatePhotoFile(e.target);
+        if (this.validatePhotoFile(e.target)) {
+          const file = e.target.files[0];
+          let preview = document.getElementById('profile-photo-preview');
+          if (!preview) {
+            preview = document.createElement('img');
+            preview.id = 'profile-photo-preview';
+            preview.alt = 'Selected profile photo preview';
+            preview.style.cssText = 'display:block;max-width:120px;max-height:120px;margin-top:.75rem;border-radius:8px;object-fit:cover';
+            e.target.parentElement.appendChild(preview);
+          }
+          preview.src = URL.createObjectURL(file);
+        }
       });
     }
 
@@ -389,10 +400,12 @@ class RegistrationController {
     };
 
     try {
+      const formData = new FormData();
+      Object.entries(registrationPayload).forEach(([key, value]) => formData.append(key, value));
+      if (this.photoInput?.files[0]) formData.append('profile_photo', this.photoInput.files[0]);
       const response = await fetch('/api/students', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(registrationPayload)
+        body: formData
       });
       const payload = await response.json();
       if (!response.ok || !payload.success || !payload.data) {

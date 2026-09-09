@@ -40,6 +40,14 @@ const Student = {
     return result.insertId;
   },
 
+  async updateProfilePhoto(id, profilePhotoPath) {
+    const [result] = await pool.execute(
+      'UPDATE students SET profile_photo_path = ? WHERE id = ?',
+      [profilePhotoPath, id]
+    );
+    return result.affectedRows > 0;
+  },
+
   /**
    * Find all students with optional search.
    * @param {object} [filters] - { search, city, state, is_active }

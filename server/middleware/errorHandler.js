@@ -20,6 +20,14 @@ function errorHandler(err, req, res, next) { // eslint-disable-line no-unused-va
     console.error('🔴 [ErrorHandler]', err.message);
   }
 
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    return res.status(413).json({
+      success: false,
+      message: 'Profile photo must be 3 MB or smaller.',
+      errors: []
+    });
+  }
+
   // MySQL duplicate entry (ER_DUP_ENTRY)
   if (err.code === 'ER_DUP_ENTRY') {
     return res.status(409).json({

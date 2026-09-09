@@ -7,22 +7,36 @@
 const Student                      = require('../models/Student');
 const { validateStudent }          = require('../middleware/validate');
 const { sendSuccess, sendError, sendNotFound } = require('../utils/responseHelper');
+const fs = require('fs/promises');
+const path = require('path');
 
 /**
  * POST /api/students
  * Register a new student.
  */
 async function createStudent(req, res) {
+  const profilePhotoPath = req.uploadedPhotoPath;
+  const removeUploadedPhoto = async () => {
+    if (profilePhotoPath) {
+      await fs.unlink(path.join(__dirname, '..', '..', profilePhotoPath));
+    }
+  };
+  req.body.profile_photo_path = profilePhotoPath || null;
   const errors = validateStudent(req.body);
-  if (errors.length) return sendError(res, 'Validation failed', 422, errors);
+  if (errors.length) {
+    await removeUploadedPhoto().catch(() => {});
+    return sendError(res, 'Validation failed', 422, errors);
+  }
 
   // Check both unique identifiers before attempting the insert.
   const existingMobile = await Student.findByMobile(req.body.mobile);
   if (existingMobile) {
+    await removeUploadedPhoto().catch(() => {});
     return sendError(res, `A student with mobile ${req.body.mobile} is already registered.`, 409);
   }
   const existingEmail = await Student.findByEmail(req.body.email);
   if (existingEmail) {
+    await removeUploadedPhoto().catch(() => {});
     return sendError(res, `A student with email ${req.body.email} is already registered.`, 409);
   }
 
@@ -34,6 +48,7 @@ async function createStudent(req, res) {
     if (error.code === 'ER_DUP_ENTRY') {
       return sendError(res, 'A student with that mobile number or email address is already registered.', 409);
     }
+    await removeUploadedPhoto().catch(() => {});
     throw error;
   }
   const student = await Student.findById(id);
